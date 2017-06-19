@@ -19,8 +19,8 @@
         <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
             <h3>Modification de votre nom d'utilisateur</h3>
             <form action="profiladmin/modifierUtilisateur" method="POST">
-                <input style="display:inline-block; width: 80%" type="text" name="nvNomUtilisateur" value="<?= $infoUtilisateur['login']?>"/>
-                <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id']?>" />
+                <input style="display:inline-block; width: 80%" type="text" name="nvNomUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['login']) ?>"/>
+                <input type="hidden" name="idUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['id']) ?>" />
                 <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Modifier" />
             </form>
         </div><!-- end content -->

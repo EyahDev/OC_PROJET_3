@@ -6,7 +6,7 @@
 <?php foreach ($recupCategories AS $categorie) : ?>
     <?php if ($categorie['nbArticles'] != 0) : ?>
     <h1 id="alaska" class="categorie">
-        <a style="text-decoration: none" href="<?= "categorie/index/" . $categorie['id'] ?>"><?= $categorie['categorie'] ?></a>
+        <a style="text-decoration: none" href="<?= "categorie/index/" . $categorie['id'] ?>"><?= $this->nettoyageFailles($categorie['categorie']) ?></a>
         <?php if(isset($_SESSION['idUtilisateur'])) : ?>
         <a style="font-size: 18px" href="<?= "categorieAdmin/modification/" . $categorie['id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         <?php endif; ?>
@@ -16,7 +16,7 @@
         <?php if ($affichageBillet['categorie_id'] == $categorie['id']) : ?>
         <div class="work">
             <a href="<?= "billet/index/" . $affichageBillet['id'] ?>">
-                <img src="<?= $affichageBillet['url_img_tuiles'] ?>" class="media" alt=""/>
+                <img src="<?= $this->nettoyageFailles($affichageBillet['url_img_tuiles']) ?>" class="media" alt=""/>
                 <div class="caption">
                     <div class="work_title" style="margin-bottom:50px;">
                         <h1><?= $this->nettoyageFailles($affichageBillet['titre']); ?></h1>
@@ -40,9 +40,9 @@
 
     <?php foreach ($derniersComs as $affichageDerniersComs) :?>
             <div class="comAccueil">
-                <p><a href="<?='billet/index/' .$affichageDerniersComs['billet_id']. '#commentaires' ?>"><?= $affichageDerniersComs['titre']?></a></p>
-                <p><?= $affichageDerniersComs['auteur']?></p>
-                <p><?= $affichageDerniersComs['contenu']?></p>
+                <p><a href="<?='billet/index/' .$affichageDerniersComs['billet_id']. '#commentaires' ?>"><?= $this->nettoyageFailles($affichageDerniersComs['titre']) ?></a></p>
+                <p><?= $this->nettoyageFailles($affichageDerniersComs['auteur']) ?></p>
+                <p><?= $this->nettoyageFailles($affichageDerniersComs['contenu']) ?></p>
                 <p><time><?= $affichageDerniersComs['com_date']?></time></p>
             </div>
     <?php endforeach; ?>
@@ -65,7 +65,7 @@
             <?php endif; ?>
         </h1>
         <div id="aProposContenu" style="text-align: center">
-            <img id="imgPresentation" src="<?= $aPropos['url_img_apropos'] ?>" class="media" alt=""/>
+            <img id="imgPresentation" src="<?= $this->nettoyageFailles($aPropos['url_img_apropos']) ?>" class="media" alt=""/>
             <div id="textPresentation">
                 <?= $aPropos['apropos'] ?>
             </div>

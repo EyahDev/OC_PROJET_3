@@ -8,6 +8,7 @@ use Blog\Modele\Utilisateur;
 use Exception;
 
 class ControleurConnexion extends Controleur {
+
     // Déclaration des fonctions utiles au constructeur
     private $utilisateur;
 
@@ -17,6 +18,7 @@ class ControleurConnexion extends Controleur {
     public function __construct() {
         $this->utilisateur = new Utilisateur();
     }
+
 
     /**
      * Action par défaut du contrôleur

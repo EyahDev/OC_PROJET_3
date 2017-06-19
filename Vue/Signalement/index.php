@@ -38,7 +38,7 @@
                                 <tbody>
                                 <?php foreach ($recupCommentaires AS $affichageCommentaire) : ?>
                                     <tr>
-                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaire['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']); ?></a></td>
+                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaire['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']) ?></a></td>
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaire['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaire['contenu']); ?></td>
                                         <?php if ($affichageCommentaire['signalement'] < 3) : ?>

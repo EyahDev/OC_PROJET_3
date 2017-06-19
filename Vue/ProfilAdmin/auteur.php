@@ -19,7 +19,7 @@
         <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
             <h3>Modification de votre nom d'auteur</h3>
             <form action="profiladmin/modifierAuteur" method="POST">
-                <input style="display:inline-block; width: 80%" type="text" name="nvNomAuteur" value="<?= $infoUtilisateur['pseudo_auteur']?>"/>
+                <input style="display:inline-block; width: 80%" type="text" name="nvNomAuteur" value="<?= $this->nettoyageFailles($infoUtilisateur['pseudo_auteur']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id']?>" />
                 <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Modifier" />
             </form>

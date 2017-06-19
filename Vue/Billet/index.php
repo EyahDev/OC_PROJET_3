@@ -34,9 +34,9 @@
                 </h1>
                 <p>
                     <i class="fa fa-calendar-o" aria-hidden="true"></i> <?= $affichageBillet['billet_date']?>
-                    <a style="text-decoration: none" href="index.php#aPropos"><i style="padding-left: 10px;" class="fa fa-user" aria-hidden="true"></i> <?= $affichageBillet['pseudo_auteur'] ?></a>
-                    <a href="<?= 'billet/index/' .$affichageBillet['id']?>#commentaires"><i style="padding-left: 10px;" class="fa fa-comment" aria-hidden="true"></i> <?= $affichageBillet['nbCom'] ?> commentaire(s) </a>
-                    <a href="<?= 'categorie/index/' .$affichageBillet['categorie_id']?>"><i style="padding-left: 10px;" class="fa fa-tag" aria-hidden="true"></i> <?= $affichageBillet['categorie'] ?></a></p>
+                    <a style="text-decoration: none" href="index.php#aPropos"><i style="padding-left: 10px;" class="fa fa-user" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['pseudo_auteur']) ?></a>
+                    <a href="<?= 'billet/index/' .$affichageBillet['id'] ?>#commentaires"><i style="padding-left: 10px;" class="fa fa-comment" aria-hidden="true"></i> <?= $affichageBillet['nbCom'] ?> commentaire(s) </a>
+                    <a href="<?= 'categorie/index/' .$affichageBillet['categorie_id'] ?>"><i style="padding-left: 10px;" class="fa fa-tag" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['categorie']) ?></a></p>
             </div>
         </div>
     </section><!-- end top -->

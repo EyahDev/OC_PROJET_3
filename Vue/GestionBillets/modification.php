@@ -23,7 +23,7 @@
             <form action="gestionbillets/publication" method="POST">
                 <input type="hidden" name="id" value="<?= $affichageBillet['id']?>"/>
                 <label for="titreModifArticle">Titre de l'article</label>
-                <input type="text" name="titreModifArticle" id="titreModifArticle" value="<?= $affichageBillet['titre'] ?>" required/>
+                <input type="text" name="titreModifArticle" id="titreModifArticle" value="<?= $this->nettoyageFailles($affichageBillet['titre']) ?>" required/>
                 <br />
 
                 <label for="categorieNvArticle">Catégorie</label>
@@ -31,7 +31,7 @@
                     <select name="categorieModifArticle" id="" required>
                         <option value="">-- Selectionnez la catégorie de l'article --</option>
                         <?php foreach ($categories as $categorie) : ?>
-                            <option value="<?= $categorie['id'] ?>"<?= ($categorie['id'] == $affichageBillet['categorie_id'])? 'selected': '' ?>><?= $categorie['categorie'] ?></option>
+                            <option value="<?= $categorie['id'] ?>"<?= ($categorie['id'] == $affichageBillet['categorie_id'])? 'selected': '' ?>><?= $this->nettoyageFailles($categorie['categorie']) ?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
@@ -41,13 +41,13 @@
                 <label for="ModifArticleUrlTuile">URL de l'image de l'accueil <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
-                <input type="text" id="ModifArticleUrlTuile" name="urlTuile" value="<?= ($affichageBillet['url_img_tuiles'] == 'Contenu/img/default/tuile_default.jpg')? '' : $affichageBillet['url_img_tuiles'] ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas"/>
+                <input type="text" id="ModifArticleUrlTuile" name="urlTuile" value="<?= ($this->nettoyageFailles($affichageBillet['url_img_tuiles']) == 'Contenu/img/default/tuile_default.jpg')? '' : $this->nettoyageFailles($affichageBillet['url_img_tuiles']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas"/>
                 <br />
 
                 <label for="ModifArticleUrlPres">URL de l'image de l'article <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
-                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($affichageBillet['url_img_pres'] == 'Contenu/img/default/pres_default.jpg')? '' : $affichageBillet['url_img_tuiles'] ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($this->nettoyageFailles($affichageBillet['url_img_pres']) == 'Contenu/img/default/pres_default.jpg')? '' : $this->nettoyageFailles($affichageBillet['url_img_tuiles']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
                 <br />
 
                 <label for="contenuArticleModif">Contenu de l'article</label>

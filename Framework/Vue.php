@@ -21,7 +21,7 @@ class Vue {
         $this->fichier = $fichier . $action . '.php';
     }
 
-    private function NettoyageFailles($valeur) {
+    private function nettoyageFailles($valeur) {
         return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
     }
 

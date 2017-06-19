@@ -35,6 +35,7 @@ abstract class Controleur {
     // Fonction qui gère les actions par défauts (pour les enfants)
     public abstract function index();
 
+
     /**
      * @param array $donneesVue
      */

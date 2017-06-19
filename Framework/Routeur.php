@@ -56,13 +56,14 @@ class Routeur {
         // Vérification si le fichier existe
         if (file_exists($fichierControleur)) {
             $classeControleur = "Blog\Controleur\\" . $classeControleur;
+
             // instanciation du controleur demandé
             $controleur = new $classeControleur();
 
-            // ??
             $controleur->setRequete($requete);
 
             return $controleur;
+
         } else {
             throw new Exception("Fichier '$fichierControleur' est introuvable");
 

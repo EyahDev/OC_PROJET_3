@@ -14,9 +14,9 @@ echo '<div class="conteneurComEnfants">';
                             <?php if(isset($_SESSION['idUtilisateur'])) : ?>
                                 <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                             <?php endif; ?>
-                            <strong><?=  $reponse['auteur']?></strong> en réponse à <strong><?=  $parent['auteur']?></strong> - <time><?= $reponse['dateFormate']?></time>
+                            <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['contenu'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
                         </p>
-                        <p class="contenuCom"><?= $reponse['contenu']?></p>
+                        <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false) ?></p>
 
                         <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">
                             <input type="hidden" name="idCom" value="<?= $reponse['id'] ?>">
@@ -37,9 +37,9 @@ echo '<div class="conteneurComEnfants">';
                                     <?php if(isset($_SESSION['idUtilisateur'])) : ?>
                                         <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     <?php endif; ?>
-                                    <strong><?=  $reponse['auteur']?></strong> en réponse à <strong><?=  $parent['auteur']?></strong> - <time><?= $reponse['dateFormate']?></time>
+                                    <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['auteur'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
                                 </p>
-                                <p class="contenuCom"><?= $reponse['contenu']?></p>
+                                <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false) ?></p>
                                 <button class="repondre" data-to="<?= $reponse['id'] ?>">Répondre</button>
 
                                 <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">
@@ -69,9 +69,9 @@ echo '<div class="conteneurComEnfants">';
                             <?php if(isset($_SESSION['idUtilisateur'])) : ?>
                                 <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                             <?php endif; ?>
-                            <strong><?=  $reponse['auteur']?></strong> - <time><?= $reponse['dateFormate']?></time>
+                            <strong><?= htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> - <time><?= $reponse['dateFormate']?></time>
                         </p>
-                        <p class="contenuCom"><?= $reponse['contenu']?></p>
+                        <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false)?></p>
                         <button class="repondre" data-to="<?= $reponse['id'] ?>">Répondre</button>
 
                         <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">

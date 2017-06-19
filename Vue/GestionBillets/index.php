@@ -39,7 +39,7 @@
                                 <tr>
                                     <td data-title="Titre de l'article"><?= $this->nettoyageFailles($affichageBillet['titre']); ?></td>
                                     <td data-title="Date de publication"><time><?= $affichageBillet['billet_date']?></time></td>
-                                    <td data-title="Catégorie"><?= $affichageBillet['categorie']?></td>
+                                    <td data-title="Catégorie"><?= $this->nettoyageFailles($affichageBillet['categorie']) ?></td>
                                     <td data-title="Commentaires"><?= $affichageBillet['nbBillet']?></td>
                                     <td data-title="Action">
                                         <a href="<?= "gestionbillets/modification/" . $affichageBillet['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier</a> /

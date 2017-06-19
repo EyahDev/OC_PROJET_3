@@ -28,7 +28,7 @@
 
             <div id="auteur" class="details">
                 <h4>Auteur</h4>
-                <p><?= $details['auteur']?></p>
+                <p><?= $this->nettoyageFailles($details['auteur'])?></p>
             </div>
 
             <div id="billet" class="details">
@@ -38,12 +38,12 @@
 
             <div id="contenu" class="details">
                 <h4>Commentaire</h4>
-                <p><?= $details['contenu']?>
+                <p><?= $this->nettoyageFailles($details['contenu']) ?>
                     <?php if ($details['reponse_id']) : ?>
                 <hr/>
-                En réponse à <strong><?= $reponse['auteur'] ?></strong>
+                En réponse à <strong><?= $this->nettoyageFailles( $reponse['auteur']) ?></strong>
                 <hr>
-                <?= $reponse['contenu'] ?> <br />
+                <?= $this->nettoyageFailles($reponse['contenu']) ?> <br />
                 <?php endif; ?>
                 </p>
             </div>

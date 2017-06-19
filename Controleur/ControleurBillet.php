@@ -6,7 +6,6 @@ namespace Blog\Controleur;
 use Blog\Modele\Billet;
 use Blog\Modele\Commentaire;
 use Blog\Framework\Controleur;
-use Blog\Framework\Vue;
 
 
 class ControleurBillet extends Controleur {
@@ -121,6 +120,7 @@ class ControleurBillet extends Controleur {
         $auteur = $this->requete->getParametre('auteur');
         $contenu = $this->requete->getParametre('contenu');
         $reponseID = $this->requete->getParametre('reponse');
+
 
         if ($reponseID == '') {
             $reponseID = null;
