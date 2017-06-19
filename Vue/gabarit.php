@@ -39,4 +39,10 @@
             </div ><!-- end footer -->
         </footer>
     </body>
+    <script>
+        // Affichage du formulaire de contact après clic sur répondre (details articles)
+        $('button.repondre').click(function(){
+            $(".formRepondre[data-to='"+$(this).data('to')+"']").show(0);
+        });
+    </script>
 </html>

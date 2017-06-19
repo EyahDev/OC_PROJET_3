@@ -68,10 +68,16 @@ class ControleurSignalement extends ControleurSecurise {
 
         // Affiche les details du commentaire signalé
         $details = $this->commentaire->getSignalement($idCommentaire);
+        $recupReponse = '';
+
+        if ($details['reponse_id']) {
+            $recupReponse = $this->commentaire->getReponse($details['reponse_id']);
+        }
 
         // Genère la vue details
         $this->genererVue(array(
-                'details' => $details
+                'details' => $details,
+                'reponse' => $recupReponse
             ));
     }
 

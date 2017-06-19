@@ -21,7 +21,7 @@
         <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
 
             <?php if ($details['moderation'] == 1) : ?>
-                <p><strong>Ce commentaire a été signalé <?= $details['signalement'] ?> fois et a déjà été modéré.</strong></p>
+                <p><strong>Ce commentaire a été signalé <?= $details['signalement'] ?> fois et a déjà été approuvé.</strong></p>
             <?php else : ?>
                 <p><strong>Ce commentaire a été signalé <?= $details['signalement'] ?> fois.</strong></p>
             <?php endif; ?>
@@ -38,7 +38,14 @@
 
             <div id="contenu" class="details">
                 <h4>Commentaire</h4>
-                <p><?= $details['contenu']?></p>
+                <p><?= $details['contenu']?>
+                    <?php if ($details['reponse_id']) : ?>
+                <hr/>
+                En réponse à <strong><?= $reponse['auteur'] ?></strong>
+                <hr>
+                <?= $reponse['contenu'] ?> <br />
+                <?php endif; ?>
+                </p>
             </div>
 
             <?php if ($details['moderation'] == 1) : ?>

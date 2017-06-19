@@ -41,7 +41,13 @@
                                         <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaire['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']); ?></a></td>
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaire['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaire['contenu']); ?></td>
-                                        <td data-title="Signalement"> <?= ($affichageCommentaire['moderation'] == 1)? $affichageCommentaire['signalement']. ' nouveau(x) signalement malgré votre approbation' : $affichageCommentaire['signalement'] ?></td>
+                                        <?php if ($affichageCommentaire['signalement'] < 3) : ?>
+                                            <td data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                        <?php elseif ($affichageCommentaire['signalement'] <= 6 ) : ?>
+                                            <td style="color: orange" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                        <?php else : ?>
+                                            <td style="color: red" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                        <?php endif; ?>
                                         <td data-title="Action"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" style="color: green;"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a> /
                                             <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td>
                                         <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaire['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
@@ -76,10 +82,17 @@
                                 <tbody>
                                 <?php foreach ($recupCommentairesApprouves AS $affichageCommentaireApprouve) : ?>
                                     <tr>
-                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaire['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']); ?></a></td>
+                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaireApprouve['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaireApprouve['titre']); ?></a></td>
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaireApprouve['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaireApprouve['contenu']); ?></td>
-                                        <td data-title="Signalement"><?= $this->nettoyageFailles($affichageCommentaireApprouve['signalement']); ?></td>
+                                        <?php if ($affichageCommentaireApprouve['signalement'] < 3) : ?>
+                                            <td data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
+                                        <?php elseif ($affichageCommentaireApprouve['signalement'] <= 6 ) : ?>
+                                            <td style="color: orangered" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
+                                        <?php else : ?>
+                                            <td style="color: red" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
+                                        <?php endif; ?>
+
                                         <td data-title="Action"><a href="<?= "signalement/suppression/" . $affichageCommentaireApprouve['id']?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td></td>
                                         <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaireApprouve['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>

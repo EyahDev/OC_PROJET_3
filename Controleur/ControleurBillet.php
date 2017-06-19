@@ -139,9 +139,16 @@ class ControleurBillet extends Controleur {
         $idBillet = $this->requete->getParametre('idBillet');
         $idCommentaires = $this->requete->getParametre('idCom');
 
-        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci.');
+        $recupAppprobation = $this->commentaires->getApprobation($idCommentaires);
 
-        $this->commentaires->signalement($idCommentaires);
+        if ($recupAppprobation['moderation'] != 1) {
+            $this->commentaires->signalement($idCommentaires);
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci.');
+        } else {
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, ce n\'est plus necessaire de le signaler.');
+        }
+
+
         $this->redirection('billet', 'index/'.$idBillet. '#commentaires');
     }
 }

@@ -136,7 +136,7 @@ class Commentaire extends Modele {
               FROM commentaires com 
               INNER JOIN billets bill 
               ON bill.id = com.billet_id
-              WHERE com.signalement > 0';
+              WHERE com.signalement > 0 AND com.moderation = 0';
 
         // Récuperation des commentaires liés au billet demandé
         $recupCommentaires = $this->executionRequete($reqSQL);
@@ -183,8 +183,7 @@ class Commentaire extends Modele {
      */
     public function getSignalement($idCommentaires) {
         // Définition de la requête SQL
-        $reqSQL =
-            'SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.billet_id billet_id, com.signalement signalement , com.moderation moderation
+        $reqSQL ='SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.reponse_id reponse_id, com.billet_id billet_id, com.signalement signalement , com.moderation moderation
               FROM commentaires com 
               INNER JOIN billets bill 
               ON bill.id = com.billet_id
@@ -201,6 +200,23 @@ class Commentaire extends Modele {
         }
     }
 
+    public function getReponse($idReponse) {
+        $reqSQL ='SELECT id, auteur, contenu FROM commentaires WHERE id = ?';
+
+        $recupReponse = $this->executionRequete($reqSQL, array($idReponse));
+
+        return $recupReponse->fetch();
+
+    }
+
+    public function getApprobation($idCommentaire) {
+        $reqSQL = 'SELECT moderation FROM commentaires WHERE id = ?';
+
+        $recupApprobation = $this->executionRequete($reqSQL, array($idCommentaire));
+
+        return $recupApprobation->fetch();
+    }
+
     /**
      * Approbation du commentaire signalé
      *
@@ -210,7 +226,7 @@ class Commentaire extends Modele {
      */
     public function approbation($idCommentaire) {
         // Définition de la requête SQL
-        $reqSQL = 'UPDATE commentaires SET moderation = 1, signalement = 0 WHERE id = ?';
+        $reqSQL = 'UPDATE commentaires SET moderation = 1 WHERE id = ?';
 
         // Approbation du commentaire dans la base de données
         $approbation = $this->executionRequete($reqSQL, array($idCommentaire));
