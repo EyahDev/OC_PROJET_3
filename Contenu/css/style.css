@@ -1,0 +1,116 @@
+/* Ajustement responsive */
+
+@media (max-width: 468px) {
+	/* Articles */
+	.catNbArticles {
+		position: relative;
+		bottom: 39px;
+	}
+}
+
+/*body*/
+
+body {
+	background-color: #f6f6f6;
+}
+
+/* Liens hypertext */
+a:hover, a:visited, a:focus {
+	text-decoration: none;
+	color: black
+}
+/* Logo */
+#logo {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+/* Navigation*/
+
+.navbar .navbar-collapse {
+	text-align: center;
+  	border-top: 1px #EEEEEE solid;
+  	border-bottom: 1px #EEEEEE solid;
+  	background-color: #ffffff;
+}
+
+.navbar .navbar-nav {
+	display: inline-block;
+  	float: none;
+  	vertical-align: top;
+}
+
+.navbar-blank .navbar-nav > li > a:hover, .navbar-blank .navbar-nav > li > a:focus, .navbar-brand:hover {
+    background-color: #ffffff;
+    color: #b2370a;
+}
+
+.navbar-blank .navbar-nav > li > a, .navbar-brand {
+	color: #383838;
+}
+
+/* Catégories */
+
+.categories {
+	height: 300px;
+	background: no-repeat, center, fixed;
+	background-size: cover;
+	font-size: 2.5em;
+	border: 1px solid grey;
+}
+
+.catNbArticles {
+	padding-top: 170px;
+	margin-top: auto;
+	text-align: right;
+}
+
+/* Alaska */
+
+#catAlaska {
+	background-image: url(../img/ChugachMountains.jpg);
+	color: black;
+}
+
+/* Articles */
+
+.articlesAccueil {
+	width: 340px;
+	margin: 20px 20px 20px 0;
+}
+
+.vignette {
+	background: no-repeat, center, fixed;
+	background-size: cover;
+	height: 300px;
+}
+
+.infoVign {
+	background-color: #ffffff;
+	height: 300px;
+	border: 1px solid #eeeeee;
+	border-radius: 0 0 8px 8px;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.13);
+}
+
+.comVign {
+	margin-top: 40px;
+}
+
+.lireVign {
+
+	width: 70px;
+	height: 30px;
+	color: white;
+	padding-top: 4px;
+	text-align: center;
+	margin-top: 35px;
+	margin-left: 100px;
+	background-color: #555657;
+}
+/*Episodes*/
+
+#ep6 {
+	background: url(../img/episode6.jpg);
+}
