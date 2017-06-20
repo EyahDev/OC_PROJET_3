@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -16,7 +16,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto;">
+        <div class="content contentCatAdmin">
             <h3>Modification de la catégorie : <?= $this->nettoyageFailles($categorie['categorie']) ?></h3>
             <form action="categorieAdmin/modifier" method="POST">
                 <input type="hidden" name="idCategorie" value="<?= $categorie['id']?>" />
@@ -26,7 +26,7 @@
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
                 <input type="text" id="categorieURLPres" name="ModifCategorieURLPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" value="<?= ($this->nettoyageFailles($categorie['url_img_pres']) == 'Contenu/img/default/cat_pres_default.jpg')? '' : $this->nettoyageFailles($categorie['url_img_pres']) ?>" />
-                <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Modifier">
+                <button class="buttonRepondre" type="submit">Modifier</button>
             </form>
         </div><!-- end content -->
     </section>

@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix ">
             <div class="work_nav">
 
@@ -18,7 +18,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto;">
+        <div class="content contentCatAdmin">
             <form action="profiladmin/publierApropos" method="POST">
                 <label for="URLauteur">URL de l'image de présentation de la catatégorie<br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
@@ -27,7 +27,7 @@
                 <label for="aProposRedac">A propos</label>
                 <textarea class="tinyMCE" id="aProposRedac" name="contenuApropos" style="height: 500px"><?= $infoUtilisateur['apropos']?></textarea>
                 <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id']?>">
-                <button style="width: 80px" type="submit">Publier</button>
+                <button class="buttonRepondre" type="submit">Publier</button>
             </form>
         </div><!-- end content -->
     </section>

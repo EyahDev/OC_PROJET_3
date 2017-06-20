@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -16,17 +16,17 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
+        <div class="content contentAdmin">
             <h3>Modification de votre mot de passe</h3>
             <?= $messageErreur ?>
             <form action="profiladmin/modifierPassword" method="POST">
                 <p>Saisissez votre ancien mot de passe</p>
-                <input style="display:inline-block; width: 80%" type="password" name="ancienPassword" required/>
+                <input type="password" name="ancienPassword" required/>
                 <p>Saisissez votre nouveau mot de passe</p>
-                <input style="display:inline-block; width: 80%" type="password" name="nvPassword" required/>
+                <input type="password" name="nvPassword" required/>
                 <p>Saisissez votre nouveau mot de passe (pour être sûr)</p>
-                <input style="display:inline-block; width: 80%" type="password" name="nvPasswordVerif" required/>
-                <input style=" width: 80px; cursor: pointer;" type="submit" value="Modifier" />
+                <input type="password" name="nvPasswordVerif" required/>
+                <button  class="buttonRepondre" type="submit" value="Modifier" />Modifier</button>
             </form>
         </div><!-- end content -->
     </section>

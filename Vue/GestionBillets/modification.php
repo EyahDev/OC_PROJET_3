@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix ">
             <div class="work_nav">
 
@@ -18,7 +18,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto; clear: right">
+        <div class="content contentCatAdmin">
 
             <form action="gestionbillets/publication" method="POST">
                 <input type="hidden" name="id" value="<?= $affichageBillet['id']?>"/>
@@ -54,8 +54,8 @@
                 <textarea class="tinyMCE" name="contenuArticleModif" id="contenuArticleModif" style="height: 500px"><?= $affichageBillet['contenu'] ?></textarea>
                 <br />
 
-                <button style="width: 80px" type="submit">Mettre à jour</button>
-                <a href="<?= "gestionbillets/suppression/" . $affichageBillet['id'] ?>" style="color: red; font-size: 12px; float: right"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
+                <button class="buttonRepondre" type="submit">Mettre à jour</button>
+                <a class="supprimerModifArt" href="<?= "gestionbillets/suppression/" . $affichageBillet['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
             </form>
 
         </div><!-- end content -->

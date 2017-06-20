@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -15,7 +15,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
+        <div class="content contentAdmin">
             <?php if ($recupBillets->rowCount()) : ?>
             <h3>Articles publiés</h3>
             <?= $messageConfirmation?>
@@ -43,7 +43,7 @@
                                     <td data-title="Commentaires"><?= $affichageBillet['nbBillet']?></td>
                                     <td data-title="Action">
                                         <a href="<?= "gestionbillets/modification/" . $affichageBillet['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier</a> /
-                                        <a href="<?= "gestionbillets/suppression/" . $affichageBillet['id'] ?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
+                                        <a class="alertSignalement" href="<?= "gestionbillets/suppression/" . $affichageBillet['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

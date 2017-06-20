@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -15,7 +15,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto;">
+        <div class="content contentCatAdmin">
             <h3>Créer une nouvelle catégorie</h3>
             <?= $messageConfirmation?>
             <form action="categorieAdmin/creer" method="POST">
@@ -25,7 +25,7 @@
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
                 <input type="text" id="categorieURLPres" name="categorieURLPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
-                <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Créer">
+                <button class="creerCat" type="submit" value="Créer">Créer</button>
             </form>
             <?php if ($categories->rowCount()) : ?>
             <h3>Catégories existante</h3>
@@ -49,7 +49,7 @@
                                     <td data-title="Articles associés"><?= $categorie['nbArticles']; ?></td>
                                     <td data-title="Action">
                                         <a href="<?= "categorieAdmin/modification/" . $categorie['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Modifier</a> /
-                                        <a href="<?= "categorieAdmin/suppression/" . $categorie['id'] ?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
+                                        <a class="alertSignalement" href="<?= "categorieAdmin/suppression/" . $categorie['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

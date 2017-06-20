@@ -45,14 +45,32 @@ class ControleurAccueil extends Controleur {
         // Récuperation de la section A propos
         $aPropos = $this->utilisateurs->getAPropos();
 
+        // Récuperation des messages flash
+        $messageConfirmation = $this->requete->getSession()->getMessageFlash();
+
         // Génération de la vue avec les paramètres
         $this->genererVue(array(
             'recupBillets' => $billets,
             'derniersComs' => $lastCommentaires,
             'recupCategories' => $categories,
             'aPropos' => $aPropos,
-            'nbComs' => $commentaires
+            'nbComs' => $commentaires,
+            'messageConfirmation' => $messageConfirmation
             ));
+    }
+
+    public function mailContact() {
+        $to = "adrien.desmet@hotmail.fr";
+        $sujet = $this->requete->getParametre('sujet');
+        $message = $this->requete->getParametre('messageContact');
+        $mail = $this->requete->getParametre('mail');
+        $infoSupp = 'From :' .$mail. '\r\n' . 'Reply-To :' . $mail . '\r\n';
+
+        mail($to, $sujet, $message, $infoSupp);
+
+        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre mail a bien été envoyé');
+
+        header('location : index.php#contact');
     }
 
 }

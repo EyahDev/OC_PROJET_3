@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
     <section class="main clearfix">
-        <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+        <section class="top bgAdmin">
             <div class="wrapper content_header clearfix infoCategorie">
                 <div class="work_nav">
                     <ul class="btn clearfix">
@@ -15,7 +15,7 @@
         </section><!-- end top -->
 
         <section class="wrapper">
-            <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
+            <div class="content contentAdmin">
                 <?= $messageConfirmation ?>
                 <h3>Commentaires signalés</h3>
                 <?php if ($recupCommentaires->rowCount()) :?>
@@ -44,12 +44,12 @@
                                         <?php if ($affichageCommentaire['signalement'] < 3) : ?>
                                             <td data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php elseif ($affichageCommentaire['signalement'] <= 6 ) : ?>
-                                            <td style="color: orange" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                            <td class="orange" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php else : ?>
-                                            <td style="color: red" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                            <td class="rouge" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php endif; ?>
-                                        <td data-title="Action"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" style="color: green;"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a> /
-                                            <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td>
+                                        <td data-title="Action"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a> /
+                                            <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" class="rouge" "><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td>
                                         <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaire['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -88,12 +88,12 @@
                                         <?php if ($affichageCommentaireApprouve['signalement'] < 3) : ?>
                                             <td data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
                                         <?php elseif ($affichageCommentaireApprouve['signalement'] <= 6 ) : ?>
-                                            <td style="color: orangered" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
+                                            <td class="orange" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
                                         <?php else : ?>
-                                            <td style="color: red" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
+                                            <td class="rouge" data-title="Signalement"><?= $affichageCommentaireApprouve['signalement'] ?></td>
                                         <?php endif; ?>
 
-                                        <td data-title="Action"><a href="<?= "signalement/suppression/" . $affichageCommentaireApprouve['id']?>" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td></td>
+                                        <td data-title="Action"><a href="<?= "signalement/suppression/" . $affichageCommentaireApprouve['id']?>" class="rouge"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td></td>
                                         <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaireApprouve['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
                                 <?php endforeach; ?>

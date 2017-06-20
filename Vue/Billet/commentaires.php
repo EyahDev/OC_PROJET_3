@@ -7,45 +7,46 @@ echo '<div class="conteneurComEnfants">';
         if ($parent) : ?>
             <?php if ($niveau == 3) : ?>
             <div>
-                <div style="width: 100%; position: relative">
-                    <div style="position: relative">
-                        <p class="userCom" style="font-size: 60px; float: left"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
+                <div class="contentComs" >
+                    <div class="contentComs2">
+                        <p class="userCom" style="font-size: 60px"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
                         <p class="auteurCom" style="margin-bottom: 0">
                             <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                                <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a class="supprVolee" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                             <?php endif; ?>
                             <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['contenu'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
                         </p>
                         <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false) ?></p>
 
-                        <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">
+                        <form class="formSignalement" id="signaler" method="POST" action="billet/signaler">
                             <input type="hidden" name="idCom" value="<?= $reponse['id'] ?>">
                             <input type="hidden" name="idBillet" value="<?= $reponse['billet_id']?>">
-                            <button style="width: 30px; margin-right: 15px" type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
+                            <button class="buttonSignalement" type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
                         </form>
                     </div>
+                    <hr />
                 </div>
             </div>
 
             <?php else : ?>
 
                     <div>
-                        <div style="width: 100%; position: relative">
-                            <div style="position: relative">
-                                <p class="userCom" style="font-size: 60px; float: left"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
+                        <div class="contentComs">
+                            <div class="contentComs2">
+                                <p class="userCom" style="font-size: 60px"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
                                 <p class="auteurCom" style="margin-bottom: 0">
                                     <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                                        <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        <a class="supprVolee"href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     <?php endif; ?>
                                     <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['auteur'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
                                 </p>
                                 <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false) ?></p>
                                 <button class="repondre" data-to="<?= $reponse['id'] ?>">Répondre</button>
 
-                                <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">
+                                <form class="formSignalement" id="signaler" method="POST" action="billet/signaler">
                                     <input type="hidden" name="idCom" value="<?= $reponse['id'] ?>">
                                     <input type="hidden" name="idBillet" value="<?= $reponse['billet_id']?>">
-                                    <button style="width: 30px; margin-right: 15px" type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
+                                    <button class="buttonSignalement"  type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -56,28 +57,29 @@ echo '<div class="conteneurComEnfants">';
                             <textarea name="contenu" id="txtCommentaire" required></textarea>
                             <input type="hidden" name="id" value="<?= $reponse['billet_id'] ?>">
                             <input type="hidden" name="reponse" value="<?= $reponse['id'] ?>">
-                            <button style="width: 80px;" type="submit">Commenter</button>
+                            <button class="buttonRepondre" type="submit">Commenter</button>
                         </form>
+                        <hr />
                     </div>
             <?php endif; ?>
         <?php else : ?>
             <div>
-                <div style="width: 100%; position: relative">
-                    <div style="position: relative">
-                        <p class="userCom" style="font-size: 60px; float: left"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
+                <div class="contentComs">
+                    <div class="contentComs2">
+                        <p class="userCom" style="font-size: 60px"><i class="fa fa-user-circle" aria-hidden="true"></i></p>
                         <p class="auteurCom" style="margin-bottom: 0">
                             <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                                <a style="color: red" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a class="supprVolee" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                             <?php endif; ?>
                             <strong><?= htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> - <time><?= $reponse['dateFormate']?></time>
                         </p>
                         <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false)?></p>
                         <button class="repondre" data-to="<?= $reponse['id'] ?>">Répondre</button>
 
-                        <form style="text-align: right" id="signaler" method="POST" action="billet/signaler">
+                        <form class="formSignalement" id="signaler" method="POST" action="billet/signaler">
                             <input type="hidden" name="idCom" value="<?= $reponse['id'] ?>">
                             <input type="hidden" name="idBillet" value="<?= $reponse['billet_id']?>">
-                            <button style="width: 30px; margin-right: 15px" type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
+                            <button class="buttonSignalement"  type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
                         </form>
                     </div>
                 </div>
@@ -88,8 +90,9 @@ echo '<div class="conteneurComEnfants">';
                     <textarea name="contenu" id="txtCommentaire" required></textarea>
                     <input type="hidden" name="id" value="<?= $reponse['billet_id'] ?>">
                     <input type="hidden" name="reponse" value="<?= $reponse['id'] ?>">
-                    <button style="width: 80px;" type="submit">Commenter</button>
+                    <button class="buttonRepondre" type="submit">Commenter</button>
                 </form>
+                <hr />
             </div>
 
         <?php endif;?>

@@ -4,7 +4,7 @@
 
 <section class="main clearfix">
 
-    <section class="top" style="background: url(<?= $affichageBillet['url_img_pres'] ?>), no-repeat, fixed, center; background-size: cover">
+    <section class="top" style="background: url(<?= $affichageBillet['url_img_pres'] ?>) no-repeat, fixed, center; background-size: cover">
         <div class="wrapper content_header clearfix">
             <div class="work_nav">
 
@@ -29,14 +29,14 @@
                 <h1 class="title">
                     <?= $this->nettoyageFailles($affichageBillet['titre']); ?>
                     <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                        <a style="font-size: 18px" href="<?= "gestionbillets/modification/" .$affichageBillet['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a class="voleeAdmin" href="<?= "gestionbillets/modification/" .$affichageBillet['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                     <?php endif; ?>
                 </h1>
                 <p>
                     <i class="fa fa-calendar-o" aria-hidden="true"></i> <?= $affichageBillet['billet_date']?>
-                    <a style="text-decoration: none" href="index.php#aPropos"><i style="padding-left: 10px;" class="fa fa-user" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['pseudo_auteur']) ?></a>
-                    <a href="<?= 'billet/index/' .$affichageBillet['id'] ?>#commentaires"><i style="padding-left: 10px;" class="fa fa-comment" aria-hidden="true"></i> <?= $affichageBillet['nbCom'] ?> commentaire(s) </a>
-                    <a href="<?= 'categorie/index/' .$affichageBillet['categorie_id'] ?>"><i style="padding-left: 10px;" class="fa fa-tag" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['categorie']) ?></a></p>
+                    <a href="index.php#aPropos"><i class="fa fa-user iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['pseudo_auteur']) ?></a>
+                    <a href="<?= 'billet/index/' .$affichageBillet['id'] ?>#commentaires"><i class="fa fa-comment iconPresArticle" aria-hidden="true"></i> <?= $affichageBillet['nbCom'] ?> commentaire(s) </a>
+                    <a href="<?= 'categorie/index/' .$affichageBillet['categorie_id'] ?>"><i class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageBillet['categorie']) ?></a></p>
             </div>
         </div>
     </section><!-- end top -->
@@ -50,7 +50,7 @@
             <h2 class="titreCom" id="commentaires">
                 COMMENTAIRES
                 <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                    <a style="font-size: 18px" href="signalement"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a class="voleeAdmin" href="signalement"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 <?php endif; ?>
             </h2>
             <?= $messageConfirmation ?>
@@ -63,7 +63,7 @@
                 <input type="hidden" name="id" value="<?= $affichageBillet['id'] ?>">
                 <input type="hidden" name="reponse" value="">
                 <input type="hidden" name="niveau" value="0">
-                <button style="width: 80px;" type="submit">Commenter</button>
+                <button class="buttonRepondre" type="submit">Commenter</button>
             </form>
 
     <?php include 'commentaires.php'?>

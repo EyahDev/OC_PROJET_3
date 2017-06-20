@@ -141,9 +141,17 @@ class ControleurBillet extends Controleur {
 
         $recupAppprobation = $this->commentaires->getApprobation($idCommentaires);
 
+        // Création d'un cookie pour le signalement multiple
+        setcookie('signalementCom'. $idCommentaires, $idCommentaires, time()+60*60*24*30);
+
+
         if ($recupAppprobation['moderation'] != 1) {
-            $this->commentaires->signalement($idCommentaires);
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci.');
+            if (isset($_COOKIE['signalementCom'.$idCommentaires]) == $idCommentaires) {
+                $this->requete->getSession()->setMessageFlash('erreur', 'Vous avez déjà signalé ce commentaire.');
+            } else {
+                $this->commentaires->signalement($idCommentaires);
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci.');
+            }
         } else {
             $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, ce n\'est plus necessaire de le signaler.');
         }

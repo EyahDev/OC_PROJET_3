@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -16,12 +16,12 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
+        <div class="content contentAdmin">
             <h3>Modification de votre nom d'utilisateur</h3>
             <form action="profiladmin/modifierUtilisateur" method="POST">
-                <input style="display:inline-block; width: 80%" type="text" name="nvNomUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['login']) ?>"/>
+                <input id="inlineInput" type="text" name="nvNomUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['login']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['id']) ?>" />
-                <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Modifier" />
+                <input id="inlineButton" type="submit" value="Modifier" />
             </form>
         </div><!-- end content -->
     </section>

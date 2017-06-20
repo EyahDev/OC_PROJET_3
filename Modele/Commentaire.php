@@ -146,7 +146,7 @@ class Commentaire extends Modele {
     }
 
     public function getNbSignalements () {
-        $reqSQL = 'SELECT COUNT(signalement > 0) AS count FROM commentaires';
+        $reqSQL = 'SELECT COUNT(signalement) AS count FROM commentaires WHERE signalement > 0';
 
         $nbSignalement =  $this->executionRequete($reqSQL);
 

@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
             <div class="work_nav">
                 <ul class="btn clearfix">
@@ -16,12 +16,12 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto; text-align: center">
+        <div class="content contentAdmin">
             <h3>Modification de votre nom d'auteur</h3>
             <form action="profiladmin/modifierAuteur" method="POST">
-                <input style="display:inline-block; width: 80%" type="text" name="nvNomAuteur" value="<?= $this->nettoyageFailles($infoUtilisateur['pseudo_auteur']) ?>"/>
+                <input id="inlineInput" type="text" name="nvNomAuteur" value="<?= $this->nettoyageFailles($infoUtilisateur['pseudo_auteur']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id']?>" />
-                <input style="display:inline-block; width: 80px; cursor: pointer;" type="submit" value="Modifier" />
+                <input id="inlineButton" type="submit" value="Modifier" />
             </form>
         </div><!-- end content -->
     </section>

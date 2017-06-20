@@ -3,7 +3,7 @@
 <?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
-    <section class="top" style="background: url(Contenu/img/Design-tips-ebook-1-1032x581.png), no-repeat, center, fixed; background-size: cover">
+    <section class="top bgAdmin">
         <div class="wrapper content_header clearfix ">
             <div class="work_nav">
 
@@ -17,7 +17,7 @@
     </section><!-- end top -->
 
     <section class="wrapper">
-        <div class="content" style="margin-right: auto; margin-left: auto;">
+        <div class="content contentCatAdmin">
             <form action="nouveauBillet/publication" method="POST">
                 <input type="hidden" name="auteurNvArticle" value="<?= $_SESSION['idUtilisateur']?>">
                 <label for="titreNvArticle">Titre de l'article</label>
@@ -53,7 +53,7 @@
                 <textarea class="tinyMCE" name="contenuNvBillet" id="contenuNvArticle" style="height: 500px" required></textarea>
                 <br />
 
-                <button style="width: 80px" type="submit">Publier</button>
+                <button class="buttonRepondre" type="submit">Publier</button>
             </form>
         </div><!-- end content -->
     </section>

@@ -1,3 +1,489 @@
+/* Nav */
+
+#nav-fixed {
+    background: #ffffff;
+    min-height: 100px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+/* Accueil */
+
+.work_title {
+    margin-bottom:50px;
+}
+
+#aProposContenu {
+    text-align: center;
+}
+
+.categorie{
+    clear: both;
+    min-width: 70px;
+    max-width: 45%;
+    text-align: center;
+    color: #454545;
+    font-family: "raleway-regular", arial;
+    padding: 20px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #bfbbbb;
+    border-top: 1px solid #bfbbbb;
+}
+
+.vignCom{
+    font-family: "raleway-regular", arial;
+    position: absolute;
+    text-align: right;
+    right: 15px;
+    bottom: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: .5px;
+    z-index: 7777;
+}
+
+.vignDate{
+    font-family: "raleway-regular", arial;
+    position: absolute;
+    left: 20px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: white;
+}
+#imgPresentation {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 50px;
+}
+
+#textPresentation {
+    color: #4b4848;
+    font-family: "raleway-regular", arial;
+    font-size: 15px;
+    text-align: left;
+    line-height: 24px;
+    margin-bottom: 60px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+}
+#comContenu {
+    width: 70%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.comAccueil {
+    text-align: center;
+    display: inline-block;
+    color: #4b4848;
+    font-family: "raleway-regular", arial;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30%;
+}
+
+/* Formulaires */
+
+.buttonSignalement {
+    width: 30px;
+    margin-right: 15px;
+}
+
+.buttonRepondre {
+    width: 80px;
+}
+
+.contentComs {
+    width: 100%;
+    position: relative;
+}
+
+.contentComs2 {
+    position: relative;
+}
+
+#contactForm {
+    width: 60%;
+    color: #4b4848;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "raleway-regular", arial;
+    font-size: 15px;
+}
+
+input[type="text"], input[type="submit"], input[type="reset"], input[type="password"], textarea, input[type="email"], input[type="url"], select {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #DADADA;
+    color: #4b4848;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 5px 3px 5px;
+    width: 100%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #DADADA;
+    color: #4b4848;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 10%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+
+textarea {
+    padding: 5px 3px 3px 5px;
+    height: 200px;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 250px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+    margin-bottom: 2px;
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+/* Administration */
+
+.rouge{
+    color: red;
+}
+
+.vert{
+    color: green;
+}
+
+.orange{
+    color: orange;
+}
+
+#action, #actionR, #actionL {
+    display: inline-block;
+}
+
+#actionL {
+    margin-left: 15px;
+}
+
+#actionR {
+    margin-right: 15px;
+}
+
+.supprimerModifArt {
+    color: red;
+    font-size: 12px;
+    float: right;
+}
+
+.creerCat {
+    width: 70px;
+}
+
+#inlineInput {
+    display:inline-block;
+    width: 80%;
+}
+
+#inlineButton {
+    display:inline-block;
+    width: 80px;
+    cursor: pointer;
+}
+
+.contentCatAdmin {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.tuileDeco {
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    width: 175px;
+    height: 175px;
+    background-color: #d3d3d3;
+    border: 1px solid #bfbbbb;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alertSignalement {
+    color: red;
+}
+
+.contentAdmin {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.bgAdmin {
+    background: url("../img/Design-tips-ebook-1-1032x581.png"), no-repeat, center, fixed;
+    background-size: cover;
+}
+
+.bgErreur {
+    background: url("../img/default/not-found-1770320_1280"), no-repeat, center, fixed;
+    background-size: cover;
+}
+
 .conteneurComEnfants {
     margin-left: 20px;
 }
+
+.supprVolee {
+    color: red;
+}
+
+.voleeAdmin {
+    font-size: 18px;
+}
+
+.contenuTuileAdmin {
+    text-align: center;
+}
+
+.tuileAdmin {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    width: 175px;
+    height: 175px;
+    background-color: #d3d3d3;
+    border: 1px solid #bfbbbb;
+}
+
+.iconeAdmin {
+    font-size: 50px;
+    margin-top: 25px;
+}
+
+.titreFonction {
+    margin-top: 25px;
+}
+
+.tuileAdmin a {
+    text-decoration: none;
+}
+
+/* Détails signalement */
+
+.details{
+    background-color: #d8d8d8;
+    padding: 10px;
+    margin-bottom: 3px;
+    text-align: left;
+    border: 1px solid #bfbbbb;
+}
+
+#auteur, #billet {
+    display: inline-block;
+}
+
+#auteur {
+    width: 20%;
+}
+
+#billet {
+    width: 40%;
+}
+
+#contenu {
+    margin-right: auto;
+    margin-left: auto;
+    width: 60.2%;
+}
+
+/* Details Billets */
+
+.iconPresArticle {
+    padding-left: 10px;
+}
+
+.infoBillet {
+    display: block;
+    width: 100%;
+    color: #4b4848;
+    font-family: "raleway-bold", arial;
+    line-height: 30px;
+    margin: 0!important;
+    overflow: hidden;
+}
+
+.infoBillet p {
+    font-family: "raleway-regular", arial;
+    background: rgba(255, 255, 255, .7);
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+/* Commentaires */
+
+#txtCommentaire {
+    padding: 5px 3px 3px 5px;
+    height: 70px;
+}
+
+.formSignalement {
+    text-align: right;
+}
+
+.userCom {
+    float: left;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+
+.auteurCom {
+    margin-bottom: 0;
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.contenuCom {
+    margin-left: 25px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.repondre{
+    width: 70px;
+    margin-left: 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.formRepondre {
+    margin-right: auto;
+    margin-left: 25px;
+    display: none;
+    width: 90%;
+}
+
+.titreCom {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #bfbbbb;
+    border-top: 1px solid #bfbbbb;
+}
+
+
+/* Message flash */
+
+#flashConfirmation {
+    width: 45%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #199909;
+    background-color: #aef7ad;
+}
+
+#flashErreur{
+    width: 45%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #ef0000;
+    background-color: #ff8e8e;
+}
+
+/* Responsive */
+
+@media (max-width:1099px){
+
+    #flashErreur {
+        width: 70%;
+    }
+
+    #flashConfirmation {
+        width: 70%;
+    }
+
+
+    #auteur {
+        width: 30%;
+    }
+
+    #billet {
+        width: 60%;
+    }
+
+    #contenu {
+        width: 90.3%;
+    }
+}
+
+@media (max-width:550px){
+    #flashErreur {
+        width: 100%;
+    }
+
+    #flashConfirmation {
+        width: 100%;
+    }
+
+    .conteneurComEnfants {
+        margin-left: 0;
+    }
+
+    #auteur {
+        width: 95%;
+    }
+
+    #billet {
+        width: 95%;
+    }
+
+    #contenu {
+        width: 95%;
+    }
+}
+
