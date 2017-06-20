@@ -16,9 +16,9 @@
 
     <section class="wrapper">
         <div class="content contentAdmin">
-            <?php if ($recupBillets->rowCount()) : ?>
             <h3>Articles publiés</h3>
             <?= $messageConfirmation?>
+            <?php if ($recupBillets->rowCount()) : ?>
                 <div id="demo">
                     <!-- Responsive table starts here -->
                     <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->

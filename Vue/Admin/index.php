@@ -32,7 +32,7 @@
             </div>
 
             <div class="tuileAdmin">
-                <a href="nouveauBillet">
+                <a href="NouveauBillet">
                     <div class="contenuTuileAdmin">
                         <i  class="fa fa-pencil iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Nouvel article</p>

@@ -13,9 +13,9 @@
         <link rel="stylesheet" href="<?= $racineWeb ?>Contenu/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="<?= $racineWeb ?>Contenu/css/custom.css">
         <script src="<?= $racineWeb ?>Contenu/js/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript" src="<?= $racineWeb ?>contenu/js/jquery.js"></script>
-        <script type="text/javascript" src="<?= $racineWeb ?>contenu/js/main.js"></script>
-        <script type="text/javascript" src="<?= $racineWeb ?>contenu/js/custom.js"></script>
+        <script type="text/javascript" src="<?= $racineWeb ?>Contenu/js/jquery.js"></script>
+        <script type="text/javascript" src="<?= $racineWeb ?>Contenu/js/main.js"></script>
+        <script type="text/javascript" src="<?= $racineWeb ?>Contenu/js/custom.js"></script>
     </head>
 
     <body>
@@ -33,7 +33,7 @@
                 </ul><!-- end social -->
 
                 <div class="rights">
-                    <p><a href="#">Mentions légales</a> - Copyright © Jean Forteroche - 2017 </p>
+                    <p><a href="mentionslegales">Mentions légales</a> - Copyright © Jean Forteroche - 2017 </p>
                     <p>Template by <a href="http://pixelhint.com/" target="_blank">Pixelhint.com</a> modifié par <a href="http://adriendesmet.com" target="_blank">Adrien Desmet</a></p>
                 </div><!-- end rights -->
             </div ><!-- end footer -->

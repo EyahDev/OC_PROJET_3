@@ -64,13 +64,13 @@ class ControleurAccueil extends Controleur {
         $sujet = $this->requete->getParametre('sujet');
         $message = $this->requete->getParametre('messageContact');
         $mail = $this->requete->getParametre('mail');
-        $infoSupp = 'From :' .$mail. '\r\n' . 'Reply-To :' . $mail . '\r\n';
+        $infoSupp = 'From :' .$mail;
 
         mail($to, $sujet, $message, $infoSupp);
 
         $this->requete->getSession()->setMessageFlash('confirmation', 'Votre mail a bien été envoyé');
 
-        header('location : index.php#contact');
+        $this->redirection('accueil');
     }
 
 }

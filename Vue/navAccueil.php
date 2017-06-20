@@ -1,6 +1,6 @@
 <header id="nav-fixed">
     <div id="accueil" class="logo">
-        <a href="index.php"><img src="contenu/img/logo.png" title="Magnetic" alt="Magnetic"/></a>
+        <a href="index.php"><img src="Contenu/img/logo.png" title="Magnetic" alt="Magnetic"/></a>
     </div><!-- end logo -->
 
     <div id="menu_icon"></div>

@@ -1,3 +1,7 @@
+a {
+    font-family: "raleway-semibold", arial;
+}
+
 /* Nav */
 
 #nav-fixed {
@@ -267,7 +271,7 @@ textarea {
 }
 
 .bgErreur {
-    background: url("../img/default/not-found-1770320_1280"), no-repeat, center, fixed;
+    background: url("../img/default/not-found-1770320_1280.jpg"), no-repeat, center, fixed;
     background-size: cover;
 }
 
