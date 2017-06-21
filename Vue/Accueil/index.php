@@ -31,7 +31,7 @@
         <?php endif; ?>
     <?php endforeach; ?>
     <div class="work">
-        <a href="<?= "categorie/index/" . $categorie['id'] ?>">
+        <a href="<?= "categorie/index/" . $categorie['id']. '/1' ?>">
             <img src="Contenu/img/default/suite.png" class="media" alt=""/>
             <div class="caption">
                 <div class="work_title">

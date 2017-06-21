@@ -70,9 +70,7 @@ class Article extends Modele {
     }
 
 
-
-
-    public function getArticlesCategorie($categorie) {
+    public function getArticlesCategorie($categorie, $pageCalcule, $articleParPage) {
 
         // Définition de la requête SQL
         $reqSQL = 'SELECT COUNT(c.article_id) AS nbCom, b.id, b.titre, b.contenu, DATE_FORMAT(b.article_date, "%d/%m/%Y à %H:%i") AS article_date, SUBSTR(b.contenu, 1, 350) AS extrait, b.categorie_id, b.url_img_pres, b.url_img_tuiles, u.pseudo_auteur, cat.categorie
@@ -83,14 +81,16 @@ class Article extends Modele {
                     WHERE b.categorie_id = :idCategorie
                     GROUP BY b.id                   
                     ORDER BY article_date DESC
-                    LIMIT 0, 5';
+                    LIMIT :pageCalcule, :articleParPage';
 
 
-        // Récuperation des articles en executant la requête
-        $recupArticle = $this->executionRequete($reqSQL, array(
-            ':idCategorie' => $categorie,
-        ));
+        $recupArticle = $this->prepare($reqSQL);
 
+        $recupArticle->bindValue(':idCategorie', $categorie,\PDO::PARAM_INT);
+        $recupArticle->bindValue(':pageCalcule', $pageCalcule,\PDO::PARAM_INT);
+        $recupArticle->bindValue(':articleParPage', $articleParPage,\PDO::PARAM_INT);
+
+        $recupArticle->execute();
 
         // Retourne les article demandés si il existe bien des articles dans cette catégorie, si non il genère un message d'erreur
         if ($recupArticle->rowCount()) {

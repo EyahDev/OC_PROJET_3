@@ -15,7 +15,7 @@
                         <li><a href="<?= 'article/index/'.$prev ?>" class="previous" data-title="Précédent"></a></li>
                     <?php endif; ?>
 
-                    <li><a href="<?= 'categorie/index/' .$affichageArticle['categorie_id']?>" class="grid" data-title="Articles de la catégorie"></a></li>
+                    <li><a href="<?= 'categorie/index/' .$affichageArticle['categorie_id']. '/1' ?>" class="grid" data-title="Articles de la catégorie"></a></li>
 
                     <?php if ($next == false) : ?>
                     <?php else : ?>
@@ -36,13 +36,27 @@
                     <i class="fa fa-calendar-o" aria-hidden="true"></i> <?= $affichageArticle['article_date']?>
                     <a href="index.php#aPropos"><i class="fa fa-user iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageArticle['pseudo_auteur']) ?></a>
                     <a href="<?= 'article/index/' .$affichageArticle['id'] ?>#commentaires"><i class="fa fa-comment iconPresArticle" aria-hidden="true"></i> <?= $affichageArticle['nbCom'] ?> commentaire(s) </a>
-                    <a href="<?= 'categorie/index/' .$affichageArticle['categorie_id'] ?>"><i class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageArticle['categorie']) ?></a></p>
+                    <a href="<?= 'categorie/index/' .$affichageArticle['categorie_id']. '/1' ?>"><i class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($affichageArticle['categorie']) ?></a></p>
             </div>
         </div>
     </section><!-- end top -->
     <section class="wrapper">
         <div class="content">
             <?= $affichageArticle['contenu']; ?>
+        </div><!-- end content -->
+    </section>
+    <section class="wrapper">
+        <div class="content" style="text-align: right">
+            <a target="_blank" href="http://www.facebook.com/sharer.php?u=https://projet3.adriendesmet.com" class="facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            </a>
+            <a target="_blank" href="https://plus.google.com/share?url=https://projet3.adriendesmet.com" class="googlePlus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+            </a>
+            <a target="_blank" href="https://twitter.com/share?url=https://projet3.adriendesmet.com" class="twit"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            </a>
+
         </div><!-- end content -->
     </section>
     <section class="wrapper">

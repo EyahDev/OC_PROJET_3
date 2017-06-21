@@ -97,13 +97,7 @@ class Utilisateur extends Modele {
             ':idUtilisateur' => $idUtilisateur
         ));
 
-        $count = $MAJuser->rowCount() == 1;
-
-        if ($count) {
-            return $count;
-        } else {
-            throw new Exception("Il y a eu un problème avec la modification du nom d'utilisateur");
-        }
+        return $MAJuser->rowCount();
     }
 
     public function setNomAuteur($nvAuteur, $idUtilisateur) {
@@ -116,13 +110,8 @@ class Utilisateur extends Modele {
             ':idUtilisateur' => $idUtilisateur
         ));
 
-        $count = $MAJauteur->rowCount() == 1;
+        return $MAJauteur->rowCount();
 
-        if ($count) {
-            return $count;
-        } else {
-            throw new Exception("Il y a eu un problème avec la modification du nom d'auteur");
-        }
     }
 
     public function setApropos($aPropos, $idUtilisateur, $urlAuteur) {
@@ -130,11 +119,14 @@ class Utilisateur extends Modele {
         $reqSQL = 'UPDATE utilisateurs SET apropos = :aPropos, url_img_apropos = :urlAuteur WHERE id = :idUtilisateur';
 
 
-        $this->executionRequete($reqSQL, array(
+        $MAJaPropos = $this->executionRequete($reqSQL, array(
             ':aPropos' => $aPropos,
             ':idUtilisateur' => $idUtilisateur,
             ':urlAuteur' => $urlAuteur
         ));
+
+        return $MAJaPropos->rowCount();
+
     }
 
     public function getAPropos() {

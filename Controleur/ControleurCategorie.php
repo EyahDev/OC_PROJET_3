@@ -25,7 +25,7 @@ class ControleurCategorie extends Controleur {
         $titreCategorie = $this->categorie->getTitreCategorie($idCategorie);
 
         /* Pagination */
-/*
+
         // Nombres de billets par page
         $ArticlesParPage = 5;
 
@@ -40,9 +40,9 @@ class ControleurCategorie extends Controleur {
 
         //Calcul du nombre de pages nécessaires
         $nbPagesNecessaires = $articlesTotal['nbArticles'] / $ArticlesParPage;
-*/
+
         // Récupération des articles lié à la catégorie
-        $articles = $this->article->getArticlesCategorie($idCategorie);
+        $articles = $this->article->getArticlesCategorie($idCategorie, $pageCalcule, $ArticlesParPage);
 
         // Génération de la vue
         $this->genererVue(array(

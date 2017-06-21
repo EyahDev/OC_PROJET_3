@@ -18,8 +18,9 @@
             <div class="content contentAdmin">
                 <?= $messageConfirmation ?>
                 <h3>Commentaires signalés</h3>
-                <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer un commentaire avec des réponses supprimera également les réponses associées <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+
                 <?php if ($recupCommentaires->rowCount()) :?>
+                    <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer un commentaire supprimera également les réponses associées <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
                     <div id="demo">
                         <!-- Responsive table starts here -->
                         <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
@@ -64,6 +65,8 @@
 
                 <h3>Commentaires approuvés</h3>
                 <?php if ($recupCommentairesApprouves->rowCount()) :?>
+                    <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer un commentaire supprimera également les réponses associées <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+
                     <div id="demo">
                         <!-- Responsive table starts here -->
                         <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->

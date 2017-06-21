@@ -37,12 +37,19 @@
 <?php endforeach; ?>
     <section class="wrapper">
         <div style="text-align: center" class="content">
-            <p><<
+            <div class="pagination">
+
+            <?php if($_GET['page'] > 1) : ?>
+                <a href="categorie/index/5/<?= $_GET['page'] - 1 ?>">&laquo;</a>
+            <?php endif; ?>
             <?php for ($i = 1; $i <= $nbPagesNecessaires; $i++) : ?>
-                <a href="categorie/index/5/<?= $i ?>"><?= $i ?></a> -
+
+                <a href="categorie/index/5/<?= $i ?>" <?= ($_GET['page'] == $i)? 'class="active"' : ''?>> <?= $i?> </a>
             <?php endfor; ?>
-                >>
-            </p>
+            <?php if($_GET['page'] != $nbPagesNecessaires) : ?>
+                <a href="categorie/index/5/<?= $_GET['page'] + 1 ?>">&raquo;</a>
+            <?php endif; ?>
+            </div>
         </div>
     </section>
 

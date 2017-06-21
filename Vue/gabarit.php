@@ -4,8 +4,8 @@
         <title><?= $titre ?></title>
         <meta charset="utf-8">
         <base href="<?= $racineWeb; ?>">
-        <meta name="author" content="pixelhint.com">
-        <meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website template"/>
+        <meta name="author" content="www.adriendesmet.com">
+        <meta name="description" content="Projet 3 de la formation Openclassrooms pour le parcours de chef de projet multimédia option developpement"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="<?= $racineWeb ?>Contenu/css/reset.css">
         <link rel="stylesheet" type="text/css" href="<?= $racineWeb ?>Contenu/css/main.css">
@@ -25,9 +25,9 @@
         <footer>
             <div class="footer clearfix">
                 <ul class="social clearfix">
-                    <li><a target="_blank" href="http://www.facebook.com/sharer.php?u=https://www.google.fr/" class="fb" data-title="Facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
-                    <li><a target="_blank" href="https://plus.google.com/share?url=https://facebook.com" class="google" data-title="Google +" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
-                    <li><a target="_blank" href="https://twitter.com/share?url=https://simplesharebuttons.com" class="twitter" data-title="Twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
+                    <li><a target="_blank" href="http://www.facebook.com/sharer.php?u=https://projet3.adriendesmet.com" class="fb" data-title="Facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
+                    <li><a target="_blank" href="https://plus.google.com/share?url=https://projet3.adriendesmet.com" class="google" data-title="Google +" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
+                    <li><a target="_blank" href="https://twitter.com/share?url=https://projet3.adriendesmet.com" class="twitter" data-title="Twitter" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a></li>
                 </ul><!-- end social -->
 
                 <div class="rights">

@@ -73,12 +73,19 @@ class ControleurProfilAdmin extends ControleurSecurise {
         $nvUtilisateur = $this->requete->getParametre('nvNomUtilisateur');
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
 
-        $this->utilisateur->setNomUtilisateur($nvUtilisateur, $idUtilisateur);
+        $maj = $this->utilisateur->setNomUtilisateur($nvUtilisateur, $idUtilisateur);
 
         // mise à jour de la variable session
         $this->requete->getSession()->setAttribut('login', $nvUtilisateur);
 
-        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'utilisateur a bien été modifié.');
+        if ($maj == 1) {
+            // Définition du message de confirmation avec modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'utilisateur a bien été modifié');
+        } else {
+            // Définition du message de confirmation sans modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+        }
+
         $this->redirection('profiladmin');
     }
 
@@ -96,10 +103,16 @@ class ControleurProfilAdmin extends ControleurSecurise {
         $nvNomAuteur = $this->requete->getParametre('nvNomAuteur');
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
 
-        $this->utilisateur->setNomAuteur($nvNomAuteur, $idUtilisateur);
+        $maj = $this->utilisateur->setNomAuteur($nvNomAuteur, $idUtilisateur);
 
+        if ($maj == 1) {
+            // Définition du message de confirmation avec modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'auteur a bien été modifié');
+        } else {
+            // Définition du message de confirmation sans modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+        }
 
-        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'auteur a bien été modifié.');
         $this->redirection('profiladmin');
     }
 
@@ -122,10 +135,15 @@ class ControleurProfilAdmin extends ControleurSecurise {
             $urlAuteur = 'Contenu/img/default/user_default.png';
         }
 
-        $this->utilisateur->setAPropos($aPropos, $idUtilisateur, $urlAuteur);
+        $maj = $this->utilisateur->setAPropos($aPropos, $idUtilisateur, $urlAuteur);
 
-
-        $this->requete->getSession()->setMessageFlash('confirmation', 'La section "A propos" a bien été publié.');
+        if ($maj == 1) {
+            // Définition du message de confirmation avec modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'La section "A propos" a bien été publié');
+        } else {
+            // Définition du message de confirmation sans modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+        }
 
         $this->redirection('profiladmin');
     }

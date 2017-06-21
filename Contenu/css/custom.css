@@ -452,6 +452,49 @@ textarea {
     background-color: #ff8e8e;
 }
 
+/* Pagination */
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: cadetblue;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* Reseaux sociaux articles */
+
+.facebook:hover {
+    color: #3b5998;
+}
+
+.twit:hover {
+    color: #4099FF;
+}
+
+.googlePlus, .twit, .facebook{
+    font-size: 40px;
+    color: dimgray;
+}
+
+.googlePlus:hover {
+    color: #d34836;
+}
+
+
+
 /* Responsive */
 
 @media (max-width:1099px){
@@ -523,5 +566,6 @@ textarea {
     .main .work {
         width: 100%;
     }
+
 }
 

@@ -49,4 +49,9 @@ abstract class Modele {
         }
         return $resultat;
     }
-}
+
+    protected function prepare($reqSQL) {
+        $resultat = self::getDatabase()->prepare($reqSQL);
+        return $resultat;
+    }
+    }
