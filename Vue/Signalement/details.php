@@ -26,13 +26,15 @@
                 <p><strong>Ce commentaire a été signalé <?= $details['signalement'] ?> fois.</strong></p>
             <?php endif; ?>
 
+            <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer un commentaire avec des réponses supprimera également les réponses associées <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+
             <div id="auteur" class="details">
                 <h4>Auteur</h4>
                 <p><?= $this->nettoyageFailles($details['auteur'])?></p>
             </div>
 
-            <div id="billet" class="details">
-                <h4>Titre du billet concerné</h4>
+            <div id="article" class="details">
+                <h4>Titre de l'article concerné</h4>
                 <p><?= $details['titre']?></p>
             </div>
 

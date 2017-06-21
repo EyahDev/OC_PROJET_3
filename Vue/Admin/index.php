@@ -32,7 +32,7 @@
             </div>
 
             <div class="tuileAdmin">
-                <a href="NouveauBillet">
+                <a href="NouvelArticle">
                     <div class="contenuTuileAdmin">
                         <i  class="fa fa-pencil iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Nouvel article</p>
@@ -42,7 +42,7 @@
 
 
             <div class="tuileAdmin">
-                <a href="gestionbillets">
+                <a href="gestionarticles">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-pencil-square-o iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Gerer les articles</p>

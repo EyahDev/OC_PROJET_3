@@ -15,6 +15,11 @@ a {
 
 /* Accueil */
 
+#accueil {
+    margin-top: 40px;
+    height: 50px;
+}
+
 .work_title {
     margin-bottom:50px;
 }
@@ -31,7 +36,7 @@ a {
     color: #454545;
     font-family: "raleway-regular", arial;
     padding: 20px 0;
-    margin-top: 50px;
+    margin-top: -45px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -197,6 +202,10 @@ textarea {
     color: red;
 }
 
+#alert {
+    color: red;
+}
+
 .vert{
     color: green;
 }
@@ -266,7 +275,7 @@ textarea {
 }
 
 .bgAdmin {
-    background: url("../img/Design-tips-ebook-1-1032x581.png"), no-repeat, center, fixed;
+    background: url("../img/default/Design-tips-ebook-1-1032x581.png"), no-repeat, center, fixed;
     background-size: cover;
 }
 
@@ -324,7 +333,7 @@ textarea {
     border: 1px solid #bfbbbb;
 }
 
-#auteur, #billet {
+#auteur, #article {
     display: inline-block;
 }
 
@@ -332,7 +341,7 @@ textarea {
     width: 20%;
 }
 
-#billet {
+#article {
     width: 40%;
 }
 
@@ -342,13 +351,13 @@ textarea {
     width: 60.2%;
 }
 
-/* Details Billets */
+/* Details articles */
 
 .iconPresArticle {
     padding-left: 10px;
 }
 
-.infoBillet {
+.infoArticle {
     display: block;
     width: 100%;
     color: #4b4848;
@@ -358,11 +367,15 @@ textarea {
     overflow: hidden;
 }
 
-.infoBillet p {
+.infoArticle p {
     font-family: "raleway-regular", arial;
     background: rgba(255, 255, 255, .7);
     padding-left: 20px;
     font-size: 14px;
+}
+
+.infoArticle a {
+    font-family: "raleway-regular", arial;
 }
 
 /* Commentaires */
@@ -456,12 +469,22 @@ textarea {
         width: 30%;
     }
 
-    #billet {
+    #article {
         width: 60%;
     }
 
     #contenu {
         width: 90.3%;
+    }
+
+    .comAccueil {
+        width: 45%;
+    }
+}
+
+@media (max-width:750px){
+    .main .work {
+        width: 50%;
     }
 }
 
@@ -482,12 +505,23 @@ textarea {
         width: 95%;
     }
 
-    #billet {
+    #article {
         width: 95%;
     }
 
     #contenu {
         width: 95%;
+    }
+    .comAccueil {
+        width: 100%;
+    }
+
+    .work {
+        margin-bottom: 0;
+    }
+
+    .main .work {
+        width: 100%;
     }
 }
 

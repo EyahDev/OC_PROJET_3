@@ -2,45 +2,56 @@
 
 <?php include 'Vue/navAccueil.php'?>
 
-<section class="main clearfix">
+<div id="accueil"></div>
+
 <?php foreach ($recupCategories AS $categorie) : ?>
     <?php if ($categorie['nbArticles'] != 0) : ?>
-    <h1 id="alaska" class="categorie">
-        <a href="<?= "categorie/index/" . $categorie['id'] ?>"><?= $this->nettoyageFailles($categorie['categorie']) ?></a>
-        <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-        <a class="voleeAdmin" href="<?= "categorieAdmin/modification/" . $categorie['id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-        <?php endif; ?>
-    </h1>
+<section class="main clearfix">
+            <h1 id="alaska" class="categorie">
+                <a href="<?= "categorie/index/" . $categorie['id'].'/1' ?>"><?= $this->nettoyageFailles($categorie['categorie']) ?></a>
+                <?php if(isset($_SESSION['idUtilisateur'])) : ?>
+                    <a class="voleeAdmin" href="<?= "categorieAdmin/modification/" . $categorie['id'] ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <?php endif; ?>
+            </h1>
     <?php endif; ?>
-    <?php foreach ($recupBillets AS $affichageBillet) : ?>
-        <?php if ($affichageBillet['categorie_id'] == $categorie['id']) : ?>
-        <div class="work">
-            <a href="<?= "billet/index/" . $affichageBillet['id'] ?>">
-                <img src="<?= $this->nettoyageFailles($affichageBillet['url_img_tuiles']) ?>" class="media" alt=""/>
-                <div class="caption">
-                    <div class="work_title">
-                        <h1><?= $this->nettoyageFailles($affichageBillet['titre']); ?></h1>
+    <?php foreach ($recupArticles AS $affichageArticle) : ?>
+        <?php if ($affichageArticle['categorie_id'] == $categorie['id']) : ?>
+            <div class="work">
+                <a href="<?= "article/index/" . $affichageArticle['id'] ?>">
+                    <img src="<?= $this->nettoyageFailles($affichageArticle['url_img_tuiles']) ?>" class="media" alt=""/>
+                    <div class="caption">
+                        <div class="work_title">
+                            <h1><?= $this->nettoyageFailles($affichageArticle['titre']); ?></h1>
+                        </div>
+                        <p class="vignDate"><i class="fa fa-calendar-o" aria-hidden="true"></i> <time><?= $affichageArticle['article_date']?></time></p>
+                        <p class="vignCom"><i class="fa fa-comment" aria-hidden="true"></i> <?= $affichageArticle['nbCom']?> commentaire(s)</p>
                     </div>
-                    <p class="vignDate"><i class="fa fa-calendar-o" aria-hidden="true"></i> <time><?= $affichageBillet['billet_date']?></time></p>
-                    <p class="vignCom"><i class="fa fa-comment" aria-hidden="true"></i> <?= $affichageBillet['nbCom']?> commentaire(s)</p>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
         <?php endif; ?>
     <?php endforeach; ?>
-
-<?php endforeach; ?>
+    <div class="work">
+        <a href="<?= "categorie/index/" . $categorie['id'] ?>">
+            <img src="Contenu/img/default/suite.png" class="media" alt=""/>
+            <div class="caption">
+                <div class="work_title">
+                </div>
+            </div>
+        </a>
+    </div>
 </section><!-- end main -->
+<?php endforeach; ?>
 
-<section>
-    <h1 id="derniersCom" class="categorie">Derniers commentaires</h1>
-    <div id="comContenu">
+
+<section class="main clearfix">
+        <h1 id="derniersCom" class="categorie">Derniers commentaires</h1>
+        <div id="comContenu">
 
 <?php if ($derniersComs->rowCount()) : ?>
 
     <?php foreach ($derniersComs as $affichageDerniersComs) :?>
             <div class="comAccueil">
-                <p><a href="<?='billet/index/' .$affichageDerniersComs['billet_id']. '#commentaires' ?>"><?= $this->nettoyageFailles($affichageDerniersComs['titre']) ?></a></p>
+                <p><a href="<?='article/index/' .$affichageDerniersComs['article_id']. '#commentaires' ?>"><?= $this->nettoyageFailles($affichageDerniersComs['titre']) ?></a></p>
                 <p><?= $this->nettoyageFailles($affichageDerniersComs['auteur']) ?></p>
                 <p><?= $this->nettoyageFailles($affichageDerniersComs['contenu']) ?></p>
                 <p><time><?= $affichageDerniersComs['com_date']?></time></p>
@@ -52,11 +63,10 @@
             <p>Aucun commentaires n'a encore été écrit</p>
         </div>
 <?php endif; ?>
-
-    </div>
+        </div>
 </section>
 
-<section>
+<section class="main clearfix">
     <div>
         <h1 id="aPropos" class="categorie">
             A propos de l'auteur
@@ -73,7 +83,7 @@
     </div>
 </section>
 
-<section>
+<section class="main clearfix">
     <h1 id="contact" class="categorie">Contact</h1>
     <div id="contactForm">
         <?= $messageConfirmation ?>

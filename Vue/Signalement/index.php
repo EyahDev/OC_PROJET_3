@@ -18,6 +18,7 @@
             <div class="content contentAdmin">
                 <?= $messageConfirmation ?>
                 <h3>Commentaires signalés</h3>
+                <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer un commentaire avec des réponses supprimera également les réponses associées <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
                 <?php if ($recupCommentaires->rowCount()) :?>
                     <div id="demo">
                         <!-- Responsive table starts here -->
@@ -27,7 +28,7 @@
                             <table id="table" class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Titre du billet</th>
+                                    <th>Titre de l'article</th>
                                     <th>Auteur</th>
                                     <th>Commentaires</th>
                                     <th>Signalement</th>
@@ -38,7 +39,7 @@
                                 <tbody>
                                 <?php foreach ($recupCommentaires AS $affichageCommentaire) : ?>
                                     <tr>
-                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaire['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']) ?></a></td>
+                                        <td data-title="Titre de l'article"><a href="<?= "article/index/" . $affichageCommentaire['article_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaire['titre']) ?></a></td>
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaire['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaire['contenu']); ?></td>
                                         <?php if ($affichageCommentaire['signalement'] < 3) : ?>
@@ -49,7 +50,7 @@
                                             <td class="rouge" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php endif; ?>
                                         <td data-title="Action"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a> /
-                                            <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" class="rouge" "><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></td>
+                                            <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" class="rouge" "><i class="fa fa-times" aria-hidden="true"></i> Supprimer</p></td>
                                         <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaire['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -71,7 +72,7 @@
                             <table id="table" class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Titre du billet</th>
+                                    <th>Titre du Article</th>
                                     <th>Auteur</th>
                                     <th>Commentaires</th>
                                     <th>Signalement</th>
@@ -82,7 +83,7 @@
                                 <tbody>
                                 <?php foreach ($recupCommentairesApprouves AS $affichageCommentaireApprouve) : ?>
                                     <tr>
-                                        <td data-title="Titre du billet"><a href="<?= "billet/index/" . $affichageCommentaireApprouve['billet_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaireApprouve['titre']); ?></a></td>
+                                        <td data-title="Titre de l'article"><a href="<?= "article/index/" . $affichageCommentaireApprouve['article_id'] ?>#commentaires"><?= $this->nettoyageFailles($affichageCommentaireApprouve['titre']); ?></a></td>
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaireApprouve['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaireApprouve['contenu']); ?></td>
                                         <?php if ($affichageCommentaireApprouve['signalement'] < 3) : ?>

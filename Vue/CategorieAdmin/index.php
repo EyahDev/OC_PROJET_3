@@ -29,6 +29,9 @@
             </form>
             <?php if ($categories->rowCount()) : ?>
             <h3>Catégories existante</h3>
+
+                <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer une catégorie avec des articles supprimera également les articles associés <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+
                 <div id="demo">
                     <!-- Responsive table starts here -->
                     <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->

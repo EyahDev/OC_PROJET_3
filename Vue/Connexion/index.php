@@ -9,7 +9,7 @@
             <div class="work_nav">
 
             </div><!-- end work_nav -->
-            <div class="infoBillet">
+            <div class="infoArticle">
                 <h1 class="title">Administration</h1>
             </div>
         </div>

@@ -14,7 +14,7 @@ class Categories extends Modele {
      */
     public function getCategories () {
         // Définition de la requête SQL
-        $reqSQL = 'SELECT COUNT(b.categorie_id) AS nbArticles, c.id, c.categorie, c.url_img_pres FROM categories c LEFT JOIN billets b ON b.categorie_id = c.id GROUP BY c.id';
+        $reqSQL = 'SELECT COUNT(b.categorie_id) AS nbArticles, c.id, c.categorie, c.url_img_pres FROM categories c LEFT JOIN articles b ON b.categorie_id = c.id GROUP BY c.id';
 
         // Recuperation des catégories
         $recupCategories = $this->executionRequete($reqSQL);
@@ -84,14 +84,6 @@ class Categories extends Modele {
 
     }
 
-    public function setNbBillets($idCategorie) {
-        // Définition de la requête SQL
-        $reqSQL = 'UPDATE categories SET nb_billets = nb_billets +1 WHERE id = ? ';
-
-        // Exécution de la requête
-        $this->executionRequete($reqSQL, array($idCategorie));
-    }
-
     public function suppressionCategorie($idCategorie) {
         $reqSQL = 'DELETE FROM categories WHERE id = ?';
 
@@ -113,20 +105,11 @@ class Categories extends Modele {
 
         $reqSQL = 'UPDATE categories SET categorie = :categorie, url_img_pres = :urlPres WHERE id = :idCategorie';
 
-        $MAJcat =  $this->executionRequete($reqSQL, array(
+        $this->executionRequete($reqSQL, array(
             ':categorie' => $categorie,
             ':idCategorie' => $idCategorie,
             ':urlPres' => $urlPres
         ));
 
-        // Vérification si la ligne est bien affecté
-        $count = $MAJcat->rowCount();
-
-        // Renvoie un message d'erreur si aucune ligne est affecté
-        if ($count) {
-            return $count;
-        } else {
-            throw new Exception("Il y a eu un problème avec la modification de la catégorie");
-        }
     }
 }

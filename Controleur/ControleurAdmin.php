@@ -2,20 +2,20 @@
 
 namespace Blog\Controleur;
 
-use Blog\Modele\Billet;
+use Blog\Modele\Article;
 use Blog\Modele\Commentaire;
 
 class ControleurAdmin extends ControleurSecurise {
 
     // Déclaration des variables utiles au constructeur
-    private $billets;
+    private $article;
     private $commentaires;
 
     /**
      * ControleurAdmin constructor.
      */
     public function __construct() {
-        $this->billets = new Billet();
+        $this->article = new Article();
         $this->commentaires = new Commentaire();
     }
 

@@ -82,7 +82,7 @@ class ControleurSignalement extends ControleurSecurise {
     }
 
     /**
-     * Supprime le billet signalé
+     * Supprime le article signalé
      */
     public function suppression() {
         // Récuperation de l'id du commentaire
@@ -104,7 +104,7 @@ class ControleurSignalement extends ControleurSecurise {
         // Récuperation de l'id du commentaire
         $idCommentaire = $this->requete->getParametre('id');
 
-        $idBillet = $this->commentaire->getIDBillet($idCommentaire)->fetch();
+        $idArticle = $this->commentaire->getIDArticle($idCommentaire)->fetch();
 
         // Supprime le commentaire défini
         $this->commentaire->suppression($idCommentaire);
@@ -112,12 +112,12 @@ class ControleurSignalement extends ControleurSecurise {
         // Definition du message de confirmation
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été supprimé');
 
-        // Redirige sur le billet section commentaire
-        $this->redirection('billet', 'index/'.$idBillet['billet_id']. '#commentaires');
+        // Redirige sur le article section commentaire
+        $this->redirection('article', 'index/'.$idArticle['article_id']. '#commentaires');
     }
 
     /**
-     * Approuve le billet signalé
+     * Approuve le article signalé
      */
     public function approuver() {
         // Récuperation de l'id du commentaire

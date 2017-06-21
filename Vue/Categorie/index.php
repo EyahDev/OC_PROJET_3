@@ -13,27 +13,37 @@
         </div>
     </section><!-- end top -->
 
-<?php foreach ($affichageBillets as $billets) : ?>
+<?php foreach ($affichageArticles as $articles) : ?>
 
     <section class="wrapper">
         <div class="content">
             <h1>
-                <?= $this->nettoyageFailles($billets['titre']) ?>
+                <?= $this->nettoyageFailles($articles['titre']) ?>
                 <?php if(isset($_SESSION['idUtilisateur'])) : ?>
-                    <a class="voleeAdmin" href="<?= "gestionbillets/modification/" .$billets['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a class="voleeAdmin" href="<?= "gestionarticles/modification/" .$articles['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 <?php endif; ?>
             </h1>
-            <p class="infoBillet">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i> <?= $billets['billet_date']?>
-                <a href="index.php#aPropos"><i class="fa fa-user iconPresArticle" aria-hidden="true"></i> <?= $billets['pseudo_auteur'] ?></a>
-                <a href="<?= 'billet/index/' .$billets['id']?>#commentaires"><i class="fa fa-comment iconPresArticle" aria-hidden="true"></i> <?= $billets['nbCom'] ?> commentaire(s) </a>
-                <i  class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($billets['categorie']) ?></p>
+            <p class="infoArticle">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i> <?= $articles['article_date']?>
+                <a href="index.php#aPropos"><i class="fa fa-user iconPresArticle" aria-hidden="true"></i> <?= $articles['pseudo_auteur'] ?></a>
+                <a href="<?= 'article/index/' .$articles['id']?>#commentaires"><i class="fa fa-comment iconPresArticle" aria-hidden="true"></i> <?= $articles['nbCom'] ?> commentaire(s) </a>
+                <i  class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($articles['categorie']) ?></p>
             <hr/>
-            <p><?= $billets['extrait'] ?></p>
-            <a href="<?= 'billet/index/' .$billets['id'] ?>"><button data-title="Tous les billets">Lire la suite</button></a>
+            <p><?= $articles['extrait'] ?></p>
+            <a href="<?= 'Article/index/' .$articles['id'] ?>"><button data-title="Tous les Articles">Lire la suite</button></a>
         </div><!-- end content -->
     </section>
 
 <?php endforeach; ?>
+    <section class="wrapper">
+        <div style="text-align: center" class="content">
+            <p><<
+            <?php for ($i = 1; $i <= $nbPagesNecessaires; $i++) : ?>
+                <a href="categorie/index/5/<?= $i ?>"><?= $i ?></a> -
+            <?php endfor; ?>
+                >>
+            </p>
+        </div>
+    </section>
 
 </section>

@@ -3,7 +3,7 @@
 namespace Blog\Controleur;
 
 // Namespaces necessaires au fonctionnement du blog
-use Blog\Modele\Billet;
+use Blog\Modele\Article;
 use Blog\Framework\Controleur;
 use Blog\Modele\Categories;
 use Blog\Modele\Commentaire;
@@ -12,21 +12,21 @@ use Blog\Modele\Utilisateur;
 class ControleurAccueil extends Controleur {
 
     // Déclaration de la variable pour le constructeur
-    private $billet;
+    private $article;
     private $categories;
     private $commentaires;
     private $utilisateurs;
 
-    // Instantation de la classe Billet
+    // Instantation de la classe Article
     public function __construct() {
-        $this->billet = new Billet();
+        $this->article = new Article();
         $this->categories = new Categories();
         $this->commentaires = new Commentaire();
         $this->utilisateurs = new Utilisateur();
     }
 
     /**
-     * Récuperation de tout les billets du blog et affichage de la vue accueil
+     * Récuperation de tout les Articles du blog et affichage de la vue accueil
      */
     public function index() {
 
@@ -36,10 +36,10 @@ class ControleurAccueil extends Controleur {
         // Récuperation des derniers commentaires
         $lastCommentaires = $this->commentaires->getDerniersComs();
 
-        // Récuperation des billets
-        $billets = $this->billet->getBillets();
+        // Récuperation des Articles
+        $Articles = $this->article->getArticlesAccueil();
 
-        // Récuperation du nombres de commentaires par billets
+        // Récuperation du nombres de commentaires par Articles
         $commentaires = $this->commentaires->getNbCommentaires();
 
         // Récuperation de la section A propos
@@ -50,7 +50,7 @@ class ControleurAccueil extends Controleur {
 
         // Génération de la vue avec les paramètres
         $this->genererVue(array(
-            'recupBillets' => $billets,
+            'recupArticles' => $Articles,
             'derniersComs' => $lastCommentaires,
             'recupCategories' => $categories,
             'aPropos' => $aPropos,

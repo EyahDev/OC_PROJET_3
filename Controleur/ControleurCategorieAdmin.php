@@ -3,17 +3,17 @@
 namespace Blog\Controleur;
 
 
-use Blog\Modele\Billet;
+use Blog\Modele\Article;
 use Blog\Modele\Categories;
 
 class ControleurCategorieAdmin extends ControleurSecurise {
 
     private $categorie;
-    private $billet;
+    private $article;
 
     public function __construct() {
         $this->categorie = new Categories();
-        $this->billet = new Billet();
+        $this->article = new Article();
     }
 
     public function index() {
@@ -68,9 +68,15 @@ class ControleurCategorieAdmin extends ControleurSecurise {
         $nomCategorie = $this->requete->getParametre('ModifCategorie');
         $urlPres = $this->requete->getParametre('ModifCategorieURLPres');
 
-        $this->categorie->MAJCategorie($nomCategorie, $idCategorie, $urlPres);
+        $maj = $this->categorie->MAJCategorie($nomCategorie, $idCategorie, $urlPres);
 
-        $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été modifié');
+        if ($maj == 1) {
+            // Définition du message de confirmation avec modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été modifié');
+        } else {
+            // Définition du message de confirmation sans modif
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+        }
 
         $this->redirection('CategorieAdmin');
 

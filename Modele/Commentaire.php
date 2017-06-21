@@ -10,17 +10,17 @@ class Commentaire extends Modele {
     /*LECTURE, ECRITURE ET SUPPRESSION DES COMMENTAIRES DANS LA BASE DE DONNEES */
 
     /**
-     * Recherche des commentaires lié au billet demandé
+     * Recherche des commentaires lié au article demandé
      *
-     * @param $idBillet => Identifiant du billet lié aux commentaires
+     * @param $idArticle => Identifiant du article lié aux commentaires
      * @return mixed => Retourne les commentaires recherchés
      */
-    public function getCommentaires($idBillet) {
+    public function getCommentaires($idArticle) {
         // Définition de la requête SQL
-        $reqSQL = 'SELECT id, reponse_id, billet_id, DATE_FORMAT(com_date, "le %d/%m/%Y à %H:%i") AS dateFormate, auteur, contenu, signalement FROM commentaires WHERE billet_id = ? ORDER BY dateFormate DESC';
+        $reqSQL = 'SELECT id, reponse_id, article_id, DATE_FORMAT(com_date, "le %d/%m/%Y à %H:%i") AS dateFormate, auteur, contenu, signalement FROM commentaires WHERE article_id = ? ORDER BY dateFormate DESC';
 
-        // Récuperation des commentaires liés au billet demandé
-        $recupCommentaires = $this->executionRequete($reqSQL, array($idBillet));
+        // Récuperation des commentaires liés au article demandé
+        $recupCommentaires = $this->executionRequete($reqSQL, array($idArticle));
 
         // Retourne le resultat
         return $recupCommentaires;
@@ -31,18 +31,18 @@ class Commentaire extends Modele {
      *
      * @param $auteur => Auteur du commentaire
      * @param $contenu => Contenu du commentaire
-     * @param $idBillet => L'identifiant du billet ciblé par le commentaire
+     * @param $idArticle => L'identifiant du article ciblé par le commentaire
      * @param $reponse_id => L'identifiant du commentaire en réponse
      */
-    public function ajoutCommentaire($auteur, $contenu, $idBillet, $reponse_id = null) {
+    public function ajoutCommentaire($auteur, $contenu, $idArticle, $reponse_id = null) {
         // Définition de la requête SQL
-        $reqSQL = 'INSERT INTO commentaires (com_date, auteur, contenu, billet_id, reponse_id) VALUES (NOW(), :auteur, :contenu, :billet_id, :reponse_id)';
+        $reqSQL = 'INSERT INTO commentaires (com_date, auteur, contenu, article_id, reponse_id) VALUES (NOW(), :auteur, :contenu, :article_id, :reponse_id)';
 
         // Exécution de la requête SQL avec les paramètres en tableau
         $this->executionRequete($reqSQL, array(
             ':auteur' => $auteur,
             ':contenu' => $contenu,
-            ':billet_id' => $idBillet,
+            ':article_id' => $idArticle,
             ':reponse_id' => $reponse_id
         ));
     }
@@ -76,10 +76,10 @@ class Commentaire extends Modele {
     public function getDerniersComs() {
         // Définition de la requête SQL
         $reqSQL =
-            'SELECT bill.titre titre, com.id id, DATE_FORMAT(com.com_date, "%d/%m/%Y à %H:%i") com_date, com.auteur auteur, com.contenu contenu, com.billet_id billet_id 
+            'SELECT bill.titre titre, com.id id, DATE_FORMAT(com.com_date, "%d/%m/%Y à %H:%i") com_date, com.auteur auteur, com.contenu contenu, com.article_id article_id 
               FROM commentaires com 
-              INNER JOIN billets bill 
-              ON bill.id = com.billet_id
+              INNER JOIN articles bill 
+              ON bill.id = com.article_id
               ORDER BY com.com_date DESC LIMIT 0,3';
 
         // recuperations des derniers commentaires
@@ -97,8 +97,8 @@ class Commentaire extends Modele {
      */
     public function getNbCommentaires() {
         // Définition de la requête SQL
-        $reqSQL = 'SELECT COUNT(c.billet_id) AS nbBillet, b.id
-                    FROM commentaires c RIGHT JOIN billets b ON c.billet_id = b.id
+        $reqSQL = 'SELECT COUNT(c.article_id) AS nbArticle, b.id
+                    FROM commentaires c RIGHT JOIN articles b ON c.article_id = b.id
                     GROUP BY b.id';
 
         // Exécution de la requête
@@ -108,11 +108,11 @@ class Commentaire extends Modele {
         return $resultat->fetchAll();
     }
 
-    public function getIDBillet($idCommentaires) {
+    public function getIDArticle($idCommentaires) {
         // Définition de la requête SQL
-        $reqSQL = 'SELECT billet_id FROM commentaires WHERE id = ?';
+        $reqSQL = 'SELECT article_id FROM commentaires WHERE id = ?';
 
-        // Recuperation du billet demandé
+        // Recuperation du article demandé
         $recupID = $this->executionRequete($reqSQL, array($idCommentaires));
 
         var_dump($idCommentaires);
@@ -132,13 +132,13 @@ class Commentaire extends Modele {
     public function getSignalements() {
         // Définition de la requête SQL
         $reqSQL =
-            'SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.billet_id billet_id, com.signalement signalement, com.moderation moderation 
+            'SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.article_id article_id, com.signalement signalement, com.moderation moderation 
               FROM commentaires com 
-              INNER JOIN billets bill 
-              ON bill.id = com.billet_id
+              INNER JOIN articles bill 
+              ON bill.id = com.article_id
               WHERE com.signalement > 0 AND com.moderation = 0';
 
-        // Récuperation des commentaires liés au billet demandé
+        // Récuperation des commentaires liés au article demandé
         $recupCommentaires = $this->executionRequete($reqSQL);
 
         // Retourne tous les commentaires recuperés
@@ -146,7 +146,7 @@ class Commentaire extends Modele {
     }
 
     public function getNbSignalements () {
-        $reqSQL = 'SELECT COUNT(signalement) AS count FROM commentaires WHERE signalement > 0';
+        $reqSQL = 'SELECT COUNT(signalement) AS count FROM commentaires WHERE signalement > 0 AND moderation = 0';
 
         $nbSignalement =  $this->executionRequete($reqSQL);
 
@@ -161,13 +161,13 @@ class Commentaire extends Modele {
     public function getSignalementsApprouvés() {
         // Définition de la requête SQL
         $reqSQL =
-            'SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.billet_id billet_id, com.signalement signalement, com.moderation moderation 
+            'SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.article_id article_id, com.signalement signalement, com.moderation moderation 
               FROM commentaires com 
-              INNER JOIN billets bill 
-              ON bill.id = com.billet_id
+              INNER JOIN articles bill 
+              ON bill.id = com.article_id
               WHERE com.moderation = 1';
 
-        // Récuperation des commentaires liés au billet demandé
+        // Récuperation des commentaires liés au article demandé
         $recupCommentaires = $this->executionRequete($reqSQL);
 
         // Retourne tous les commentaires recuperés
@@ -183,13 +183,13 @@ class Commentaire extends Modele {
      */
     public function getSignalement($idCommentaires) {
         // Définition de la requête SQL
-        $reqSQL ='SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.reponse_id reponse_id, com.billet_id billet_id, com.signalement signalement , com.moderation moderation
+        $reqSQL ='SELECT bill.titre titre, com.id id, com.com_date com_date, com.auteur auteur, com.contenu contenu, com.reponse_id reponse_id, com.article_id article_id, com.signalement signalement , com.moderation moderation
               FROM commentaires com 
-              INNER JOIN billets bill 
-              ON bill.id = com.billet_id
+              INNER JOIN articles bill 
+              ON bill.id = com.article_id
               WHERE com.id = ?';
 
-        // Récuperation des commentaires liés au billet demandé
+        // Récuperation des commentaires liés au article demandé
         $recupCommentaire = $this->executionRequete($reqSQL, array($idCommentaires));
 
         // Retourne les details du commentaires ou lève une erreur
