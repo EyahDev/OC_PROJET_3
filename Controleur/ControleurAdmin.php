@@ -7,11 +7,13 @@ use Blog\Modele\Commentaire;
 
 class ControleurAdmin extends ControleurSecurise {
 
-    // Déclaration des variables utiles au constructeur
+    // Déclaration des variables pour le constructeur
     private $article;
     private $commentaires;
 
     /**
+     * Instantation des classes nécessaires
+     *
      * ControleurAdmin constructor.
      */
     public function __construct() {
@@ -19,20 +21,21 @@ class ControleurAdmin extends ControleurSecurise {
         $this->commentaires = new Commentaire();
     }
 
-    /*
-     * Action par défaut du contrôleur
+    /**
+     * Récupération des éléments pour la page d'administration du blog et affichage de la vue
+     * (action par défaut)
      */
     public function index() {
-        // Récupération du nombres de signalements
+        // Récupération du nombre de signalements
         $nbSignalement = $this->commentaires->getNbSignalements();
 
-        // Récuperation du login de la session en cours
+        // Récupération du login de la session en cours
         $login = $this->requete->getSession()->getAttribut('login');
 
-        // Récuperation du message de confirmation de publication
+        // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
-        // Génère la vue pour l'affichage
+        // Génère la vue avec les paramètres
         $this->genererVue(array(
             'nbSignalement' => $nbSignalement,
             'login' => $login,

@@ -9,10 +9,12 @@ use Exception;
 
 class ControleurConnexion extends Controleur {
 
-    // Déclaration des fonctions utiles au constructeur
+    // Déclaration des variables pour le constructeur
     private $utilisateur;
 
     /**
+     * Instantation des classes nécessaires
+     *
      * ControleurConnexion constructor.
      */
     public function __construct() {
@@ -21,12 +23,14 @@ class ControleurConnexion extends Controleur {
 
 
     /**
-     * Action par défaut du contrôleur
+     * Récupération des éléments pour la page de connexion du blog et affichage de la vue
+     * (action par défaut)
      */
     public function index() {
         // Récuperation du message flash
         $messageErreur = $this->requete->getSession()->getMessageFlash();
 
+        // Rédirection automatique sur la page d'administration si l'administrateur est déjà connecté ou non
         if ($this->requete->getSession()->existeAttribut('idUtilisateur')) {
             $this->redirection('admin');
         } else {
@@ -37,8 +41,13 @@ class ControleurConnexion extends Controleur {
 
     }
 
+    /**
+     * Fonction pour la connexion à la partie d'administration
+     *
+     * @throws Exception => message d'erreur dans le cas ou le login et/ou le password ne sont pas définis
+     */
     public function connecter() {
-        // Vérification si le login et le mot de passe existent
+        // Vérification si le login et le mot de passe existent en tant que paramètres
         if ($this->requete->existeParametre('login') && $this->requete->existeParametre('password')) {
 
             // Récuperation des valeurs login & password
@@ -54,25 +63,31 @@ class ControleurConnexion extends Controleur {
                 // Définition des variables de sessions
                 $this->requete->getSession()->setAttribut('idUtilisateur', $utilisateur['idUtilisateur']);
                 $this->requete->getSession()->setAttribut('login', $utilisateur['login']);
-                $this->requete->getSession()->setAttribut('auteur', $utilisateur['pseudo_auteur']);
 
                 // Redirection sur la page d'administration
                 $this->redirection('Admin');
             } else {
-                // Définition d'un message flash
+
+                // Définition d'un message flash d'erreur
                 $this->requete->getSession()->setMessageFlash('erreur', 'login ou mot de passe incorrects');
 
                 //Redirection vers la page de connexion
                 $this->redirection('connexion');
             }
         } else {
+            // message d'erreur dans le cas ou le login et/ou le password ne sont pas définis
             throw new Exception("Action impossible login ou mot de passe non défini");
         }
     }
 
+    /**
+     * Fonction de déconnexion de l'interface d'administration
+     */
     public function deconnecter() {
+        // Destruction de la session
         $this->requete->getSession()->destruction();
-        $this->redirection('accueil');
 
+        // Redirection vers la page d'accueil
+        $this->redirection('accueil');
     }
 }

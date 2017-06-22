@@ -114,6 +114,28 @@ class Utilisateur extends Modele {
 
     }
 
+    public function setMail($nvMail, $idUtilisateur) {
+        // Définition de la requête
+        $reqSQL = 'UPDATE utilisateurs SET mail = :nvMail WHERE id = :idUtilisateur;';
+
+        $MAJmail = $this->executionRequete($reqSQL, array(
+            ':nvMail' => $nvMail,
+            ':idUtilisateur' => $idUtilisateur
+        ));
+
+        return $MAJmail->rowCount();
+    }
+
+    public function getMail() {
+        // Défintion de la requête SQL
+        $reqSQL = 'SELECT mail FROM utilisateurs';
+
+        // Exécution de la requête
+        $utilisateur = $this->executionRequete($reqSQL);
+
+        return $utilisateur->fetch();
+    }
+
     public function setApropos($aPropos, $idUtilisateur, $urlAuteur) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET apropos = :aPropos, url_img_apropos = :urlAuteur WHERE id = :idUtilisateur';

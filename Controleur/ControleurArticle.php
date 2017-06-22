@@ -2,11 +2,9 @@
 
 namespace Blog\Controleur;
 
-// Namespaces necessaires au fonctionnement du blog
 use Blog\Modele\Article;
 use Blog\Modele\Commentaire;
 use Blog\Framework\Controleur;
-
 
 class ControleurArticle extends Controleur {
 
@@ -15,10 +13,9 @@ class ControleurArticle extends Controleur {
     private $commentaires;
 
     /**
-     * Constructeur du ControleurArticle
+     * Instantation des classes nécessaires
      *
-     * Instantiation des articles dans la variable $article
-     * Instantiation des commentaires dans la variable $commentaires
+     * Constructeur du ControleurArticle
      */
     public function __construct() {
         $this->article = new Article();
@@ -26,34 +23,36 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Action par défaut du contrôleur
+     * Récupération des éléments pour la page d'article du blog et affichage de la vue
+     * (action par défaut)
      */
     public function index() {
-        // Récuperation de l'identifiant du article
+        // Récupération de l'identifiant de l'article
         $idArticle = $this->requete->getParametre('id');
 
-        // Récupération du article et des commentaires
+        // Récupération de l'article et ses commentaires
         $article = $this->article->getArticle($idArticle);
         $commentairesBrut = $this->commentaires->getCommentaires($idArticle);
 
-        // préparation des commentaires pour l'affichage
+        // Préparation des commentaires pour l'affichage
         $commentaires = $this->traitementCommentaires($commentairesBrut);
 
         // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
-        // Récuperation de tous les ids des articles
+        // Récupération de tous les identifiants des articles
         $idArticles = $this->article->getIDArticles();
 
-        // traitement des ids dans un tableau
+        // Traitement des idéntifiants dans un tableau
         foreach ($idArticles as $id) {
             $IDs[] = $id['id'];
         }
 
+        // Défintion de la navigation suivant et précédent
         $prev = $this->precedent($idArticle, $IDs);
         $next = $this->suivant($idArticle, $IDs);
 
-        // Génération de la vue
+        // Génération de la vue avec les paramètres
         $this->genererVue(array(
             'affichageArticle' => $article,
             'comTraites' => $commentaires,
@@ -62,12 +61,13 @@ class ControleurArticle extends Controleur {
             'next' => $next
         ));
     }
+
     /**
      * Affiche le article précédent
      *
-     * @param $idActuel => id du article actuel
-     * @param $IDs => Tableau des IDs
-     * @return mixed => Retourne l'id du article précédent
+     * @param $idActuel => idenfiant de l'article actuel
+     * @param $IDs => Tableau des identifiants
+     * @return mixed => Retourne l'id de l'article précédent
      */
     public function precedent($idActuel,$IDs) {
          while (current($IDs) != $idActuel) {
@@ -91,7 +91,7 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Prepare les commentaires pour l'affichage
+     * Prépare les commentaires pour l'affichage
      *
      * @return mixed => Retourne les commentaires triés
      */
@@ -100,6 +100,7 @@ class ControleurArticle extends Controleur {
             'Com' => [],
             'reponseCom' => []
             );
+
         foreach ($commentairesBrut AS $traitement) {
             if ($traitement['reponse_id'] == 0) {
                 $commentaires['Com'][] = $traitement;
@@ -111,8 +112,7 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Ecriture du commentaires dans la base de données et actualisation de la page pour l'affichage du commentaires
-     *
+     * Fonction pour que les utilisateurs puissent laisser un commentaire
      */
     public function commenter() {
         // Recuperation des informations du commentaires
@@ -121,42 +121,48 @@ class ControleurArticle extends Controleur {
         $contenu = $this->requete->getParametre('contenu');
         $reponseID = $this->requete->getParametre('reponse');
 
-
+        // Passage de la variable reponseID à null si la variable est vide après sa récupération
         if ($reponseID == '') {
             $reponseID = null;
         }
 
-        //Ecriture du commentaires dans la base de données dans la base de données
+        //Insertion du commentaire dans la base de données
         $this->commentaires->ajoutCommentaire($auteur, $contenu, $idArticle, $reponseID);
 
 
-        // Actualisation de l'affichage du article
+        // Redirection vers l'article en question
         $this->redirection('article', 'index/'.$idArticle);
     }
 
-
+    /**
+     * Fonction pour le signalement des articles au contenu inappropriée
+     */
     public function signaler () {
+        // Récupérations des informations sur le commentaire à signaler
         $idArticle = $this->requete->getParametre('idArticle');
         $idCommentaires = $this->requete->getParametre('idCom');
 
+        // Récupération de l'approblation du commentaire à signaler
         $recupAppprobation = $this->commentaires->getApprobation($idCommentaires);
 
-        // Création d'un cookie pour le signalement multiple
+        // Création d'un cookie pour eviter le signalement multiple (1 mois)
         setcookie('signalementCom'. $idCommentaires, $idCommentaires, time()+60*60*24*30);
 
-
+        // Vérification si le commentaire à signaler a déjà été approuvé par l'administrateur et génère un message en conséquence
         if ($recupAppprobation['moderation'] != 1) {
+
+            // Vérification si le commentaire a déjà était signalé par l'utilisateur et génère un message en conséquence
             if (isset($_COOKIE['signalementCom'.$idCommentaires]) == $idCommentaires) {
-                $this->requete->getSession()->setMessageFlash('erreur', 'Vous avez déjà signalé ce commentaire.');
+                $this->requete->getSession()->setMessageFlash('erreur', 'Vous avez déjà signalé ce commentaire');
             } else {
                 $this->commentaires->signalement($idCommentaires);
-                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci.');
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci');
             }
         } else {
-            $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, ce n\'est plus necessaire de le signaler.');
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, ce n\'est plus necessaire de le signaler');
         }
 
-
+        // Redirection vers l'article en question
         $this->redirection('article', 'index/'.$idArticle. '#commentaires');
     }
 }

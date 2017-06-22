@@ -2,19 +2,16 @@
 
 namespace Blog\Controleur;
 
-
 use Blog\Modele\Commentaire;
-use PDO;
-
 
 class ControleurSignalement extends ControleurSecurise {
 
-    /**
-     * @var commentaire => utile pour la construction du contrôleur
-     */
+    // Déclaration des variables pour le constructeur
     private $commentaire;
 
     /**
+     * Instantation des classes nécessaires
+     *
      * ControleurSignalement constructor.
      */
     public function __construct() {
@@ -22,9 +19,8 @@ class ControleurSignalement extends ControleurSecurise {
     }
 
     /**
-     * Action par défaut lors de l'accès au contrôleur
-     *
-     * Affiche l'intégralité des commentaires signalés et approuvés
+     * Récupération des éléments pour la page des signalements des commentaires du blog et affichage de la vue
+     * (action par défaut)
      */
     public function index() {
         // Récupération de tous les commentaires signalés
@@ -33,7 +29,7 @@ class ControleurSignalement extends ControleurSecurise {
         // Récupération de tous les commentaires approuvés
         $commentairesApprouves = $this->commentaire->getSignalementsApprouvés();
 
-        // récuperation du message flash de confirmation
+        // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
         // Définition de variables vide pour le cas ou il n'y a rien à afficher
@@ -49,7 +45,7 @@ class ControleurSignalement extends ControleurSecurise {
             $aucunComsApprouves = 'Vous n\'avez approuvé aucun commentaires';
         }
 
-        // Génère la vue avec les parametres necessaires
+        // Génère la vue avec les paramètres
         $this->genererVue(array(
             'recupCommentaires' => $commentaires,
             'recupCommentairesApprouves' => $commentairesApprouves,
@@ -68,13 +64,17 @@ class ControleurSignalement extends ControleurSecurise {
 
         // Affiche les details du commentaire signalé
         $details = $this->commentaire->getSignalement($idCommentaire);
+
+        // Définition d'une variable vide dans le cas ou il n'y a pas de réponse au commentaire
         $recupReponse = '';
 
+        // Vérification si il y a un réponse au commentaire
         if ($details['reponse_id']) {
+            // Edition de la variable avec l'identifiant de la réponse
             $recupReponse = $this->commentaire->getReponse($details['reponse_id']);
         }
 
-        // Genère la vue details
+        // Genère la vue avec les paramètres
         $this->genererVue(array(
                 'details' => $details,
                 'reponse' => $recupReponse
@@ -90,7 +90,6 @@ class ControleurSignalement extends ControleurSecurise {
 
         // Supprime le commentaire défini
         $this->commentaire->suppression($idCommentaire);
-
 
         // Definition du message de confirmation
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été supprimé');
@@ -109,10 +108,10 @@ class ControleurSignalement extends ControleurSecurise {
         // Supprime le commentaire défini
         $this->commentaire->suppression($idCommentaire);
 
-        // Definition du message de confirmation
+        // Definition du message flash
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été supprimé');
 
-        // Redirige sur le article section commentaire
+        // Redirige sur le article section commentaires
         $this->redirection('article', 'index/'.$idArticle['article_id']. '#commentaires');
     }
 
@@ -126,7 +125,7 @@ class ControleurSignalement extends ControleurSecurise {
         // Approbation du commentaire défini
         $this->commentaire->approbation($idCommentaire);
 
-        // Definition du message de confirmation
+        // Definition du message flash
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été approuvé');
 
         // Redirige vers l'index des signalements

@@ -104,6 +104,10 @@ a {
 
 /* Formulaires */
 
+.buttonLireSuite {
+    width: 100px;
+}
+
 .buttonSignalement {
     width: 30px;
     margin-right: 15px;
@@ -557,10 +561,6 @@ textarea {
     }
     .comAccueil {
         width: 100%;
-    }
-
-    .work {
-        margin-bottom: 0;
     }
 
     .main .work {

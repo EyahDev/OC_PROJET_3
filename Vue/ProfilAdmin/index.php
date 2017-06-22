@@ -35,6 +35,16 @@
                     </div>
                 </a>
             </div>
+
+            <div class="tuileAdmin">
+                <a href="profiladmin/mail">
+                    <div class="contenuTuileAdmin">
+                        <i class="fa fa-envelope iconeAdmin" aria-hidden="true"></i>
+                        <p class="titreFonction">Modifier votre adresse mail</p>
+                    </div>
+                </a>
+            </div>
+
             <div class="tuileAdmin">
                 <a href="profiladmin/auteur">
                     <div class="contenuTuileAdmin">

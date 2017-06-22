@@ -32,9 +32,9 @@
                                     <th>Titre de l'article</th>
                                     <th>Auteur</th>
                                     <th>Commentaires</th>
-                                    <th>Signalement</th>
-                                    <th>Action</th>
-                                    <th>Details</th>
+                                    <th>Signalements</th>
+                                    <th>Actions</th>
+                                    <th>Détails</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,15 +44,15 @@
                                         <td data-title="Auteur"><?= $this->nettoyageFailles($affichageCommentaire['auteur']); ?></td>
                                         <td data-title="Commentaires"><?= $this->nettoyageFailles($affichageCommentaire['contenu']); ?></td>
                                         <?php if ($affichageCommentaire['signalement'] < 3) : ?>
-                                            <td data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                            <td data-title="Signalements"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php elseif ($affichageCommentaire['signalement'] <= 6 ) : ?>
-                                            <td class="orange" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                            <td class="orange" data-title="Signalements"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php else : ?>
-                                            <td class="rouge" data-title="Signalement"><?= $affichageCommentaire['signalement'] ?></td>
+                                            <td class="rouge" data-title="Signalements"><?= $affichageCommentaire['signalement'] ?></td>
                                         <?php endif; ?>
-                                        <td data-title="Action"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a> /
+                                        <td data-title="Actions"><a href="<?= "signalement/approuver/" . $affichageCommentaire['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuver</a> /
                                             <a href="<?= "signalement/suppression/" . $affichageCommentaire['id']?>" class="rouge" "><i class="fa fa-times" aria-hidden="true"></i> Supprimer</p></td>
-                                        <td data-title="Details"><a href="<?= "signalement/details/" . $affichageCommentaire['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
+                                        <td data-title="Détails"><a href="<?= "signalement/details/" . $affichageCommentaire['id'] ?>">Afficher <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

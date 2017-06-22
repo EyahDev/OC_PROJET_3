@@ -2,7 +2,6 @@
 
 <?php include 'Vue/navAccueil.php'?>
 
-<div id="accueil"></div>
 
 <?php foreach ($recupCategories AS $categorie) : ?>
     <?php if ($categorie['nbArticles'] != 0) : ?>
@@ -30,7 +29,8 @@
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-    <div class="work">
+    <?php if (count($recupArticles) == 11) : ?>
+        <div class="work">
         <a href="<?= "categorie/index/" . $categorie['id']. '/1' ?>">
             <img src="Contenu/img/default/suite.png" class="media" alt=""/>
             <div class="caption">
@@ -39,6 +39,7 @@
             </div>
         </a>
     </div>
+    <?php endif; ?>
 </section><!-- end main -->
 <?php endforeach; ?>
 
@@ -90,7 +91,7 @@
         <form action="accueil/mailContact" method="POST">
             <label for="mail">Votre adresse mail</label><br/>
             <input type="email" name="mail" id="mail" required><br/>
-            <label for="sujet">Sujet</label><br/>
+            <label for="sujet">Votre sujet</label><br/>
             <input type="text" name="sujet" id="sujet" required><br/>
             <label for="messageContact">Votre message</label><br/>
             <textarea name="messageContact" id="messageContact" cols="30" rows="50" required></textarea><br/>

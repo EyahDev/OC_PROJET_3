@@ -30,7 +30,7 @@
                 <i  class="fa fa-tag iconPresArticle" aria-hidden="true"></i> <?= $this->nettoyageFailles($articles['categorie']) ?></p>
             <hr/>
             <p><?= $articles['extrait'] ?></p>
-            <a href="<?= 'Article/index/' .$articles['id'] ?>"><button data-title="Tous les Articles">Lire la suite</button></a>
+            <button class="buttonLireSuite" ><a href="<?= 'Article/index/' .$articles['id'] ?>">Lire la suite</a></button>
         </div><!-- end content -->
     </section>
 

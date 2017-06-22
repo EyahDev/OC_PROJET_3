@@ -19,7 +19,7 @@
     </head>
 
     <body>
-
+        <div id="accueil"></div>
         <?= $contenu ?>
 
         <footer>
