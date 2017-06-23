@@ -105,11 +105,12 @@ class Categories extends Modele {
 
         $reqSQL = 'UPDATE categories SET categorie = :categorie, url_img_pres = :urlPres WHERE id = :idCategorie';
 
-        $this->executionRequete($reqSQL, array(
+        $maj = $this->executionRequete($reqSQL, array(
             ':categorie' => $categorie,
             ':idCategorie' => $idCategorie,
             ':urlPres' => $urlPres
         ));
 
+        return $maj->rowCount();
     }
 }

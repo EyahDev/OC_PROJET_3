@@ -13,7 +13,7 @@ class ControleurConnexion extends Controleur {
     private $utilisateur;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurConnexion constructor.
      */
@@ -27,10 +27,13 @@ class ControleurConnexion extends Controleur {
      * (action par défaut)
      */
     public function index() {
-        // Récuperation du message flash
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'connexion');
+
+        // Récupération du message flash
         $messageErreur = $this->requete->getSession()->getMessageFlash();
 
-        // Rédirection automatique sur la page d'administration si l'administrateur est déjà connecté ou non
+        // Redirection automatique sur la page d'administration si l'administrateur est déjà connecté ou non
         if ($this->requete->getSession()->existeAttribut('idUtilisateur')) {
             $this->redirection('admin');
         } else {
@@ -50,14 +53,14 @@ class ControleurConnexion extends Controleur {
         // Vérification si le login et le mot de passe existent en tant que paramètres
         if ($this->requete->existeParametre('login') && $this->requete->existeParametre('password')) {
 
-            // Récuperation des valeurs login & password
+            // Récupération des valeurs login & password
             $login = $this->requete->getParametre('login');
             $password = $this->requete->getParametre('password');
 
-            // Vérfication si l'utilisateur existe dans la base de données
+            // Vérification si l'utilisateur existe dans la base de données
             if ($this->utilisateur->verifUtilisateur($login, $password)) {
 
-                // Récuperation des informations de l'utilisateurs
+                // Récupération des informations de l'utilisateur
                 $utilisateur = $this->utilisateur->getUtilisateurs($login);
 
                 // Définition des variables de sessions
@@ -69,7 +72,7 @@ class ControleurConnexion extends Controleur {
             } else {
 
                 // Définition d'un message flash d'erreur
-                $this->requete->getSession()->setMessageFlash('erreur', 'login ou mot de passe incorrects');
+                $this->requete->getSession()->setMessageFlash('erreur', 'Le login et/ou le mot de passe sont incorrects');
 
                 //Redirection vers la page de connexion
                 $this->redirection('connexion');

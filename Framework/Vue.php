@@ -52,7 +52,7 @@ class Vue {
         }
     }
 
-    public function affichageVue($donnees) {
+    public function affichageVue($donnees, $navCategories) {
         // Génération de la vue demandé par l'utilisateur
         $contenu = $this->generateurVue($this->fichier, $donnees);
 
@@ -63,7 +63,8 @@ class Vue {
         $vue = $this->generateurVue('Vue/gabarit.php', array(
             'titre' => $this->titre,
             'contenu' => $contenu,
-            'racineWeb' => $racineWeb
+            'racineWeb' => $racineWeb,
+            'navCategories' => $navCategories
         ));
 
         // Affichage de la vue

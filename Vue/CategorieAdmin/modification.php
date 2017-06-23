@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Modifier une catégorie"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
@@ -18,6 +16,7 @@
     <section class="wrapper">
         <div class="content contentCatAdmin">
             <h3>Modification de la catégorie : <?= $this->nettoyageFailles($categorie['categorie']) ?></h3>
+            <?= $messageFlash ?>
             <form action="categorieAdmin/modifier" method="POST">
                 <input type="hidden" name="idCategorie" value="<?= $categorie['id']?>" />
                 <label for="ModifCategorie">Nom de la catégorie</label><br/>

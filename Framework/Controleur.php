@@ -2,12 +2,14 @@
 
 namespace Blog\Framework;
 
+use Blog\Modele\Categories;
 use Exception;
 
 abstract class Controleur {
 
     // Action à réaliser
     private $action;
+    private $navCategories;
 
 
     /**
@@ -40,6 +42,8 @@ abstract class Controleur {
      * @param array $donneesVue
      */
     protected function genererVue($donneesVue = array()) {
+        $this->navCategories = new Categories();
+
         // Récuperation du nom de la classe
         $classeControleur = get_class($this);
 
@@ -48,7 +52,10 @@ abstract class Controleur {
 
         // instanciation et affichage de la vue
         $vue = new Vue($this->action, $controleur);
-        $vue->affichageVue($donneesVue);
+
+        $navCategories =  $this->navCategories->getCategories()->fetchAll();
+
+        $vue->affichageVue($donneesVue, $navCategories);
     }
 
     protected function redirection($controleur, $action = null) {

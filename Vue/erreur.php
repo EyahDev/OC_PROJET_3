@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Erreur"; ?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgErreur">
         <div class="wrapper content_header clearfix">

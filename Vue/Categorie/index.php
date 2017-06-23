@@ -1,5 +1,4 @@
 <?php $this->titre = "Jean Forteroche - Catégorie : un billet pour l'Alaska"; ?>
-<?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
     <section class="top" style="background: url(<?= $titreCat['url_img_pres']?>), no-repeat, fixed, center; background-size: cover">

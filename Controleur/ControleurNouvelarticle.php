@@ -12,7 +12,7 @@ class ControleurNouvelarticle extends ControleurSecurise {
     private $categories;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurNouvelarticle constructor.
      */
@@ -26,12 +26,19 @@ class ControleurNouvelarticle extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Récupératon de tous les catégories
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'nouvelarticle');
+
+        // Récupératon de toutes les catégories
         $recupCategories = $this->categories->getCategories()->fetchAll();
+
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
 
         // Génération de la vue avec les paramètres
         $this->genererVue(array(
-            'categories' => $recupCategories
+            'categories' => $recupCategories,
+            'messageFlash' => $messageFlash
         ));
     }
 
@@ -39,7 +46,8 @@ class ControleurNouvelarticle extends ControleurSecurise {
      * Fonction pour la publication d'un nouvel article
      */
     public function publication() {
-        // Recuperation des informations du nouvel article
+
+        // Récupération des informations du nouvel article
         $auteur = $this->requete->getParametre('auteurNvArticle');
         $titre = $this->requete->getParametre('titreNvArticle');
         $contenu = $this->requete->getParametre('contenuNvArticle');
@@ -47,22 +55,61 @@ class ControleurNouvelarticle extends ControleurSecurise {
         $urlTuile = $this->requete->getParametre('urlTuile');
         $urlPres = $this->requete->getParametre('urlPres');
 
-        // Création d'une image pas défaut dans le cas ou la variable est vide
-        if ($urlTuile == '') {
-            $urlTuile = 'Contenu/img/default/tuile_default.jpg';
+
+        if (empty($titre) || empty($contenu) || empty($categorie)) {
+            if (empty($titre)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Le titre de l\'article est manquant');
+
+                // Sauvegarde du contenu avec un cookie de session
+                $this->requete->getSession()->setAttribut('SaveNvContenu',$contenu);
+
+                // Redirection vers la page de création d'un nouvel article
+                $this->executerAction('index');
+
+            } elseif (empty($categorie)) {
+
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'La catégorie de l\'article est manquante');
+
+                // Sauvegarde du contenu avec un cookie de session
+                $this->requete->getSession()->setAttribut('SaveNvContenu',$contenu);
+
+                // Redirection vers la page de création d'un nouvel article
+                $this->executerAction('index');
+
+            } elseif (empty($contenu)) {
+
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Le contenu de l\'article est manquant');
+
+                // Redirection vers la page de création d'un nouvel article
+                $this->executerAction('index');
+            }
+        } else {
+
+            // Création d'une image par défaut dans le cas où la variable est vide
+            if ($urlTuile == '') {
+                $urlTuile = 'Contenu/img/default/tuile_default.jpg';
+            }
+
+            if ($urlPres == '') {
+                $urlPres = 'Contenu/img/default/pres_default.jpg';
+            }
+
+            // Création du nouvel article dans la base de données
+            $this->article->setNvArticle($titre, $contenu, $categorie, $urlTuile, $urlPres, $auteur);
+
+            // Définition du message de confirmation
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nouvel article a bien été publié.');
+
+            // Suppression des cookies
+            unset($_SESSION['SaveNvContenu']);
+
+
+
+            // Redirection vers la page d'administration
+            $this->redirection('admin');
         }
-
-        if ($urlPres == '') {
-            $urlPres = 'Contenu/img/default/pres_default.jpg';
-        }
-
-        // Création du nouvel article dans la base de données
-        $this->article->setNvArticle($titre, $contenu, $categorie, $urlTuile, $urlPres, $auteur);
-
-        // Définition du message de confirmation
-        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nouvel article a bien été publié.');
-
-        // Redirection vers la page d'administration
-        $this->redirection('admin');
     }
 }

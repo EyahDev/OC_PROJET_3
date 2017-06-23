@@ -1,9 +1,7 @@
 <?php $this->titre = "Jean Forteroche - Mentions légales"; ?>
 
-<?php include 'Vue/nav.php' ?>
-
 <section class="main clearfix">
-    <section class="top bgErreur">
+    <section class="top bgMentions">
         <div class="wrapper content_header clearfix">
             <h1 class="title">Mentions légales</h1>
         </div>

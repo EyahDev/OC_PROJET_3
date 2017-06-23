@@ -12,7 +12,7 @@ class ControleurCategorieadmin extends ControleurSecurise {
     private $article;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurCategorieadmin constructor.
      */
@@ -26,10 +26,13 @@ class ControleurCategorieadmin extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'categorieadmin');
+
         // Récupération de toutes les catégories
         $categories = $this->categorie->getCategories();
 
-        // Récuperation du message flash
+        // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
         $this->genererVue(array(
@@ -46,19 +49,30 @@ class ControleurCategorieadmin extends ControleurSecurise {
         $nvCategorie = $this->requete->getParametre('nvCategorie');
         $urlPres = $this->requete->getParametre('categorieURLPres');
 
-        // Définition de l'image de présentation par défaut si la variable est vide
-        if ($urlPres == '') {
-            $urlPres = 'Contenu/img/default/cat_pres_default.jpg';
+
+        if (empty($nvCategorie)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le nom de la catégorie est manquant');
+
+            // Redirection vers la page de création d'un nouvel article
+            $this->executerAction('index');
+        } else {
+
+            // Définition de l'image de présentation par défaut si la variable est vide
+            if ($urlPres == '') {
+                $urlPres = 'Contenu/img/default/cat_pres_default.jpg';
+            }
+
+
+            // Création de la nouvelle catégorie de la base de données
+            $this->categorie->setNvCategorie($nvCategorie, $urlPres);
+
+            // Définition d'un message flash de confirmation
+            $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été créée');
+
+            // Redirection vers la page des d'administration des catégories
+            $this->redirection("CategorieAdmin");
         }
-
-        // Création de la nouvelle catégorie de la base de données
-        $this->categorie->setNvCategorie($nvCategorie, $urlPres);
-
-        // Définition d'un message flash de confirmation
-        $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été créée');
-
-        // Redirection vers la page des d'administration des catégories
-        $this->redirection("CategorieAdmin");
     }
 
     /**
@@ -85,17 +99,21 @@ class ControleurCategorieadmin extends ControleurSecurise {
         // Récupération de l'identifiant de la catégorie
         $idCategorie = $this->requete->getParametre('id');
 
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
+
         // Récupération des informations de la catégorie
         $categorie = $this->categorie->getCategorie($idCategorie);
 
         // Affichage de la vue avec les paramètres
         $this->genererVue(array(
-            'categorie' => $categorie
+            'categorie' => $categorie,
+            'messageFlash' => $messageFlash
         ));
     }
 
     /**
-     * Fonction la modification d'une catégorie
+     * Fonction pour la modification d'une catégorie
      */
     public function modifier() {
         // Récupération des informations de la catégorie
@@ -103,19 +121,33 @@ class ControleurCategorieadmin extends ControleurSecurise {
         $nomCategorie = $this->requete->getParametre('ModifCategorie');
         $urlPres = $this->requete->getParametre('ModifCategorieURLPres');
 
-        // Mise à jour de la catégorie dans la base de données
-        $maj = $this->categorie->MAJCategorie($nomCategorie, $idCategorie, $urlPres);
+        if (empty($nomCategorie)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le nom de la catégorie est manquant');
 
-        // Affiche un message de confirmation si il y a eu modification ou non
-        if ($maj == 1) {
-            // Définition du message de confirmation avec modif
-            $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été modifié');
+            // Redirection vers la page de création d'un nouvel article
+            header('Location: modification/'.$idCategorie);
         } else {
-            // Définition du message de confirmation sans modif
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
-        }
 
-        // Redirection vers la page d'administration de la catégorie
-        $this->redirection('CategorieAdmin');
+            // Définition de l'image de présentation par défaut si la variable est vide
+            if ($urlPres == '') {
+                $urlPres = 'Contenu/img/default/cat_pres_default.jpg';
+            }
+
+            // Mise à jour de la catégorie dans la base de données
+            $maj = $this->categorie->MAJCategorie($nomCategorie, $idCategorie, $urlPres);
+
+            // Affiche un message de confirmation si il y a eu modification ou non
+            if ($maj == 1) {
+                // Définition du message de confirmation avec modif
+                $this->requete->getSession()->setMessageFlash('confirmation', 'La catégorie a bien été modifiée');
+            } else {
+                // Définition du message de confirmation sans modif
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliquée');
+            }
+
+            // Redirection vers la page des d'administration des catégories
+            $this->redirection("CategorieAdmin");
+        }
     }
 }

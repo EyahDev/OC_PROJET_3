@@ -10,14 +10,12 @@ $(document).ready(function() {
         }
         return false;
     });
-});
 
-// Affichage du formulaire de contact après clic sur répondre (details articles)
-$('button.repondre').click(function(){
-    $(".formRepondre[data-to='"+$(this).data('to')+"']").show(0);
+    // Ouverture/fermeture bouton repondre
+    $('button.repondre').click(function(){
+        $(".formRepondre[data-to='"+$(this).data('to')+"']").toggle(0);
+    });
 });
-
-// Affichage tinymce
 
 // fix tinymce bug
 tinymce.init({

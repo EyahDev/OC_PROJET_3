@@ -13,7 +13,7 @@ class ControleurCategorie extends Controleur {
     private $categorie;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurCategorie constructor.
      */
@@ -27,6 +27,8 @@ class ControleurCategorie extends Controleur {
      * (action par défaut)
      */
     public function index() {
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'categorie');
 
         // Récupération de l'identifiant de la catégorie
         $idCategorie = $this->requete->getParametre('id');
@@ -39,27 +41,34 @@ class ControleurCategorie extends Controleur {
         // Nombres de billets par page
         $ArticlesParPage = 5;
 
-        // Récupération de la page actuel
-        $pageActuel = $this->requete->getParametre('page');
+        // Récupération de la page actuelle
+        $pageActuelle = $this->requete->getParametre('page');
 
         // Calcul de la page à afficher
-        $pageCalculee = ($pageActuel - 1) * $ArticlesParPage;
+        $pageCalculee = ($pageActuelle - 1) * $ArticlesParPage;
 
         // Nombres total d'articles
-        $articlesTotal = $this->article->pagination();
+        $articlesTotal = $this->article->pagination($idCategorie);
 
-        //Calcul du nombre de pages nécessaires
-        $nbPagesNecessaires = $articlesTotal['nbArticles'] / $ArticlesParPage;
+        //Calcul du nombre de pages nécessaires si ce n'est pas une chaine alphabetique
+        if (!ctype_alpha($pageActuelle)) {
+            $nbPagesNecessaires = $articlesTotal['nbArticles'] / $ArticlesParPage;
+        } else {
+            throw new \Exception("La page '$pageActuelle' n'existe pas");
+        }
 
-        // Récupération des articles lié à la catégorie
-        $articles = $this->article->getArticlesCategorie($idCategorie, $pageCalculee, $ArticlesParPage);
+        if ($pageActuelle <= ceil($nbPagesNecessaires)) {
+            // Récupération des articles liés à la catégorie
+            $articles = $this->article->getArticlesCategorie($idCategorie, $pageCalculee, $ArticlesParPage);
 
-        // Génération de la vue avec les paramètres
-        $this->genererVue(array(
-            'affichageArticles' => $articles,
-            'titreCat' => $titreCategorie,
-            'nbPagesNecessaires' => ceil($nbPagesNecessaires)
-        ));
+            // Génération de la vue avec les paramètres
+            $this->genererVue(array(
+                'affichageArticles' => $articles,
+                'titreCat' => $titreCategorie,
+                'nbPagesNecessaires' => ceil($nbPagesNecessaires)
+            ));
+        } else {
+            throw new \Exception("La page '$pageActuelle' n'existe pas");
+        }
     }
-
 }

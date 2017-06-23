@@ -124,7 +124,7 @@ h5, h6          { font-weight: bolder }
         min-height: 100px;
         background: #ffffff;
         float: left;
-        overflow: hidden;
+        /*overflow: hidden;*/
         z-index: 9999;
     }
 
@@ -143,7 +143,7 @@ h5, h6          { font-weight: bolder }
         display: inline;
         text-align: center;
         overflow: hidden;
-        margin-top: 100px;
+        /*margin-top: 100px; */
         list-style: none;
     }
 
@@ -278,7 +278,6 @@ h5, h6          { font-weight: bolder }
 
 /*  Main  */
 .main{
-    margin-top: 100px;
     width: 100%;
     height: 100%;
     -moz-box-sizing: border-box;
@@ -347,6 +346,7 @@ h5, h6          { font-weight: bolder }
 
 /*  Inner Page  */
 .top{
+    margin-top: 100px;
     width: 100%;
     height: 350px;
     overflow: hidden;

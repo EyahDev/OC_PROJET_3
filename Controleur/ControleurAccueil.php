@@ -17,7 +17,7 @@ class ControleurAccueil extends Controleur {
     private $utilisateur;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurAccueil constructor.
      */
@@ -33,6 +33,8 @@ class ControleurAccueil extends Controleur {
      * (action par défaut)
      */
     public function index() {
+        // Suppression du cookie de session in
+        unset($_SESSION['in']);
 
         // Récupération des catégories
         $categories = $this->categories->getCategories();
@@ -40,7 +42,7 @@ class ControleurAccueil extends Controleur {
         // Récupération des derniers commentaires
         $lastCommentaires = $this->commentaires->getDerniersComs();
 
-        // Récupération des Articles
+        // Récupération des articles
         $Articles = $this->article->getArticlesAccueil();
 
         // Récupération du nombres de commentaires par Articles
@@ -49,7 +51,7 @@ class ControleurAccueil extends Controleur {
         // Récupération de la section A propos
         $aPropos = $this->utilisateur->getAPropos();
 
-        // Récupération du messages flash
+        // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
         // Génération de la vue avec les paramètres
@@ -82,14 +84,49 @@ class ControleurAccueil extends Controleur {
         // Information supplémentaires pour la fonction mail : ajout de l'adresse mail de l'expediteur
         $infoSupp = 'From :' .$mail;
 
-        // Envoi du mail à l'adresse de l'administrateur
-        mail($to, $sujet, $message, $infoSupp);
+        if (empty($mail) || empty($sujet) || empty($message)) {
+            if (empty($mail)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre adresse mail est manquante');
 
-        // Définition d'un message flash pour la confirmation d'envoi
-        $this->requete->getSession()->setMessageFlash('confirmation', 'Votre mail a bien été envoyé');
+                // Sauvegarde du contenu avec un cookie de session
+                $this->requete->getSession()->setAttribut('SaveMessage',$message);
 
-        // Redirection sur l'accueil
-        $this->redirection('accueil');
+                // Redirection vers la page d'accueil section contact
+                header('location: index#contact');
+            } elseif (empty($sujet)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre sujet est manquant');
+
+                // Sauvegarde du contenu avec un cookie de session
+                $this->requete->getSession()->setAttribut('SaveMessage',$message);
+
+                // Redirection vers la page d'accueil section contact
+                header('location: index#contact');
+            }
+            elseif (empty($message)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre message est manquant');
+
+
+                // Redirection vers la page d'accueil section contact
+                header('location: index#contact');
+            }
+
+        } else {
+            // Envoi du mail à l'adresse de l'administrateur
+            mail($to, $sujet, $message, $infoSupp);
+
+            // Définition d'un message flash pour la confirmation d'envoi
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre mail a bien été envoyé');
+
+            // Suppression du cookie de session après l'envoi du mail
+            unset($_SESSION['SaveMessage']);
+
+            // Redirection vers la page d'accueil section contact
+            header('location: index#contact');
+
+        }
     }
 
 }

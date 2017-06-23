@@ -1,6 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Modification d'un article"; ?>
 
-<?php include 'Vue/nav.php'?>
 
 <section class="main clearfix">
     <section class="top bgAdmin">
@@ -19,25 +18,24 @@
 
     <section class="wrapper">
         <div class="content contentCatAdmin">
-
+            <?= $messageFlash ?>
             <form action="gestionarticles/publication" method="POST">
                 <input type="hidden" name="id" value="<?= $affichageArticle['id']?>"/>
                 <label for="titreModifArticle">Titre de l'article</label>
-                <input type="text" name="titreModifArticle" id="titreModifArticle" value="<?= $this->nettoyageFailles($affichageArticle['titre']) ?>" required/>
+                <input type="text" name="titreModifArticle" id="titreModifArticle" value="<?= $this->nettoyageFailles($affichageArticle['titre']) ?>" />
                 <br />
 
                 <label for="categorieNvArticle">Catégorie</label>
                 <div class="select-style">
-                    <select name="categorieModifArticle" id="" required>
+                    <select name="categorieModifArticle" id="categorieNvArticle">
                         <option value="">-- Selectionnez la catégorie de l'article --</option>
                         <?php foreach ($categories as $categorie) : ?>
                             <option value="<?= $categorie['id'] ?>"<?= ($categorie['id'] == $affichageArticle['categorie_id'])? 'selected': '' ?>><?= $this->nettoyageFailles($categorie['categorie']) ?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
-                <br />
+                <p>ou <a href="categorieadmin">Créer une catégorie</a></p>
 
-                <br />
                 <label for="ModifArticleUrlTuile">URL de l'image de l'accueil <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
@@ -51,7 +49,9 @@
                 <br />
 
                 <label for="contenuArticleModif">Contenu de l'article</label>
-                <textarea class="tinyMCE" name="contenuArticleModif" id="contenuArticleModif" style="height: 500px"><?= $affichageArticle['contenu'] ?></textarea>
+                <textarea class="tinyMCE" name="contenuArticleModif" id="contenuArticleModif" style="height: 500px">
+                    <?= (isset($_SESSION['SaveContenu'.$affichageArticle['id']]) ? ($_SESSION['SaveContenu'.$affichageArticle['id']] == $affichageArticle['contenu']? $affichageArticle['contenu'] : $_SESSION['SaveContenu'.$affichageArticle['id']]) : $affichageArticle['contenu'] ) ?>
+                </textarea>
                 <br />
 
                 <button class="buttonRepondre" type="submit">Mettre à jour</button>

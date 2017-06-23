@@ -1,6 +1,6 @@
 <?php $this->titre = 'Jean Forteroche - Détail du commentaire'; ?>
 
-<?php include 'Vue/nav.php'?>
+<?php include 'Vue/__nav.php'?>
 
 <section class="main clearfix">
     <section class="top bgAdmin">

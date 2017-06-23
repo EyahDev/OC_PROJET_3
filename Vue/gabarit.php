@@ -19,7 +19,13 @@
     </head>
 
     <body>
-        <div id="accueil"></div>
+
+    <?php if (isset($_SESSION['in'])) : ?>
+        <?php include '__nav.php'?>
+    <?php else : ?>
+        <?php include '__navAccueil.php'?>
+    <?php endif; ?>
+
         <?= $contenu ?>
 
         <footer>
@@ -37,10 +43,4 @@
             </div ><!-- end footer -->
         </footer>
     </body>
-    <script>
-        // Affichage du formulaire de contact après clic sur répondre (details articles)
-        $('button.repondre').click(function(){
-            $(".formRepondre[data-to='"+$(this).data('to')+"']").show(0);
-        });
-    </script>
 </html>

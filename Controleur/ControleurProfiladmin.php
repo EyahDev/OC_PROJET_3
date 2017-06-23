@@ -10,7 +10,7 @@ class ControleurProfiladmin extends ControleurSecurise {
     private $utilisateur;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurProfiladmin constructor.
      */
@@ -23,6 +23,9 @@ class ControleurProfiladmin extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'profiladmin');
+
         // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
@@ -42,9 +45,13 @@ class ControleurProfiladmin extends ControleurSecurise {
         // Récupération des informations de l'administrateur
         $infoUtilisateur = $this->utilisateur->getInformations($idUtilisateur)->fetch();
 
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
+
         // Génération de la vue avec les paramètres
         $this->genererVue(array(
-            'infoUtilisateur' => $infoUtilisateur
+            'infoUtilisateur' => $infoUtilisateur,
+            'messageFlash' => $messageFlash
         ));
     }
 
@@ -66,8 +73,12 @@ class ControleurProfiladmin extends ControleurSecurise {
 
         $infoUtilisateur = $this->utilisateur->getInformations($idUtilisateur)->fetch();
 
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
+
         $this->genererVue(array(
-            'infoUtilisateur' => $infoUtilisateur
+            'infoUtilisateur' => $infoUtilisateur,
+            'messageFlash' => $messageFlash
         ));
     }
 
@@ -76,8 +87,12 @@ class ControleurProfiladmin extends ControleurSecurise {
 
         $infoUtilisateur = $this->utilisateur->getInformations($idUtilisateur)->fetch();
 
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
+
         $this->genererVue(array(
-            'infoUtilisateur' => $infoUtilisateur
+            'infoUtilisateur' => $infoUtilisateur,
+            'messageFlash' => $messageFlash
         ));
     }
 
@@ -86,8 +101,12 @@ class ControleurProfiladmin extends ControleurSecurise {
 
         $infoUtilisateur = $this->utilisateur->getInformations($idUtilisateur)->fetch();
 
+        // Récupération du message flash
+        $messageFlash = $this->requete->getSession()->getMessageFlash();
+
         $this->genererVue(array(
-            'infoUtilisateur' => $infoUtilisateur
+            'infoUtilisateur' => $infoUtilisateur,
+            'messageFlash' => $messageFlash
         ));
     }
 
@@ -141,23 +160,32 @@ class ControleurProfiladmin extends ControleurSecurise {
         $nvUtilisateur = $this->requete->getParametre('nvNomUtilisateur');
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
 
-        // Mise à jour du nom d'utilisateur dans la base de donnés
-        $maj = $this->utilisateur->setNomUtilisateur($nvUtilisateur, $idUtilisateur);
+        if (empty($nvUtilisateur)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le nom d\'utilisateur est manquant');
 
-        // mise à jour de la variable session
-        $this->requete->getSession()->setAttribut('login', $nvUtilisateur);
-
-        // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
-        if ($maj == 1) {
-            // Définition du message de confirmation avec modif
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'utilisateur a bien été modifié');
+            // Redirection vers la page de création d'un nouvel article
+            $this->executerAction('utilisateur');
         } else {
-            // Définition du message de confirmation sans modif
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
-        }
 
-        // Redirection vers la page du profil admin
-        $this->redirection('profiladmin');
+            // Mise à jour du nom d'utilisateur dans la base de donnés
+            $maj = $this->utilisateur->setNomUtilisateur($nvUtilisateur, $idUtilisateur);
+
+            // mise à jour de la variable session
+            $this->requete->getSession()->setAttribut('login', $nvUtilisateur);
+
+            // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
+            if ($maj == 1) {
+                // Définition du message de confirmation avec modif
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'utilisateur a bien été modifié');
+            } else {
+                // Définition du message de confirmation sans modif
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+            }
+
+            // Redirection vers la page du profil admin
+            $this->redirection('profiladmin');
+        }
     }
 
     /**
@@ -168,18 +196,27 @@ class ControleurProfiladmin extends ControleurSecurise {
         $nvMail = $this->requete->getParametre('nvMail');
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
 
-        // Mise à jour de l'adresse mail dans la base de données
-        $maj = $this->utilisateur->setMail($nvMail, $idUtilisateur);
+        if (empty($nvMail)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'L\'adresse mail est manquante');
 
-        // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
-        if ($maj == 1) {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre adresse mail a bien été modifié');
+            // Redirection vers la page de création d'un nouvel article
+            $this->executerAction('mail');
         } else {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
-        }
 
-        // Redirection vers la page du profil admin
-        $this->redirection('profiladmin');
+            // Mise à jour de l'adresse mail dans la base de données
+            $maj = $this->utilisateur->setMail($nvMail, $idUtilisateur);
+
+            // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
+            if ($maj == 1) {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre adresse mail a bien été modifié');
+            } else {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+            }
+
+            // Redirection vers la page du profil admin
+            $this->redirection('profiladmin');
+        }
     }
 
 
@@ -191,18 +228,28 @@ class ControleurProfiladmin extends ControleurSecurise {
         $nvNomAuteur = $this->requete->getParametre('nvNomAuteur');
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
 
-        // Mise à jour dans la base de données
-        $maj = $this->utilisateur->setNomAuteur($nvNomAuteur, $idUtilisateur);
+        if (empty($nvNomAuteur)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le nom d\'auteur est manquant');
 
-        // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
-        if ($maj == 1) {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'auteur a bien été modifié');
+            // Redirection vers la page de création d'un nouvel article
+            $this->executerAction('auteur');
         } else {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
-        }
 
-        // Redirection vers la page du profil admin
-        $this->redirection('profiladmin');
+            // Mise à jour dans la base de données
+            $maj = $this->utilisateur->setNomAuteur($nvNomAuteur, $idUtilisateur);
+
+
+            /// Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
+            if ($maj == 1) {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Votre nom d\'auteur a bien été modifié');
+            } else {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+            }
+
+            // Redirection vers la page du profil admin
+            $this->redirection('profiladmin');
+        }
     }
 
     // Fonction pour la modification de la section a propos
@@ -212,21 +259,32 @@ class ControleurProfiladmin extends ControleurSecurise {
         $idUtilisateur =  $this->requete->getParametre('idUtilisateur');
         $urlAuteur =  $this->requete->getParametre('URLauteur');
 
-        // Création d'une image par défaut si la variable est vide
-        if ($urlAuteur == '') {
-            $urlAuteur = 'Contenu/img/default/user_default.png';
-        }
+        if (empty($aPropos)) {
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le contenu de "A propos" est manquant');
 
-        // Mise à jour de la section a propos dans la base de données
-        $maj = $this->utilisateur->setAPropos($aPropos, $idUtilisateur, $urlAuteur);
 
-        // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
-        if ($maj == 1) {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'La section "A propos" a bien été publié');
+            // Redirection vers la page de création d'un nouvel article
+            $this->executerAction('aPropos');
         } else {
-            $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
-        }
 
-        $this->redirection('profiladmin');
+            // Création d'une image par défaut si la variable est vide
+            if ($urlAuteur == '') {
+                $urlAuteur = 'Contenu/img/default/user_default.png';
+            }
+
+            // Mise à jour de la section a propos dans la base de données
+            $maj = $this->utilisateur->setAPropos($aPropos, $idUtilisateur, $urlAuteur);
+
+            // Vérification si une modification a eu lieu ou non et génère un message flash en conséquence
+            if ($maj == 1) {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'La section "A propos" a bien été publié');
+            } else {
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+            }
+
+
+            $this->redirection('profiladmin');
+        }
     }
 }

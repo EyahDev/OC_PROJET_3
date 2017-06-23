@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Nouvel article"; ?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix ">
@@ -18,15 +16,17 @@
 
     <section class="wrapper">
         <div class="content contentCatAdmin">
+            <?= $messageFlash ?>
             <form action="nouvelarticle/publication" method="POST">
                 <input type="hidden" name="auteurNvArticle" value="<?= $_SESSION['idUtilisateur']?>">
                 <label for="titreNvArticle">Titre de l'article</label>
-                <input type="text" name="titreNvArticle" id="titreNvArticle" required/>
+
+                <input type="text" name="titreNvArticle" id="titreNvArticle" <?= (isset($_SESSION['SaveTitre']))? 'value="'.$_SESSION['SaveTitre'].'"' : '' ?> />
                 <br />
 
                 <label for="categorieNvArticle">Catégorie</label><br/ >
                 <div class="select-style" style="display: inline-block">
-                    <select name="categorieNvArticle" id="" required>
+                    <select name="categorieNvArticle" id="categorieNvArticle">
                         <option value="">-- Selectionnez la catégorie de l'article --</option>
                         <?php foreach ($categories as $categorie) : ?>
                             <option value="<?= $categorie['id'] ?>"><?= $categorie['categorie'] ?></option>
@@ -38,18 +38,18 @@
                 <label for="NvArticleUrlTuile">URL de l'image de l'accueil <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
-                <input type="text" id="NvArticleUrlTuile" name="urlTuile" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="url" id="NvArticleUrlTuile" name="urlTuile" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
                 <br />
 
                 <label for="NvArticleUrlPres">URL de l'image de l'article <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
                 </label>
-                <input type="text" id="NvArticleUrlPres" name="urlPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="url" id="NvArticleUrlPres" name="urlPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
                 <br />
 
                 <label for="contenuNvArticle">Contenu de l'article</label>
-                <textarea class="tinyMCE" name="contenuNvArticle" id="contenuNvArticle" style="height: 500px" required></textarea>
+                <textarea class="tinyMCE" name="contenuNvArticle" id="contenuNvArticle" style="height: 500px"><?= (isset($_SESSION['SaveNvContenu']))? $_SESSION['SaveNvContenu'] : '' ?></textarea>
                 <br />
 
                 <button class="buttonRepondre" type="submit">Publier</button>

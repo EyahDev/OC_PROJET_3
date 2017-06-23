@@ -1,7 +1,5 @@
 <?php $this->titre  = "Jean Forteroche - Administration : Connexion"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
 
     <section class="top bgAdmin">

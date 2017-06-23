@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Modifier le nom d'auteur"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
@@ -18,6 +16,7 @@
     <section class="wrapper">
         <div class="content contentAdmin">
             <h3>Modification de votre nom d'auteur</h3>
+            <?= $messageFlash ?>
             <form action="profiladmin/modifierAuteur" method="POST">
                 <input id="inlineInput" type="text" name="nvNomAuteur" value="<?= $this->nettoyageFailles($infoUtilisateur['pseudo_auteur']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id']?>" />

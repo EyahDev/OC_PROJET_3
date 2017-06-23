@@ -61,10 +61,10 @@ class Article extends Modele {
         return $recupArticles;
     }
 
-    public function pagination() {
-        $reqSQL = 'SELECT COUNT(*) as nbArticles FROM articles';
+    public function pagination($idCategorie) {
+        $reqSQL = 'SELECT COUNT(*) as nbArticles FROM articles WHERE categorie_id = ?';
 
-        $recupNBArticles = $this->executionRequete($reqSQL);
+        $recupNBArticles = $this->executionRequete($reqSQL, array($idCategorie));
 
         return $recupNBArticles->fetch();
     }

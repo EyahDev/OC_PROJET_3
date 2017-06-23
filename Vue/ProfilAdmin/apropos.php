@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Nouvel article"; ?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix ">
@@ -19,6 +17,7 @@
 
     <section class="wrapper">
         <div class="content contentCatAdmin">
+            <?= $messageFlash ?>
             <form action="profiladmin/publierApropos" method="POST">
                 <label for="URLauteur">URL de l'image de présentation de la catatégorie<br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.<br/>

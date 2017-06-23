@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - " . $this->nettoyageFailles($affichageArticle['titre']); ?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
 
     <section class="top" style="background: url(<?= $affichageArticle['url_img_pres'] ?>) no-repeat, fixed, center; background-size: cover">
@@ -80,7 +78,7 @@
                 <button class="buttonRepondre" type="submit">Commenter</button>
             </form>
 
-    <?php include 'commentaires.php'?>
+    <?php include '__commentaires.php' ?>
 
         </div>
     </section>

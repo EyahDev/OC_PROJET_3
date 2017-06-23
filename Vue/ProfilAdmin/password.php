@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Modifier le mot de passe"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">

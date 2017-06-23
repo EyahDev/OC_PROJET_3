@@ -1,7 +1,5 @@
 <?php $this->titre = "Jean Forteroche - Modifier le nom d'utilisateur"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
@@ -18,6 +16,7 @@
     <section class="wrapper">
         <div class="content contentAdmin">
             <h3>Modification de votre nom d'utilisateur</h3>
+            <?= $messageFlash ?>
             <form action="profiladmin/modifierUtilisateur" method="POST">
                 <input id="inlineInput" type="text" name="nvNomUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['login']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $this->nettoyageFailles($infoUtilisateur['id']) ?>" />

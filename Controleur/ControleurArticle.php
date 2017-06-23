@@ -13,7 +13,7 @@ class ControleurArticle extends Controleur {
     private $commentaires;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * Constructeur du ControleurArticle
      */
@@ -27,10 +27,13 @@ class ControleurArticle extends Controleur {
      * (action par défaut)
      */
     public function index() {
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'article');
+
         // Récupération de l'identifiant de l'article
         $idArticle = $this->requete->getParametre('id');
 
-        // Récupération de l'article et ses commentaires
+        // Récupération de l'article et de ses commentaires
         $article = $this->article->getArticle($idArticle);
         $commentairesBrut = $this->commentaires->getCommentaires($idArticle);
 
@@ -43,12 +46,12 @@ class ControleurArticle extends Controleur {
         // Récupération de tous les identifiants des articles
         $idArticles = $this->article->getIDArticles();
 
-        // Traitement des idéntifiants dans un tableau
+        // Traitement des identifiants dans un tableau
         foreach ($idArticles as $id) {
             $IDs[] = $id['id'];
         }
 
-        // Défintion de la navigation suivant et précédent
+        // Définition de la navigation suivant et précédent
         $prev = $this->precedent($idArticle, $IDs);
         $next = $this->suivant($idArticle, $IDs);
 
@@ -63,7 +66,7 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Affiche le article précédent
+     * Affiche l'article précédent
      *
      * @param $idActuel => idenfiant de l'article actuel
      * @param $IDs => Tableau des identifiants
@@ -77,7 +80,7 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Affiche le article suivant
+     * Affiche l'article suivant
      *
      * @param $idActuel => id du article actuel
      * @param $IDs => Tableau des IDs
@@ -135,7 +138,7 @@ class ControleurArticle extends Controleur {
     }
 
     /**
-     * Fonction pour le signalement des articles au contenu inappropriée
+     * Fonction pour le signalement des articles au contenu inapproprié
      */
     public function signaler () {
         // Récupérations des informations sur le commentaire à signaler
@@ -145,7 +148,7 @@ class ControleurArticle extends Controleur {
         // Récupération de l'approblation du commentaire à signaler
         $recupAppprobation = $this->commentaires->getApprobation($idCommentaires);
 
-        // Création d'un cookie pour eviter le signalement multiple (1 mois)
+        // Création d'un cookie pour éviter le signalement multiple (1 mois)
         setcookie('signalementCom'. $idCommentaires, $idCommentaires, time()+60*60*24*30);
 
         // Vérification si le commentaire à signaler a déjà été approuvé par l'administrateur et génère un message en conséquence
@@ -159,7 +162,7 @@ class ControleurArticle extends Controleur {
                 $this->requete->getSession()->setMessageFlash('confirmation', 'Votre signalement a bien été pris en compte, merci');
             }
         } else {
-            $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, ce n\'est plus necessaire de le signaler');
+            $this->requete->getSession()->setMessageFlash('erreur', 'Le commentaire que vous avez signalé a déjà été approuvé par le modérateur, il n\'est plus nécessaire de le signaler');
         }
 
         // Redirection vers l'article en question

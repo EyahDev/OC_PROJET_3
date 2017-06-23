@@ -23,6 +23,9 @@ class ControleurSignalement extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
+        // Création d'un cookie de session pour la nav
+        $this->requete->getSession()->setAttribut('in', 'signalement');
+
         // Récupération de tous les commentaires signalés
         $commentaires = $this->commentaire->getSignalements();
 

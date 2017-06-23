@@ -2,9 +2,12 @@
 
 namespace Blog\Framework;
 
+use Blog\Modele\Categories;
 use Exception;
 
 class Routeur {
+
+    private $categories;
 
     /**
      * Récupération de la valeur du paramètre Action
@@ -27,8 +30,14 @@ class Routeur {
      * @param Exception $exception => Récuperation du message d'erreur
      */
     private function gererErreur(Exception $exception) {
+
         $vue = new Vue('erreur');
-        $vue->affichageVue(array('msgErreur' => $exception->getMessage()));
+
+        $this->categories = new Categories();
+
+        $navCategories = $this->categories->getCategories()->fetchAll();
+
+        $vue->affichageVue(array('msgErreur' => $exception->getMessage()), $navCategories);
     }
 
     /**

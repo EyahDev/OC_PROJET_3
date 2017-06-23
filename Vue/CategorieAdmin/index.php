@@ -1,7 +1,5 @@
 <?php $this->titre  = "Jean Forteroche - Gerer les catégories"?>
 
-<?php include 'Vue/nav.php'?>
-
 <section class="main clearfix">
     <section class="top bgAdmin">
         <div class="wrapper content_header clearfix infoCategorie">
@@ -20,7 +18,7 @@
             <?= $messageConfirmation?>
             <form action="categorieAdmin/creer" method="POST">
                 <label for="nvCategorie">Indiquez le nom de votre catégorie</label><br/>
-                <input type="text" name="nvCategorie" id="nvCategorie" required/>
+                <input type="text" name="nvCategorie" id="nvCategorie"/>
                 <label for="categorieURLPres">URL de l'image de présentation de la catatégorie<br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
