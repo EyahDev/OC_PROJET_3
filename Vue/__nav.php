@@ -28,12 +28,34 @@
                 <li class="dropdown">
                     <a><i class="fa fa-cogs" aria-hidden="true"></i></a>
                     <ul class="dropdown-content">
-                        <li><a class="js-scrollTo" href="signalement">Modération</a></li>
-                        <li><a class="js-scrollTo" href="nouvelarticle">Nouvel article</a></li>
-                        <li><a class="js-scrollTo" href="gestionarticles">Gerer les articles</a></li>
-                        <li><a class="js-scrollTo" href="categorieadmin">Gerer les catégories</a></li>
-                        <li><a class="js-scrollTo" href="profiladmin">Mon profil</a></li>
-                        <li><a class="js-scrollTo" href="connexion/deconnecter">Se deconnecter</a></li>
+                        <li>
+                            <a href="signalement">
+                                <i class="fa fa-comments" aria-hidden="true"></i> Modération
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nouvelarticle">
+                                <i  class="fa fa-pencil" aria-hidden="true"></i> Nouvel article
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gestionarticles">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Gerer les articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="categorieadmin">
+                                <i class="fa fa-tags" aria-hidden="true"></i> Gerer les catégories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="profiladmin"><i class="fa fa-user" aria-hidden="true"></i> Mon profil</a>
+                        </li>
+                        <li>
+                            <a href="connexion/deconnecter">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Se deconnecter
+                            </a>
+                        </li>
                     </ul>
                 </li>
             <?php else : ?>
