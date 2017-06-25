@@ -27,9 +27,6 @@ class ControleurConnexion extends Controleur {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'connexion');
-
         // Récupération du message flash
         $messageErreur = $this->requete->getSession()->getMessageFlash();
 

@@ -1,6 +1,6 @@
 <?php
 
-function affichage($reponses, $marge, $niveau, $commentaires, $parent = null) {
+function affichage($reponses, $niveau, $commentaires, $parent = null) {
 echo '<div class="conteneurComEnfants">';
     foreach ($reponses as $reponse) {
 
@@ -29,7 +29,6 @@ echo '<div class="conteneurComEnfants">';
             </div>
 
             <?php else : ?>
-
                     <div>
                         <div class="contentComs">
                             <div class="contentComs2">
@@ -52,9 +51,9 @@ echo '<div class="conteneurComEnfants">';
                         </div>
                         <form class="formRepondre" data-to="<?= $reponse['id'] ?>" action="article/commenter" method="POST">
                             <label for="auteurCom">Votre pseudo</label>
-                            <input type="text" id="auteurCom" name="auteur" required />
+                            <input type="text" id="auteurCom" name="auteur" />
                             <label for="txtCommentaire">Votre commentaire</label>
-                            <textarea name="contenu" id="txtCommentaire" required></textarea>
+                            <textarea name="contenu" id="txtCommentaire"></textarea>
                             <input type="hidden" name="id" value="<?= $reponse['article_id'] ?>">
                             <input type="hidden" name="reponse" value="<?= $reponse['id'] ?>">
                             <button class="buttonRepondre" type="submit">Commenter</button>
@@ -85,9 +84,9 @@ echo '<div class="conteneurComEnfants">';
                 </div>
                 <form class="formRepondre" data-to="<?= $reponse['id'] ?>" action="article/commenter" method="POST">
                     <label for="auteurCom">Votre pseudo</label>
-                    <input type="text" id="auteurCom" name="auteur" required />
+                    <input type="text" id="auteurCom" name="auteur" />
                     <label for="txtCommentaire">Votre commentaire</label>
-                    <textarea name="contenu" id="txtCommentaire" required></textarea>
+                    <textarea name="contenu" id="txtCommentaire" ></textarea>
                     <input type="hidden" name="id" value="<?= $reponse['article_id'] ?>">
                     <input type="hidden" name="reponse" value="<?= $reponse['id'] ?>">
                     <button class="buttonRepondre" type="submit">Commenter</button>
@@ -99,16 +98,16 @@ echo '<div class="conteneurComEnfants">';
         <?php
         if (isset($commentaires['reponseCom'][$reponse[0]])) {
             if ($niveau == 3){
-                affichage($commentaires['reponseCom'][$reponse[0]], $marge, $niveau, $commentaires, $reponse);
+                affichage($commentaires['reponseCom'][$reponse[0]], $niveau, $commentaires, $reponse);
             } else {
-                affichage($commentaires['reponseCom'][$reponse[0]], $marge+20, $niveau+1, $commentaires, $reponse);
+                affichage($commentaires['reponseCom'][$reponse[0]], $niveau+1, $commentaires, $reponse);
             }
 
         }
     }
     echo '</div>';
 }
-affichage($comTraites['Com'],0,0, $comTraites);
+affichage($comTraites['Com'],0, $comTraites);
 
 ?>
 

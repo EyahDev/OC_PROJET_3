@@ -19,13 +19,7 @@
     </head>
 
     <body>
-
-    <?php if (isset($_SESSION['in'])) : ?>
         <?php include '__nav.php'?>
-    <?php else : ?>
-        <?php include '__navAccueil.php'?>
-    <?php endif; ?>
-
         <?= $contenu ?>
 
         <footer>

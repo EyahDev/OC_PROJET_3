@@ -26,9 +26,6 @@ class ControleurNouvelarticle extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'nouvelarticle');
-
         // Récupératon de toutes les catégories
         $recupCategories = $this->categories->getCategories()->fetchAll();
 

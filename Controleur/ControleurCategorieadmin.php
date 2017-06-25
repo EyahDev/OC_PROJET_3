@@ -26,9 +26,6 @@ class ControleurCategorieadmin extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'categorieadmin');
-
         // Récupération de toutes les catégories
         $categories = $this->categorie->getCategories();
 

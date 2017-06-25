@@ -10,8 +10,8 @@
         <section class="wrapper">
             <div class="content">
                 <p>Oops nous voulions vous montrer quelques choses mais il y a eu un problème :</p>
-                <p>Plus de détails : </p>
-                <p><?= $msgErreur ?></p>
+                <button class="repondre" id="details" data-to="erreur">Plus de détails</button>
+                <p class="formRepondre" id="detailsErreur" data-to="erreur"><?= $msgErreur ?></p>
             </div><!-- end content -->
         </section>
 

@@ -26,18 +26,11 @@
                     </a>
                 </div>
             <?php endif; ?>
+
         <?php endforeach; ?>
-        <?php if (count($recupArticles) == 11) : ?>
-            <div class="work">
-            <a href="<?= "categorie/index/" . $categorie['id']. '/1' ?>">
-                <img src="Contenu/img/default/suite.png" class="media" alt=""/>
-                <div class="caption">
-                    <div class="work_title">
-                    </div>
-                </div>
-            </a>
-        </div>
-        <?php endif; ?>
+        <?php if ($categorie['nbArticles'] == 11) : ?>
+        <h3 class="allArticles"><< Accéder à tous les articles >></h3>
+        <?php endif;?>
     </section><!-- end main -->
     <?php endforeach; ?>
 <div>

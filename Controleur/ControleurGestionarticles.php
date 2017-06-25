@@ -26,9 +26,6 @@ class ControleurGestionarticles extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'gestionarticle');
-
         // Récupération de tous les articles
         $article = $this->article->getArticlesAdmin();
 

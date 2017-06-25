@@ -23,9 +23,6 @@ class ControleurProfiladmin extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'profiladmin');
-
         // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 

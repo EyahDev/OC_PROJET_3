@@ -21,7 +21,6 @@ class Categories extends Modele {
 
         // Retourne les catégories
         return $recupCategories;
-
     }
 
     /**
@@ -39,7 +38,7 @@ class Categories extends Modele {
 
 
         // Retourne la catégorie demandée si il n'y a qu'un seul resultat, si non il genère un message d'erreur
-        if ($recupCategorie->rowCount() == 1) {
+        if ($recupCategorie->rowCount()) {
             return $recupCategorie->fetch();
         } else {
             throw new Exception("Aucune catégorie ne correspond à l'identifiant '$idCategorie'");
@@ -61,8 +60,13 @@ class Categories extends Modele {
         // Récupération du titre de la catégorie
         $recupTitreCat = $this->executionRequete($reqSQL, array($idCategorie));
 
-        // Retourne le titre de la catégorie
-        return $recupTitreCat->fetch();
+        if ($recupTitreCat->rowCount()) {
+            // Retourne le titre de la catégorie
+            return $recupTitreCat->fetch();
+        } else {
+            throw new Exception("Aucune catégorie ne correspond à l'identifiant '$idCategorie'");
+        }
+
     }
 
     public function setNvCategorie($nomCategorie, $urlPres){

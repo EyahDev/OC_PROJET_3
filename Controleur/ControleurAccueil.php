@@ -33,9 +33,6 @@ class ControleurAccueil extends Controleur {
      * (action par défaut)
      */
     public function index() {
-        // Suppression du cookie de session in
-        unset($_SESSION['in']);
-
         // Récupération des catégories
         $categories = $this->categories->getCategories();
 

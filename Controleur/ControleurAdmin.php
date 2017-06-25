@@ -26,9 +26,6 @@ class ControleurAdmin extends ControleurSecurise {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'admin');
-
         // Récupération du nombre de signalements
         $nbSignalement = $this->commentaires->getNbSignalements();
 

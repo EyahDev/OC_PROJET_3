@@ -62,7 +62,7 @@ class Requete {
             return $this->parametres[$nom];
         } elseif ($this->existeParametre($nom)) {
             return $this->parametres[$nom];
-        }        else {
+        } else {
             throw new Exception("Paramètre '$nom' absent de la requête");
         }
     }

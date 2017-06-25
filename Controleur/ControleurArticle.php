@@ -27,9 +27,6 @@ class ControleurArticle extends Controleur {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'article');
-
         // Récupération de l'identifiant de l'article
         $idArticle = $this->requete->getParametre('id');
 
@@ -129,12 +126,29 @@ class ControleurArticle extends Controleur {
             $reponseID = null;
         }
 
-        //Insertion du commentaire dans la base de données
-        $this->commentaires->ajoutCommentaire($auteur, $contenu, $idArticle, $reponseID);
+        if (empty($auteur) || empty($contenu)) {
+            if (empty($auteur)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre pseudo est manquant');
 
+                // Redirection vers l'article sections commentaires
+                header('Location: index/'.$idArticle. '#commentaires');
+            } elseif (empty($contenu)) {
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre commentaire est manquant');
 
-        // Redirection vers l'article en question
-        $this->redirection('article', 'index/'.$idArticle);
+                // Redirection vers l'article sections commentaires
+                header('Location: index/'.$idArticle. '#commentaires');
+            }
+        } else {
+            //Insertion du commentaire dans la base de données
+            $this->commentaires->ajoutCommentaire($auteur, $contenu, $idArticle, $reponseID);
+
+            $this->requete->getSession()->setMessageFlash('confirmation', 'Votre commentaire a bien été publié');
+
+            // Redirection vers l'article sections commentaires
+            header('Location: index/' . $idArticle . '#commentaires');
+        }
     }
 
     /**

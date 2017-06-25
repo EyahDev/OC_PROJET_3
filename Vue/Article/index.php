@@ -67,14 +67,13 @@
             </h2>
             <?= $messageConfirmation ?>
             <p>Laisser un commentaire</p>
-            <form action="article/commenter" method="POST">
+            <form action="Article/commenter" method="POST">
                 <label for="auteurCom">Votre pseudo</label>
-                <input type="text" id="auteurCom" name="auteur" required />
+                <input type="text" id="auteurCom" name="auteur" />
                 <label for="txtCommentaire">Votre commentaire</label>
-                <textarea name="contenu" id="txtCommentaire" required></textarea>
+                <textarea name="contenu" id="txtCommentaire" ></textarea>
                 <input type="hidden" name="id" value="<?= $affichageArticle['id'] ?>">
                 <input type="hidden" name="reponse" value="">
-                <input type="hidden" name="niveau" value="0">
                 <button class="buttonRepondre" type="submit">Commenter</button>
             </form>
 

@@ -27,9 +27,6 @@ class ControleurCategorie extends Controleur {
      * (action par défaut)
      */
     public function index() {
-        // Création d'un cookie de session pour la nav
-        $this->requete->getSession()->setAttribut('in', 'categorie');
-
         // Récupération de l'identifiant de la catégorie
         $idCategorie = $this->requete->getParametre('id');
 
@@ -50,25 +47,28 @@ class ControleurCategorie extends Controleur {
         // Nombres total d'articles
         $articlesTotal = $this->article->pagination($idCategorie);
 
-        //Calcul du nombre de pages nécessaires si ce n'est pas une chaine alphabetique
+        // Vérification si ce n'est pas une chaîne alphabetique
         if (!ctype_alpha($pageActuelle)) {
+            //Calcul du nombre de pages nécessaires
             $nbPagesNecessaires = $articlesTotal['nbArticles'] / $ArticlesParPage;
+
+            // Vérification si la page actuelle est inferieur ou égale au nombre de pages nécessaires
+            if ($pageActuelle <= ceil($nbPagesNecessaires)) {
+                // Récupération des articles liés à la catégorie
+                $articles = $this->article->getArticlesCategorie($idCategorie, $pageCalculee, $ArticlesParPage);
+
+                // Génération de la vue avec les paramètres
+                $this->genererVue(array(
+                    'affichageArticles' => $articles,
+                    'titreCat' => $titreCategorie,
+                    'nbPagesNecessaires' => ceil($nbPagesNecessaires)
+                ));
+            } else {
+                throw new \Exception("La page '$pageActuelle' n'existe pas");
+            }
         } else {
             throw new \Exception("La page '$pageActuelle' n'existe pas");
         }
 
-        if ($pageActuelle <= ceil($nbPagesNecessaires)) {
-            // Récupération des articles liés à la catégorie
-            $articles = $this->article->getArticlesCategorie($idCategorie, $pageCalculee, $ArticlesParPage);
-
-            // Génération de la vue avec les paramètres
-            $this->genererVue(array(
-                'affichageArticles' => $articles,
-                'titreCat' => $titreCategorie,
-                'nbPagesNecessaires' => ceil($nbPagesNecessaires)
-            ));
-        } else {
-            throw new \Exception("La page '$pageActuelle' n'existe pas");
-        }
     }
 }
