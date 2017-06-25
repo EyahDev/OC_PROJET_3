@@ -29,7 +29,7 @@
 
         <?php endforeach; ?>
         <?php if ($categorie['nbArticles'] == 11) : ?>
-        <h3 class="allArticles"><< Accéder à tous les articles >></h3>
+        <h3 class="allArticles"><< Accéder à tous les articles (<?= $categorie['nbArticles']?>) >></h3>
         <?php endif;?>
     </section><!-- end main -->
     <?php endforeach; ?>
