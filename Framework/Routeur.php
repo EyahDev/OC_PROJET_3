@@ -3,11 +3,13 @@
 namespace Blog\Framework;
 
 use Blog\Modele\Categories;
+use Blog\Modele\Commentaire;
 use Exception;
 
 class Routeur {
 
     private $categories;
+    private $signalement;
 
     /**
      * Récupération de la valeur du paramètre Action
@@ -34,10 +36,12 @@ class Routeur {
         $vue = new Vue('erreur');
 
         $this->categories = new Categories();
+        $this->signalement = new Commentaire();
 
         $navCategories = $this->categories->getCategories()->fetchAll();
+        $nbSignalements = $this->signalement->getNbSignalements();
 
-        $vue->affichageVue(array('msgErreur' => $exception->getMessage()), $navCategories);
+        $vue->affichageVue(array('msgErreur' => $exception->getMessage()), $navCategories, $nbSignalements);
     }
 
     /**

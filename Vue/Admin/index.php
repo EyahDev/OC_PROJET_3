@@ -20,60 +20,48 @@
             <?php endif;?>
             <?= $messageConfirmation ?>
 
-            <div class="tuileAdmin">
-                <a href="signalement">
+                <a href="signalement" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-comments iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modération des commentaires</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="NouvelArticle">
+                <a href="NouvelArticle" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i  class="fa fa-pencil iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Nouvel article</p>
                     </div>
                 </a>
-            </div>
 
-
-            <div class="tuileAdmin">
-                <a href="gestionarticles">
+                <a href="gestionarticles" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-pencil-square-o iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Gerer les articles</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="categorieadmin">
+                <a href="categorieadmin" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-tags iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Gerer les catégories</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="profiladmin">
+                <a href="profiladmin" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-user iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier son profil</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileDeco">
-                <a href="connexion/deconnecter">
+                <a href="connexion/deconnecter" class="tuileDeco">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-sign-out iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Se deconnecter</p>
                     </div>
                 </a>
-            </div>
+
         </div><!-- end content -->
     </section>
 

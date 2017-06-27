@@ -44,6 +44,7 @@
             <?php for ($i = 1; $i <= $nbPagesNecessaires; $i++) : ?>
 
                 <a href="categorie/index/5/<?= $i ?>" <?= ($_GET['page'] == $i)? 'class="active"' : ''?>> <?= $i?> </a>
+
             <?php endfor; ?>
             <?php if($_GET['page'] != $nbPagesNecessaires) : ?>
                 <a href="categorie/index/5/<?= $_GET['page'] + 1 ?>">&raquo;</a>

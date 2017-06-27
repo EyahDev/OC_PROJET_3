@@ -52,7 +52,7 @@ class Vue {
         }
     }
 
-    public function affichageVue($donnees, $navCategories) {
+    public function affichageVue($donnees, $navCategories, $nbSignalements) {
         // Génération de la vue demandé par l'utilisateur
         $contenu = $this->generateurVue($this->fichier, $donnees);
 
@@ -64,7 +64,8 @@ class Vue {
             'titre' => $this->titre,
             'contenu' => $contenu,
             'racineWeb' => $racineWeb,
-            'navCategories' => $navCategories
+            'navCategories' => $navCategories,
+            'nbSignalements' => $nbSignalements
         ));
 
         // Affichage de la vue

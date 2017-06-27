@@ -32,7 +32,7 @@ class Article extends Modele {
                     FROM articles b LEFT JOIN commentaires c ON c.article_id = b.id
                     GROUP BY b.id
                     ORDER BY article_date DESC
-                    LIMIT 0, 11';
+                    LIMIT 0, 12';
         // Récuperation des articles en executant la requête
         $recupArticles = $this->executionRequete($reqSQL);
 

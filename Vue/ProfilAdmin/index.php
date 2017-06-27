@@ -17,49 +17,40 @@
             <h3>Modifier les informations utilisateur</h3>
             <?= $messageConfirmation ?>
 
-            <div class="tuileAdmin">
-                <a href="profiladmin/utilisateur">
+                <a href="profiladmin/utilisateur" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-user iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier votre nom d'utilisateur</p>
                     </div>
                 </a>
-            </div>
-            <div class="tuileAdmin">
-                <a href="profiladmin/password">
+
+                <a href="profiladmin/password" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-key iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier votre mot de passe</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="profiladmin/mail">
-                    <div class="contenuTuileAdmin">
+                <a href="profiladmin/mail"class="tuileAdmin">
+                    <div class="contenuTuileAdmin" >
                         <i class="fa fa-envelope iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier votre adresse mail</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="profiladmin/auteur">
+                <a href="profiladmin/auteur" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-user-secret iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier votre nom d'auteur</p>
                     </div>
                 </a>
-            </div>
 
-            <div class="tuileAdmin">
-                <a href="profiladmin/apropos">
+                <a href="profiladmin/apropos" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-pencil-square-o iconeAdmin" aria-hidden="true"></i>
                         <p class="titreFonction">Modifier A propos</p>
                     </div>
                 </a>
-            </div>
         </div><!-- end content -->
     </section>
 </section><!-- end main -->

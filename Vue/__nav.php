@@ -8,9 +8,9 @@
         <ul>
             <li><a class="js-scrollTo" href="#accueil" class="selected">Accueil</a></li>
             <?php if (count($navCategories) > 1) : ?>
-                <li class="dropdown">
+                <li class="dropdownCat">
                     <a>Catégories</a>
-                    <ul class="dropdown-content">
+                    <ul class="dropdown-content catDP">
                         <?php foreach ($navCategories as $navCategorie) : ?>
                             <?php if ($navCategorie['nbArticles'] != 0 ) :?>
                             <li><a class="js-scrollTo" href="#cat<?= $navCategorie['id'] ?>"><?=$navCategorie['categorie'] ?></a></li>
@@ -25,12 +25,12 @@
             <li><a class="js-scrollTo" href="#aPropos">A propos</a></li>
             <li><a class="js-scrollTo" href="#contact">Contact</a></li>
             <?php if (isset($_SESSION['idUtilisateur'])) :?>
-                <li class="dropdown">
+                <li class="dropdownAdmin">
                     <a><i class="fa fa-cogs" aria-hidden="true"></i></a>
-                    <ul class="dropdown-content">
+                    <ul class="dropdown-content adminDP">
                         <li>
                             <a href="signalement">
-                                <i class="fa fa-comments" aria-hidden="true"></i> Modération
+                                <i class="fa fa-comments" aria-hidden="true"></i> Modération <?= ($nbSignalements['count'] != 0)? '('.$nbSignalements['count'].')' : '' ?>
                             </a>
                         </li>
                         <li>

@@ -1,4 +1,5 @@
 <?php $this->titre = 'Jean Forteroche - Lettres d\'Alaska'; ?>
+
 <div id="accueil" class="contentArticles">
     <?php foreach ($recupCategories AS $categorie) : ?>
         <?php if ($categorie['nbArticles'] != 0) : ?>
@@ -28,8 +29,8 @@
             <?php endif; ?>
 
         <?php endforeach; ?>
-        <?php if ($categorie['nbArticles'] == 11) : ?>
-        <h3 class="allArticles"><< Accéder à tous les articles (<?= $categorie['nbArticles']?>) >></h3>
+        <?php if ($categorie['nbArticles'] == 12) : ?>
+        <h3 class="allArticles"><a href="<?= "categorie/index/" . $categorie['id'].'/1' ?>"><< Accéder à tous les articles (<?= $categorie['nbArticles']?>) >></a></h3>
         <?php endif;?>
     </section><!-- end main -->
     <?php endforeach; ?>
@@ -82,6 +83,8 @@
     <div class="content" id="contactForm">
         <?= $messageConfirmation ?>
         <form action="accueil/mailContact" method="POST">
+            <label for="nomPrenom">Votre nom et prénom</label><br/>
+            <input type="text" name="nomPrenom" id="nomPrenom"><br/>
             <label for="mail">Votre adresse mail</label><br/>
             <input type="email" name="mail" id="mail"><br/>
             <label for="sujet">Votre sujet</label><br/>

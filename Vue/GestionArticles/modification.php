@@ -45,7 +45,7 @@
                 <label for="ModifArticleUrlPres">URL de l'image de l'article <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
-                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_pres']) == 'Contenu/img/default/pres_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_tuiles']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_pres']) == 'Contenu/img/default/pres_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_pres']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
                 <br />
 
                 <label for="contenuArticleModif">Contenu de l'article</label>

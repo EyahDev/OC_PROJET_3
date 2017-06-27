@@ -59,7 +59,7 @@ class ControleurAccueil extends Controleur {
             'aPropos' => $aPropos,
             'nbComs' => $commentaires,
             'messageConfirmation' => $messageConfirmation
-            ));
+        ));
     }
 
     /**
@@ -68,6 +68,12 @@ class ControleurAccueil extends Controleur {
     public function mailContact() {
         // Récupération de l'adresse mail de l'administrateur
         $to = $this->utilisateur->getMail();
+
+        // Mail du serveur
+        $mailServeur = 'noreply@adriendesmet.com';
+
+        // Récupération du nom et prénom
+        $nomPrenom = $this->requete->getParametre('nomPrenom');
 
         // Récupération de l'adresse mail de l'utilisateur
         $mail = $this->requete->getParametre('mail');
@@ -79,7 +85,10 @@ class ControleurAccueil extends Controleur {
         $message = $this->requete->getParametre('messageContact');
 
         // Information supplémentaires pour la fonction mail : ajout de l'adresse mail de l'expediteur
-        $infoSupp = 'From :' .$mail;
+        $headers = 'From: Mail de contact - jenforteroche.com <'.$mailServeur.'>'."\r\n";
+        $headers .= 'Reply-To:'.$nomPrenom. '<'.$mail.'>'. "\r\n";
+        $headers .= 'Content-Type: text/html;charset=utf-8' . "\r\n";
+
 
         if (empty($mail) || empty($sujet) || empty($message)) {
             if (empty($mail)) {
@@ -112,7 +121,7 @@ class ControleurAccueil extends Controleur {
 
         } else {
             // Envoi du mail à l'adresse de l'administrateur
-            mail($to, $sujet, $message, $infoSupp);
+            mail($to['mail'], $sujet, $message, $headers, "-f $mailServeur");
 
             // Définition d'un message flash pour la confirmation d'envoi
             $this->requete->getSession()->setMessageFlash('confirmation', 'Votre mail a bien été envoyé');

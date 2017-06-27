@@ -3,6 +3,7 @@
 namespace Blog\Framework;
 
 use Blog\Modele\Categories;
+use Blog\Modele\Commentaire;
 use Exception;
 
 abstract class Controleur {
@@ -10,6 +11,7 @@ abstract class Controleur {
     // Action à réaliser
     private $action;
     private $navCategories;
+    private $signalement;
 
 
     /**
@@ -43,6 +45,7 @@ abstract class Controleur {
      */
     protected function genererVue($donneesVue = array()) {
         $this->navCategories = new Categories();
+        $this->signalement = new Commentaire();
 
         // Récuperation du nom de la classe
         $classeControleur = get_class($this);
@@ -54,8 +57,9 @@ abstract class Controleur {
         $vue = new Vue($this->action, $controleur);
 
         $navCategories =  $this->navCategories->getCategories()->fetchAll();
+        $nbSignalements = $this->signalement->getNbSignalements();
 
-        $vue->affichageVue($donneesVue, $navCategories);
+        $vue->affichageVue($donneesVue, $navCategories, $nbSignalements);
     }
 
     protected function redirection($controleur, $action = null) {

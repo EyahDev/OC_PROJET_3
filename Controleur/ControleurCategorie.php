@@ -41,14 +41,23 @@ class ControleurCategorie extends Controleur {
         // Récupération de la page actuelle
         $pageActuelle = $this->requete->getParametre('page');
 
+        if (intval($pageActuelle)) {
+            $pageActuelle = intval($pageActuelle);
+        } else {
+            throw new \Exception("La page '$pageActuelle' n'existe pas");
+        }
+
+
         // Calcul de la page à afficher
         $pageCalculee = ($pageActuelle - 1) * $ArticlesParPage;
 
         // Nombres total d'articles
         $articlesTotal = $this->article->pagination($idCategorie);
 
+
         // Vérification si ce n'est pas une chaîne alphabetique
-        if (!ctype_alpha($pageActuelle)) {
+
+        if (is_int($pageActuelle)) {
             //Calcul du nombre de pages nécessaires
             $nbPagesNecessaires = $articlesTotal['nbArticles'] / $ArticlesParPage;
 
@@ -66,9 +75,6 @@ class ControleurCategorie extends Controleur {
             } else {
                 throw new \Exception("La page '$pageActuelle' n'existe pas");
             }
-        } else {
-            throw new \Exception("La page '$pageActuelle' n'existe pas");
         }
-
     }
 }
