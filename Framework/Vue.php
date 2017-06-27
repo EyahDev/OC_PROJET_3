@@ -6,9 +6,8 @@ use Exception;
 
 class Vue {
 
-    // Nom du fichier de la vue demandé
+    // Nom du fichier de la vue demandée
     private $fichier;
-    private $requete;
 
     // Titre de la vue (défini dans le fichier)
     private $titre;
@@ -26,10 +25,10 @@ class Vue {
     }
 
     /**
-     * Genère la vue demandé à l'utilisateur
+     * Génère la vue demandée par l'utilisateur
      *
      * @param $fichier => Le fichier vue à charger
-     * @param $donnees =>
+     * @param $donnees
      * @return string => Retourne le contenu(la vue) mis en tampon
      * @throws Exception
      */
@@ -53,10 +52,10 @@ class Vue {
     }
 
     public function affichageVue($donnees, $navCategories, $nbSignalements) {
-        // Génération de la vue demandé par l'utilisateur
+        // Génération de la vue demandée par l'utilisateur
         $contenu = $this->generateurVue($this->fichier, $donnees);
 
-        // Variable necessaire pour la réécriture des URL
+        // Variable nécessaire pour la réécriture des URL
         $racineWeb = Configuration::get('racineWeb', '/');
 
         // Génération du gabarit

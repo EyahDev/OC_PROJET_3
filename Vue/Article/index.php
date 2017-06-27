@@ -45,13 +45,13 @@
     </section>
     <section class="wrapper">
         <div class="content" style="text-align: right">
-            <a target="_blank" href="http://www.facebook.com/sharer.php?u=https://projet3.adriendesmet.com" class="facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+            <a target="_blank" href="http://www.facebook.com/sharer.php?u=https://projet3.adriendesmet.com/article/index/<?= $affichageArticle['id'] ?>" class="facebook" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                 <i class="fa fa-facebook-square" aria-hidden="true"></i>
             </a>
-            <a target="_blank" href="https://plus.google.com/share?url=https://projet3.adriendesmet.com" class="googlePlus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+            <a target="_blank" href="https://plus.google.com/share?url=https://projet3.adriendesmet.com/article/index/<?= $affichageArticle['id'] ?>" class="googlePlus" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                 <i class="fa fa-google-plus-square" aria-hidden="true"></i>
             </a>
-            <a target="_blank" href="https://twitter.com/share?url=https://projet3.adriendesmet.com" class="twit"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+            <a target="_blank" href="https://twitter.com/share?url=https://projet3.adriendesmet.com/article/index/<?= $affichageArticle['id'] ?>" class="twit"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                 <i class="fa fa-twitter-square" aria-hidden="true"></i>
             </a>
 

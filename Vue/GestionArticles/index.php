@@ -8,7 +8,7 @@
                     <li><a href="admin" class="previous" data-title="Retour"></a></li>
                 </ul>
             </div><!-- end work_nav -->
-            <h1 class="title">Gerer les articles</h1>
+            <h1 class="title">Gérer les articles</h1>
         </div>
     </section><!-- end top -->
 
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             <?php else : ?>
-                <p>Aucun articles n'a été publiés</p>
+                <p>Aucun article n'a été publié</p>
             <?php endif; ?>
         </div><!-- end content -->
     </section>

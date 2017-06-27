@@ -55,7 +55,7 @@
 
 <?php else : ?>
         <div class="comAccueil">
-            <p>Aucun commentaires n'a encore été écrit</p>
+            <p>Aucun commentaire n'a encore été écrit</p>
         </div>
 <?php endif; ?>
         </div>

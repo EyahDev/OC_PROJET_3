@@ -5,19 +5,21 @@ namespace Blog\Framework;
 use PDO;
 
 
-abstract class Modele {
+abstract class Modele
+{
 
     // Déclaration de la variable pour stocker l'accès à la base de données
     private static $bdd;
 
 
     /**
-     * Prerequis => récuperation des informations grace à la fonction get de la classe Configuration
-     * Récupère les elements de connexion à la base de données et créée l'accès
+     * Prérequis => récuperation des informations grâce à la fonction get de la classe Configuration
+     * Récupère les éléments de connexion à la base de données et créée l'accès
      *
      * @return PDO => Retourne l'accès à la base de données
      */
-    private function getDatabase() {
+    private function getDatabase()
+    {
         if (self::$bdd == null) {
             // Récupération des paramètres de configuration de la base de données
             $dsn = Configuration::get('dsn');
@@ -32,15 +34,16 @@ abstract class Modele {
     }
 
     /**
-     * prerequis => être connecté à la base de données grace à la fonction getDatabase
+     * Prérequis => être connecté à la base de données grâce à la fonction getDatabase
      *
-     * Execute une requête standard (query) ou préparé (prepare) et retourne le resultat dans une variable
+     * Exécute une requête standard (query) ou prépare (prepare) et retourne le résultat dans une variable
      *
      * @param $reqSQL => Requête SQL pour la base de données
-     * @param null $params => Tableau de parametres necessaire en cas d'une requête préparé
+     * @param null $params => Tableau de paramètres nécessaire en cas d'une requête préparée
      * @return \PDOStatement => Retourne le résultat de la requête
      */
-    protected function executionRequete($reqSQL, $params = null) {
+    protected function executionRequete($reqSQL, $params = null)
+    {
         if ($params == null) {
             $resultat = self::getDatabase()->query($reqSQL);
         } else {
@@ -50,8 +53,9 @@ abstract class Modele {
         return $resultat;
     }
 
-    protected function prepare($reqSQL) {
+    protected function prepare($reqSQL)
+    {
         $resultat = self::getDatabase()->prepare($reqSQL);
         return $resultat;
     }
-    }
+}

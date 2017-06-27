@@ -10,7 +10,7 @@ class ControleurSignalement extends ControleurSecurise {
     private $commentaire;
 
     /**
-     * Instantation des classes nécessaires
+     * Instanciation des classes nécessaires
      *
      * ControleurSignalement constructor.
      */
@@ -32,17 +32,17 @@ class ControleurSignalement extends ControleurSecurise {
         // Récupération du message flash
         $messageConfirmation = $this->requete->getSession()->getMessageFlash();
 
-        // Définition de variables vide pour le cas ou il n'y a rien à afficher
+        // Définition de variables vides pour le cas où il n'y a rien à afficher
         $aucunComsSignales = '';
         $aucunComsApprouves = '';
 
-        // vérification si y a des messages à afficher et affiche un message dans le cas ou il n'y en a pas
+        // Vérification si il y a des messages à afficher et affiche un message dans le cas où il n'y en a pas
         if ($commentaires->rowCount() == 0) {
-            $aucunComsSignales = 'Aucun commentaires n\'a été signalés';
+            $aucunComsSignales = 'Aucun commentaires n\'a été signalé';
         }
 
         if ($commentairesApprouves->rowCount() == 1) {
-            $aucunComsApprouves = 'Vous n\'avez approuvé aucun commentaires';
+            $aucunComsApprouves = 'Vous n\'avez approuvé aucun commentaire';
         }
 
         // Génère la vue avec les paramètres
@@ -56,19 +56,19 @@ class ControleurSignalement extends ControleurSecurise {
     }
 
     /**
-     * Affiche les details du commentaires signalé
+     * Affiche les details du commentaire signalé
      */
     public function details() {
-        // Récuperation de l'id du commentaire
+        // Récupération de l'id du commentaire
         $idCommentaire = $this->requete->getParametre('id');
 
-        // Affiche les details du commentaire signalé
+        // Affiche les détails du commentaire signalé
         $details = $this->commentaire->getSignalement($idCommentaire);
 
-        // Définition d'une variable vide dans le cas ou il n'y a pas de réponse au commentaire
+        // Définition d'une variable vide dans le cas où il n'y a pas de réponse au commentaire
         $recupReponse = '';
 
-        // Vérification si il y a un réponse au commentaire
+        // Vérification si il y a une réponse au commentaire
         if ($details['reponse_id']) {
             // Edition de la variable avec l'identifiant de la réponse
             $recupReponse = $this->commentaire->getReponse($details['reponse_id']);
@@ -82,10 +82,10 @@ class ControleurSignalement extends ControleurSecurise {
     }
 
     /**
-     * Supprime le article signalé
+     * Supprime l'article signalé
      */
     public function suppression() {
-        // Récuperation de l'id du commentaire
+        // Récupération de l'id du commentaire
         $idCommentaire = $this->requete->getParametre('id');
 
         // Supprime le commentaire défini
@@ -100,7 +100,7 @@ class ControleurSignalement extends ControleurSecurise {
 
     public function suppressionDirect() {
 
-        // Récuperation de l'id du commentaire
+        // Récupération de l'id du commentaire
         $idCommentaire = $this->requete->getParametre('id');
 
         $idArticle = $this->commentaire->getIDArticle($idCommentaire)->fetch();
@@ -108,24 +108,24 @@ class ControleurSignalement extends ControleurSecurise {
         // Supprime le commentaire défini
         $this->commentaire->suppression($idCommentaire);
 
-        // Definition du message flash
+        // Définition du message flash
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été supprimé');
 
-        // Redirige sur le article section commentaires
+        // Redirige sur l'article section commentaires
         $this->redirection('article', 'index/'.$idArticle['article_id']. '#commentaires');
     }
 
     /**
-     * Approuve le article signalé
+     * Approuve l'article signalé
      */
     public function approuver() {
-        // Récuperation de l'id du commentaire
+        // Récupération de l'id du commentaire
         $idCommentaire = $this->requete->getParametre('id');
 
         // Approbation du commentaire défini
         $this->commentaire->approbation($idCommentaire);
 
-        // Definition du message flash
+        // Définition du message flash
         $this->requete->getSession()->setMessageFlash('confirmation','Le commentaire a bien été approuvé');
 
         // Redirige vers l'index des signalements

@@ -21,10 +21,10 @@
                 <input type="hidden" name="idCategorie" value="<?= $categorie['id']?>" />
                 <label for="ModifCategorie">Nom de la catégorie</label><br/>
                 <input type="text" name="ModifCategorie" id="ModifCategorie" value="<?= $this->nettoyageFailles($categorie['categorie']) ?>"/>
-                <label for="categorieURLPres">URL de l'image de présentation de la catatégorie<br/>
-                    <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
+                <label for="categorieURLPres">URL de l'image de présentation de la catégorie<br/>
+                    <strong>Attention : </strong> L'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
-                <input type="text" id="categorieURLPres" name="ModifCategorieURLPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" value="<?= ($this->nettoyageFailles($categorie['url_img_pres']) == 'Contenu/img/default/cat_pres_default.jpg')? '' : $this->nettoyageFailles($categorie['url_img_pres']) ?>" />
+                <input type="text" id="categorieURLPres" name="ModifCategorieURLPres" placeholder="Une image par défaut sera générée si vous n'en avez pas" value="<?= ($this->nettoyageFailles($categorie['url_img_pres']) == 'Contenu/img/default/cat_pres_default.jpg')? '' : $this->nettoyageFailles($categorie['url_img_pres']) ?>" />
                 <button class="buttonRepondre" type="submit">Modifier</button>
             </form>
         </div><!-- end content -->

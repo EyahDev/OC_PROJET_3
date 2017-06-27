@@ -40,12 +40,12 @@
                         </li>
                         <li>
                             <a href="gestionarticles">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Gerer les articles
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Gérer les articles
                             </a>
                         </li>
                         <li>
                             <a href="categorieadmin">
-                                <i class="fa fa-tags" aria-hidden="true"></i> Gerer les catégories
+                                <i class="fa fa-tags" aria-hidden="true"></i> Gérer les catégories
                             </a>
                         </li>
                         <li>
@@ -53,7 +53,7 @@
                         </li>
                         <li>
                             <a href="connexion/deconnecter">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Se deconnecter
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter
                             </a>
                         </li>
                     </ul>

@@ -27,7 +27,7 @@
                 <label for="categorieNvArticle">Catégorie</label><br/ >
                 <div class="select-style" style="display: inline-block">
                     <select name="categorieNvArticle" id="categorieNvArticle">
-                        <option value="">-- Selectionnez la catégorie de l'article --</option>
+                        <option value="">-- Sélectionner la catégorie de l'article --</option>
                         <?php foreach ($categories as $categorie) : ?>
                             <option value="<?= $categorie['id'] ?>"><?= $categorie['categorie'] ?></option>
                         <?php endforeach;?>
@@ -36,16 +36,15 @@
                 <p>ou <a href="categorieadmin">Créer une catégorie</a></p>
 
                 <label for="NvArticleUrlTuile">URL de l'image de l'accueil <br/>
-                    <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
+                    <strong>Attention : </strong> L'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
-                <input type="url" id="NvArticleUrlTuile" name="urlTuile" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="url" id="NvArticleUrlTuile" name="urlTuile" placeholder="Une image par défaut sera générée si vous n'en avez pas" />
                 <br />
 
-                <label for="NvArticleUrlPres">URL de l'image de l'article <br/>
+                <label for="NvArticleUrlPres">URL de L'image de l'article <br/>
                     <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
-                </label>
-                <input type="url" id="NvArticleUrlPres" name="urlPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="url" id="NvArticleUrlPres" name="urlPres" placeholder="Une image par défaut sera générée si vous n'en avez pas" />
                 <br />
 
                 <label for="contenuNvArticle">Contenu de l'article</label>

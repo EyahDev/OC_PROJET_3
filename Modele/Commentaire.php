@@ -19,7 +19,7 @@ class Commentaire extends Modele {
         // Définition de la requête SQL
         $reqSQL = 'SELECT id, reponse_id, article_id, DATE_FORMAT(com_date, "le %d/%m/%Y à %H:%i") AS dateFormate, auteur, contenu, signalement FROM commentaires WHERE article_id = ? ORDER BY dateFormate DESC';
 
-        // Récuperation des commentaires liés au article demandé
+        // Récupération des commentaires liés au article demandé
         $recupCommentaires = $this->executionRequete($reqSQL, array($idArticle));
 
         // Retourne le resultat
@@ -65,7 +65,7 @@ class Commentaire extends Modele {
         // Vérification si la ligne est bien affecté
         $count = $suppression->rowCount();
 
-        // Renvoie un message d'erreur si aucune ligne est affecté
+        // Renvoi un message d'erreur si aucune ligne est affectée
         if ($count) {
             return $count;
         } else {
@@ -82,7 +82,7 @@ class Commentaire extends Modele {
               ON bill.id = com.article_id
               ORDER BY com.com_date DESC LIMIT 0,3';
 
-        // recuperations des derniers commentaires
+        // Récupération des derniers commentaires
         $recupDerniersCom = $this->executionRequete($reqSQL);
 
         // Retourne les commentaires trouvés
@@ -93,7 +93,7 @@ class Commentaire extends Modele {
     /**
      * Compte le nombre total de commentaires
      *
-     * @return mixed => retourne le nombres de commentaires
+     * @return mixed => retourne le nombre de commentaires
      */
     public function getNbCommentaires() {
         // Définition de la requête SQL
@@ -104,7 +104,7 @@ class Commentaire extends Modele {
         // Exécution de la requête
         $resultat = $this->executionRequete($reqSQL);
 
-        // Recuperation du résultat
+        // Récupération du résultat
         return $resultat->fetchAll();
     }
 
@@ -112,7 +112,7 @@ class Commentaire extends Modele {
         // Définition de la requête SQL
         $reqSQL = 'SELECT article_id FROM commentaires WHERE id = ?';
 
-        // Recuperation du article demandé
+        // Récupération du article demandé
         $recupID = $this->executionRequete($reqSQL, array($idCommentaires));
 
         var_dump($idCommentaires);
@@ -121,11 +121,11 @@ class Commentaire extends Modele {
     }
 
 
-    /* SIGNALEMENT ET APPROBATION*/
+    /* SIGNALEMENT ET APPROBATION */
 
 
     /**
-     * Récuperation des commentaires signalés dans la base de données
+     * Récupération des commentaires signalés dans la base de données
      *
      * @return \PDOStatement => Retourne les commentaires signalés
      */
@@ -138,7 +138,7 @@ class Commentaire extends Modele {
               ON bill.id = com.article_id
               WHERE com.signalement > 0 AND com.moderation = 0';
 
-        // Récuperation des commentaires liés au article demandé
+        // Récupération des commentaires liés à l'article demandé
         $recupCommentaires = $this->executionRequete($reqSQL);
 
         // Retourne tous les commentaires recuperés
@@ -154,7 +154,7 @@ class Commentaire extends Modele {
     }
 
     /**
-     * Récuperation des commentaires approuvés dans la base de données
+     * Récupération des commentaires approuvés dans la base de données
      *
      * @return \PDOStatement => Retourne les commentaires approuvés
      */
@@ -167,7 +167,7 @@ class Commentaire extends Modele {
               ON bill.id = com.article_id
               WHERE com.moderation = 1';
 
-        // Récuperation des commentaires liés au article demandé
+        // Récupération des commentaires liés à l'article demandé
         $recupCommentaires = $this->executionRequete($reqSQL);
 
         // Retourne tous les commentaires recuperés
@@ -178,8 +178,8 @@ class Commentaire extends Modele {
      * Récupération des détails du commentaire signalé
      *
      * @param $idCommentaires => identifiant du commentaire signalé
-     * @return mixed => Retourne les details du commentaire signalé
-     * @throws Exception => message d'erreur dans le cas ou l'idenfiant n'existe pas
+     * @return mixed => Retourne les détails du commentaire signalé
+     * @throws Exception => message d'erreur dans le cas où l'idenfiant n'existe pas
      */
     public function getSignalement($idCommentaires) {
         // Définition de la requête SQL
@@ -189,10 +189,10 @@ class Commentaire extends Modele {
               ON bill.id = com.article_id
               WHERE com.id = ?';
 
-        // Récuperation des commentaires liés au article demandé
+        // Récupération des commentaires liés au article demandé
         $recupCommentaire = $this->executionRequete($reqSQL, array($idCommentaires));
 
-        // Retourne les details du commentaires ou lève une erreur
+        // Retourne les détails du commentaire ou lève une erreur
         if ($recupCommentaire->rowCount() == 1) {
             return $recupCommentaire->fetch();
         } else {
@@ -200,6 +200,12 @@ class Commentaire extends Modele {
         }
     }
 
+    /**
+     * Récupération de la réponse du commentaire
+     *
+     * @param $idReponse
+     * @return mixed
+     */
     public function getReponse($idReponse) {
         $reqSQL ='SELECT id, auteur, contenu FROM commentaires WHERE id = ?';
 
@@ -209,6 +215,12 @@ class Commentaire extends Modele {
 
     }
 
+    /**
+     * Récupération de l'approbation du commentaire
+     *
+     * @param $idCommentaire
+     * @return mixed
+     */
     public function getApprobation($idCommentaire) {
         $reqSQL = 'SELECT moderation FROM commentaires WHERE id = ?';
 
@@ -222,7 +234,7 @@ class Commentaire extends Modele {
      *
      * @param $idCommentaire => identifiant du commentaire à approuver
      * @return int => Retourne le nombre de ligne affecté par l'approbation
-     * @throws Exception => message d'erreur si l'approbation echoue
+     * @throws Exception => message d'erreur si l'approbation échoue
      */
     public function approbation($idCommentaire) {
         // Définition de la requête SQL
@@ -231,7 +243,7 @@ class Commentaire extends Modele {
         // Approbation du commentaire dans la base de données
         $approbation = $this->executionRequete($reqSQL, array($idCommentaire));
 
-        // Récupération du nombre de ligne affecté
+        // Récupération du nombre de ligne affectée
         $count= $approbation->rowCount();
 
         // AFfiche un message d'erreur si le nombre de ligne est null
@@ -246,8 +258,8 @@ class Commentaire extends Modele {
      * Supprime le commentaire signalé
      *
      * @param $idCommentaire => Identifiant du commentaire à supprimer
-     * @return int => Retourne le nombre de ligne affecté par la suppression
-     * @throws Exception => Message d'erreur si la suppression echoue
+     * @return int => Retourne le nombre de ligne affectée par la suppression
+     * @throws Exception => Message d'erreur si la suppression échoue
      */
     public function suppression($idCommentaire) {
         // Définition de la requête SQL
@@ -256,7 +268,7 @@ class Commentaire extends Modele {
         // Suppression du commentaire dans la base de données
         $suppression = $this->executionRequete($reqSQL, array($idCommentaire));
 
-        // Récupération du nombre de ligne affecté
+        // Récupération du nombre de ligne affectée
         $count = $suppression->rowCount();
 
         // AFfiche un message d'erreur si le nombre de ligne est null

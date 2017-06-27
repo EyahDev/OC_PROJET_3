@@ -8,7 +8,7 @@
                     <li><a href="admin" class="previous" data-title="Retour"></a></li>
                 </ul>
             </div><!-- end work_nav -->
-            <h1 class="title">Gerer les catégories</h1>
+            <h1 class="title">Gérer les catégories</h1>
         </div>
     </section><!-- end top -->
 
@@ -17,18 +17,18 @@
             <h3>Créer une nouvelle catégorie</h3>
             <?= $messageConfirmation?>
             <form action="categorieAdmin/creer" method="POST">
-                <label for="nvCategorie">Indiquez le nom de votre catégorie</label><br/>
+                <label for="nvCategorie">Indiquer le nom de votre catégorie</label><br/>
                 <input type="text" name="nvCategorie" id="nvCategorie"/>
-                <label for="categorieURLPres">URL de l'image de présentation de la catatégorie<br/>
-                    <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
+                <label for="categorieURLPres">URL de l'image de présentation de la catégorie<br/>
+                    <strong>Attention : </strong> L'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.<br/>
                 </label>
-                <input type="text" id="categorieURLPres" name="categorieURLPres" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="text" id="categorieURLPres" name="categorieURLPres" placeholder="Une image par défaut sera générée si vous n'en avez pas" />
                 <button class="creerCat" type="submit" value="Créer">Créer</button>
             </form>
             <?php if ($categories->rowCount()) : ?>
-            <h3>Catégories existante</h3>
+            <h3>Catégories existantes</h3>
 
-                <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention supprimer une catégorie supprimera également les articles associés <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                <p id="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention : Supprimer une catégorie supprimera également les articles associés <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
 
                 <div id="demo">
                     <!-- Responsive table starts here -->
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             <?php else : ?>
-                <p>Aucune catégories n'a été créer</p>
+                <p>Aucune catégorie n'a été créée</p>
             <?php endif; ?>
         </div><!-- end content -->
     </section>

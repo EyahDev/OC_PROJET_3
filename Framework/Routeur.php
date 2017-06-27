@@ -27,9 +27,9 @@ class Routeur {
     }
 
     /**
-     * Genère la vue erreur quand une erreur est levé
+     * Génère la vue erreur quand une erreur est levée
      *
-     * @param Exception $exception => Récuperation du message d'erreur
+     * @param Exception $exception => Récupération du message d'erreur
      */
     private function gererErreur(Exception $exception) {
 
@@ -45,24 +45,24 @@ class Routeur {
     }
 
     /**
-     * Genere le controleur necessaire en fonction de la requête entrante
+     * Géneère le contrôleur nécessaire en fonction de la requête entrante
      *
-     * @param Requete $requete => Accès au fonction de la classe Requete
-     * @return mixed|string => ??
-     * @throws Exception => leve une erreur si aucun fichier n'est trouvé
+     * @param Requete $requete => Accès aux fonctions de la classe Requete
+     * @return mixed|string
+     * @throws Exception => lève une erreur si aucun fichier n'est trouvé
      */
     private function creerControleur(Requete $requete) {
-        // Controleur par défaut
+        // Contrôleur par défaut
         $controleur  = "Accueil";
         if ($requete->existeParametre('controleur')) {
-            // Récuperation de la valeur du paramètre controleur
+            // Récupération de la valeur du paramètre contrôleur
             $controleur = $requete->getParametre('controleur');
 
-            // Transforme le tout en minuscule et passe la premiere lettre en MAJ
+            // Transforme le tout en minuscule et passe la première lettre en MAJ
             $controleur = ucfirst(strtolower($controleur));
         }
 
-        // Construction du nom du fichier du controleur
+        // Construction du nom du fichier du contrôleur
         $classeControleur  = 'Controleur' . $controleur;
         $fichierControleur = 'Controleur/' . $classeControleur . '.php';
 
@@ -70,7 +70,7 @@ class Routeur {
         if (file_exists($fichierControleur)) {
             $classeControleur = "Blog\Controleur\\" . $classeControleur;
 
-            // instanciation du controleur demandé
+            // Instanciation du contrôleur demandé
             $controleur = new $classeControleur();
 
             $controleur->setRequete($requete);
@@ -91,17 +91,17 @@ class Routeur {
             // Fusion des paramètres GET et POST
             $requete = new Requete(array_merge($_GET, $_POST));
 
-            // Génération du controleur necessaire
+            // Génération du contrôleur nécessaire
             $controleur = $this->creerControleur($requete);
 
             // Récupération de l'action
             $action = $this->creerAction($requete);
 
-            // Execute l'action dans le controleur
+            // Exécute l'action dans le contrôleur
             $controleur->executerAction($action);
 
         } catch (Exception $e) {
-            // Affiche la vue erreur si une erreur est levé
+            // Affiche la vue erreur si une erreur est levée
             $this->gererErreur($e);
         }
     }

@@ -1,4 +1,4 @@
-<?php $this->titre = "Jean Forteroche - Modifier l'adresse mail"?>
+<?php $this->titre = "Jean Forteroche - Modifier votre adresse mail"?>
 
 <section class="main clearfix">
     <section class="top bgAdmin">
@@ -15,13 +15,13 @@
 
     <section class="wrapper">
         <div class="content contentAdmin">
-            <h3>Modification de votre mot de passe</h3>
+            <h3>Modification de votre adresse mail</h3>
             <?= $messageFlash ?>
             <form action="profiladmin/modifierMail" method="POST">
                 <p>Saisissez votre nouvelle adresse mail</p>
                 <input type="email" name="nvMail" value="<?= $this->nettoyageFailles($infoUtilisateur['mail']) ?>"/>
                 <input type="hidden" name="idUtilisateur" value="<?= $infoUtilisateur['id'] ?>" />
-                <button class="buttonRepondre" type="submit" value="Modifier" />Modifier</button>
+                <button class="buttonRepondre" type="submit" value="Modifier"/>Modifier</button>
             </form>
         </div><!-- end content -->
     </section>

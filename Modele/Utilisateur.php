@@ -37,8 +37,8 @@ class Utilisateur extends Modele {
      *
      * @param $login => Login de l'utilisateur
      * @param $password => Password de l'utilisateur
-     * @return mixed => Retourne les informations récuperer
-     * @throws Exception => Message d'erreur si les identifiants sont incorrect
+     * @return mixed => Retourne les informations récupérées
+     * @throws Exception => Message d'erreur si les identifiants sont incorrects
      */
     public function getUtilisateurs($login) {
         // Défintion de la requête SQL
@@ -47,7 +47,7 @@ class Utilisateur extends Modele {
         // Exécution de la requête
         $utilisateur = $this->executionRequete($reqSQL, array($login));
 
-        // Si il y a bien une ligne qui existe dans la base de données, retourne les informations si non leve une erreur
+        // Si il y a bien une ligne qui existe dans la base de données, retourne les informations si non lève une erreur
         if ($utilisateur->rowCount() == 1) {
             return $utilisateur->fetch();
         } else {
@@ -55,6 +55,12 @@ class Utilisateur extends Modele {
         }
     }
 
+    /**
+     * Récupération des informations de l'utilisateur
+     *
+     * @param $idUtilisateur
+     * @return \PDOStatement
+     */
     public function getInformations($idUtilisateur) {
         // Défintion de la requête SQL
         $reqSQL = 'SELECT * FROM utilisateurs WHERE id = ?';
@@ -66,11 +72,19 @@ class Utilisateur extends Modele {
 
     }
 
+    /**
+     * Mise à jour du nouveau password
+     *
+     * @param $idUtilisateur
+     * @param $nvPassword
+     * @return bool
+     * @throws Exception
+     */
     public function setNewPassword($idUtilisateur, $nvPassword) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET password = :nvPassword WHERE id = :idUtilisateur;';
 
-        // hashage du mot de passe avant la mise à jour dans la base de données
+        // Hashage du mot de passe avant la mise à jour dans la base de données
         $passwordHash = password_hash($nvPassword, PASSWORD_BCRYPT);
 
         $MAJpassword = $this->executionRequete($reqSQL, array(
@@ -87,6 +101,13 @@ class Utilisateur extends Modele {
         }
     }
 
+    /**
+     * Mise à jour du nom d'utilisateur
+     *
+     * @param $nvUtilisateur
+     * @param $idUtilisateur
+     * @return int
+     */
     public function setNomUtilisateur($nvUtilisateur, $idUtilisateur) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET login = :nvLogin WHERE id = :idUtilisateur;';
@@ -100,6 +121,13 @@ class Utilisateur extends Modele {
         return $MAJuser->rowCount();
     }
 
+    /**
+     * Mise à jour du nom d'auteur
+     *
+     * @param $nvAuteur
+     * @param $idUtilisateur
+     * @return int
+     */
     public function setNomAuteur($nvAuteur, $idUtilisateur) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET pseudo_auteur = :nvAuteur WHERE id = :idUtilisateur;';
@@ -114,6 +142,13 @@ class Utilisateur extends Modele {
 
     }
 
+    /**
+     * Mise à jour du mail de l'utilisateur
+     *
+     * @param $nvMail
+     * @param $idUtilisateur
+     * @return int
+     */
     public function setMail($nvMail, $idUtilisateur) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET mail = :nvMail WHERE id = :idUtilisateur;';
@@ -126,8 +161,13 @@ class Utilisateur extends Modele {
         return $MAJmail->rowCount();
     }
 
+    /**
+     * Récupération du mail de l'utilisateur
+     *
+     * @return mixed
+     */
     public function getMail() {
-        // Défintion de la requête SQL
+        // Définition de la requête SQL
         $reqSQL = 'SELECT mail FROM utilisateurs';
 
         // Exécution de la requête
@@ -136,10 +176,17 @@ class Utilisateur extends Modele {
         return $utilisateur->fetch();
     }
 
+    /**
+     * Mise à jour de la section "A Propos"
+     *
+     * @param $aPropos
+     * @param $idUtilisateur
+     * @param $urlAuteur
+     * @return int
+     */
     public function setApropos($aPropos, $idUtilisateur, $urlAuteur) {
         // Définition de la requête
         $reqSQL = 'UPDATE utilisateurs SET apropos = :aPropos, url_img_apropos = :urlAuteur WHERE id = :idUtilisateur';
-
 
         $MAJaPropos = $this->executionRequete($reqSQL, array(
             ':aPropos' => $aPropos,
@@ -151,8 +198,13 @@ class Utilisateur extends Modele {
 
     }
 
+    /**
+     * Récupération de la section "A propos"
+     *
+     * @return mixed
+     */
     public function getAPropos() {
-        // Défintion de la requête SQL
+        // Définition de la requête SQL
         $reqSQL = 'SELECT apropos, url_img_apropos FROM utilisateurs';
 
         // Exécution de la requête

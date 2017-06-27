@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <base href="<?= $racineWeb; ?>">
         <meta name="author" content="www.adriendesmet.com">
-        <meta name="description" content="Projet 3 de la formation Openclassrooms pour le parcours de chef de projet multimédia option developpement"/>
+        <meta name="description" content="Projet 3 de la formation Openclassrooms pour le parcours de chef de projet multimédia option développement"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
         <meta http-equiv="pragma" content="no-cache" />
         <link rel="stylesheet" type="text/css" href="<?= $racineWeb ?>Contenu/css/reset.css">

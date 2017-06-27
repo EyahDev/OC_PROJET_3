@@ -47,10 +47,10 @@ abstract class Controleur {
         $this->navCategories = new Categories();
         $this->signalement = new Commentaire();
 
-        // Récuperation du nom de la classe
+        // Récupération du nom de la classe
         $classeControleur = get_class($this);
 
-        // Recherche le mot Controleur et le remplace par du vide dans la chaine de caractère $classeControleur
+        // Recherche le mot Contrôleur et le remplace par du vide dans la chaîne de caractères $classeControleur
         $controleur = str_replace("Blog\Controleur\Controleur", "", $classeControleur);
 
         // instanciation et affichage de la vue

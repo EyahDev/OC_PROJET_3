@@ -28,7 +28,7 @@
                 <label for="categorieNvArticle">Catégorie</label>
                 <div class="select-style">
                     <select name="categorieModifArticle" id="categorieNvArticle">
-                        <option value="">-- Selectionnez la catégorie de l'article --</option>
+                        <option value="">-- Sélectionner la catégorie de l'article --</option>
                         <?php foreach ($categories as $categorie) : ?>
                             <option value="<?= $categorie['id'] ?>"<?= ($categorie['id'] == $affichageArticle['categorie_id'])? 'selected': '' ?>><?= $this->nettoyageFailles($categorie['categorie']) ?></option>
                         <?php endforeach;?>
@@ -37,15 +37,15 @@
                 <p>ou <a href="categorieadmin">Créer une catégorie</a></p>
 
                 <label for="ModifArticleUrlTuile">URL de l'image de l'accueil <br/>
-                    <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.
+                    <strong>Attention : </strong> L'image doit avoir une taille d'environ <strong>466x466px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
-                <input type="text" id="ModifArticleUrlTuile" name="urlTuile" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_tuiles']) == 'Contenu/img/default/tuile_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_tuiles']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas"/>
+                <input type="text" id="ModifArticleUrlTuile" name="urlTuile" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_tuiles']) == 'Contenu/img/default/tuile_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_tuiles']) ?>" placeholder="Une image par défaut sera générée si vous n'en avez pas"/>
                 <br />
 
                 <label for="ModifArticleUrlPres">URL de l'image de l'article <br/>
-                    <strong>Attention : </strong> l'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.
+                    <strong>Attention : </strong> L'image doit avoir une taille d'environ <strong>1300x500px</strong> sous peine d'avoir des problèmes d'affichage.
                 </label>
-                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_pres']) == 'Contenu/img/default/pres_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_pres']) ?>" placeholder="Une image par défaut sera généré si vous n'en avez pas" />
+                <input type="text" id="ModifArticleUrlPres" name="urlPres" value="<?= ($this->nettoyageFailles($affichageArticle['url_img_pres']) == 'Contenu/img/default/pres_default.jpg')? '' : $this->nettoyageFailles($affichageArticle['url_img_pres']) ?>" placeholder="Une image par défaut sera générée si vous n'en avez pas" />
                 <br />
 
                 <label for="contenuArticleModif">Contenu de l'article</label>

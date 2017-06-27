@@ -4,11 +4,7 @@ namespace Blog\Framework;
 
 use Exception;
 
-/**
- * Classe gérant les sessions
- *
- * @package Blog\Framework
- */
+
 class Session
 {
     /**
@@ -40,7 +36,7 @@ class Session
     /**
      * Vérification sur la session existe
      *
-     * @param $nom => Parametre de de session à vérifier
+     * @param $nom => Paramètre de la session à vérifier
      * @return bool => Retourne vrai si le paramètre de la fonction existe
      */
     public function existeAttribut($nom) {
@@ -48,11 +44,11 @@ class Session
     }
 
     /**
-     * Récuperation de la valeur du paramètre
+     * Récupération de la valeur du paramètre
      *
      * @param $nom => Paramètre de la session
      * @return mixed => Retourne la valeur du paramètre de la session
-     * @throws Exception => Retourne un message d'erreur si necessaire
+     * @throws Exception => Retourne un message d'erreur si nécessaire
      */
     public function getAttribut($nom) {
         if ($this->existeAttribut($nom)) {
@@ -63,10 +59,10 @@ class Session
     }
 
     /**
-     * Récuperation d'un message flash personnalisé
+     * Récupération d'un message flash personnalisé
      *
      * @param $type => type de message flash
-     * @return string => Retourne le message recuperé
+     * @return string => Retourne le message récupéré
      */
     public function getMessageFlash() {
         $messageFlash = '';

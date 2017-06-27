@@ -37,14 +37,14 @@
                 <a href="gestionarticles" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-pencil-square-o iconeAdmin" aria-hidden="true"></i>
-                        <p class="titreFonction">Gerer les articles</p>
+                        <p class="titreFonction">Gérer les articles</p>
                     </div>
                 </a>
 
                 <a href="categorieadmin" class="tuileAdmin">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-tags iconeAdmin" aria-hidden="true"></i>
-                        <p class="titreFonction">Gerer les catégories</p>
+                        <p class="titreFonction">Gérer les catégories</p>
                     </div>
                 </a>
 
@@ -58,7 +58,7 @@
                 <a href="connexion/deconnecter" class="tuileDeco">
                     <div class="contenuTuileAdmin">
                         <i class="fa fa-sign-out iconeAdmin" aria-hidden="true"></i>
-                        <p class="titreFonction">Se deconnecter</p>
+                        <p class="titreFonction">Se déconnecter</p>
                     </div>
                 </a>
 

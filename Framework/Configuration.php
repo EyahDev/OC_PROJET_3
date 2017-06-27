@@ -34,7 +34,7 @@ class Configuration {
     /**
      * Recherche un paramètre dans les valeurs retournés par la fonction getConfiguration et renvoi sa valeur
      *
-     * @param $nom => parametre à chercher
+     * @param $nom => paramètre à chercher
      * @param null $valeurParDefaut => si le paramètre n'a pas été trouvé, retourne null
      * @return null => Retourne la valeur trouvée
      */

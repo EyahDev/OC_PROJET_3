@@ -19,9 +19,9 @@ class Requete {
     /**
      * Constructeur de la requête
      *
-     * Définition du parametres de la requête
+     * Définition du paramètre de la requête
      *
-     * @param $parametres
+     * @param $paramètres
      */
     public function __construct($parametres) {
         $this->parametres = $parametres;
@@ -29,7 +29,7 @@ class Requete {
     }
 
     /**
-     * Récuperation de l'objet de la session
+     * Récupération de l'objet de la session
      *
      * @return Session => Objet de la session
      */
@@ -48,13 +48,13 @@ class Requete {
     }
 
     /**
-     * prerequis => Vérification sur la valeur du paramètre existe grace à la fonction existeParametre.
+     * prerequis => Vérification sur la valeur du paramètre existe grâce à la fonction existeParametre.
      *
-     * Récuperation de la valeur du parametre
+     * Récupération de la valeur du paramètre
      *
      * @param $nom => valeur du paramètre
      * @return mixed => Retourne la valeur du paramètre
-     * @throws Exception => Message d'erreur dans le cas ou la valeur est absente
+     * @throws Exception => Message d'erreur dans le cas où la valeur est absente
      */
     public function getParametre($nom) {
         if ($this->existeParametre($nom) == '') {

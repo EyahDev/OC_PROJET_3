@@ -83,14 +83,15 @@ class ControleurAccueil extends Controleur {
 
         // Récupération du message
         $message = $this->requete->getParametre('messageContact');
+        $message = "Message de " .$nomPrenom. "<br/>Mail : ".$mail."<br/><em>Répondre à ce mail répondra directement à l'auteur du message</em><br/><br/>".$message;
 
         // Information supplémentaires pour la fonction mail : ajout de l'adresse mail de l'expediteur
-        $headers = 'From: Mail de contact - jenforteroche.com <'.$mailServeur.'>'."\r\n";
+        $headers = 'From: Nouveau message - Lettres d\'Alaska <'.$mailServeur.'>'."\r\n";
         $headers .= 'Reply-To:'.$nomPrenom. '<'.$mail.'>'. "\r\n";
         $headers .= 'Content-Type: text/html;charset=utf-8' . "\r\n";
 
 
-        if (empty($mail) || empty($sujet) || empty($message)) {
+        if (empty($mail) || empty($sujet) || empty($message) || empty($nomPrenom)) {
             if (empty($mail)) {
                 // Définition d'un message flash d'erreur
                 $this->requete->getSession()->setMessageFlash('erreur', 'Votre adresse mail est manquante');
@@ -114,12 +115,19 @@ class ControleurAccueil extends Controleur {
                 // Définition d'un message flash d'erreur
                 $this->requete->getSession()->setMessageFlash('erreur', 'Votre message est manquant');
 
+                // Redirection vers la page d'accueil section contact
+                header('location: index#contact');
+            } elseif ( empty($nomPrenom)) {
+
+                // Définition d'un message flash d'erreur
+                $this->requete->getSession()->setMessageFlash('erreur', 'Votre nom et prénom sont manquants');
 
                 // Redirection vers la page d'accueil section contact
                 header('location: index#contact');
             }
 
         } else {
+
             // Envoi du mail à l'adresse de l'administrateur
             mail($to['mail'], $sujet, $message, $headers, "-f $mailServeur");
 
@@ -134,5 +142,4 @@ class ControleurAccueil extends Controleur {
 
         }
     }
-
 }

@@ -1,4 +1,4 @@
-<?php $this->titre = "Jean Forteroche - Modifier le nom d'auteur"?>
+<?php $this->titre = "Jean Forteroche - Modifier votre nom d'auteur"?>
 
 <section class="main clearfix">
     <section class="top bgAdmin">
@@ -9,7 +9,7 @@
                     <li><a href="admin" class="grid" data-title="Administration"></a></li>
                 </ul>
             </div><!-- end work_nav -->
-            <h1 class="title">Modifier le nom d'auteur</h1>
+            <h1 class="title">Modifier votre nom d'auteur</h1>
         </div>
     </section><!-- end top -->
 

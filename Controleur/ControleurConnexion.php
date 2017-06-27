@@ -75,8 +75,11 @@ class ControleurConnexion extends Controleur {
                 $this->redirection('connexion');
             }
         } else {
-            // message d'erreur dans le cas ou le login et/ou le password ne sont pas définis
-            throw new Exception("Action impossible login ou mot de passe non défini");
+            // Définition d'un message flash d'erreur
+            $this->requete->getSession()->setMessageFlash('erreur', 'Action impossible, le login et/ou le mot de passe ne sont pas définis');
+
+            //Redirection vers la page de connexion
+            $this->redirection('connexion');
         }
     }
 

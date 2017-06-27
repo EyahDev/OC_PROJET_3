@@ -8,7 +8,7 @@ use Blog\Framework\Modele;
 class Categories extends Modele {
 
     /**
-     * Recuperation de toutes les catégories existantes
+     * Récupération de toutes les catégories existantes
      *
      * @return \PDOStatement => Retourne toutes les catégories existantes
      */
@@ -16,28 +16,30 @@ class Categories extends Modele {
         // Définition de la requête SQL
         $reqSQL = 'SELECT COUNT(b.categorie_id) AS nbArticles, c.id, c.categorie, c.url_img_pres FROM categories c LEFT JOIN articles b ON b.categorie_id = c.id GROUP BY c.id';
 
-        // Recuperation des catégories
+        // Récupération des catégories
         $recupCategories = $this->executionRequete($reqSQL);
 
         // Retourne les catégories
         return $recupCategories;
     }
 
+
     /**
-     * Récuperation d'une catégorie défini par son identifiant
+     * Récupération d'une catégorie définie par son identifiant
      *
      * @param $idCategorie => Identifiant de la catégorie
-     * @return \PDOStatement => Retourne la catégorie defini par l'identifiant
+     * @return mixed => Retourne la catégorie définie par l'identifiant
+     * @throws Exception => Message d'erreur
      */
     public function getCategorie ($idCategorie) {
         // Définition de la requête SQL
         $reqSQL = 'SELECT * FROM categories WHERE id = ?';
 
-        // Recuperation des catégories
+        // Récupération des catégories
         $recupCategorie = $this->executionRequete($reqSQL, array($idCategorie));
 
 
-        // Retourne la catégorie demandée si il n'y a qu'un seul resultat, si non il genère un message d'erreur
+        // Retourne la catégorie demandée si il n'y a qu'un seul résultat, si non il génère un message d'erreur
         if ($recupCategorie->rowCount()) {
             return $recupCategorie->fetch();
         } else {
@@ -46,12 +48,10 @@ class Categories extends Modele {
 
     }
 
-
     /**
-     * Récuperation du titre d'une catégorie par son id
-     *
-     * @param $idCategorie => identifiant de la catégorie
-     * @return \PDOStatement => Retourne le titre de la catégorie
+     * @param $idCategorie => Retourne le titre de la catégorie
+     * @return mixed => Retourne le titre de la catégorie
+     * @throws Exception => Message d'erreur
      */
     public function getTitreCategorie($idCategorie) {
         // Définition de la requête SQL
@@ -79,11 +79,11 @@ class Categories extends Modele {
 
         $count = $ecriture->rowCount();
 
-        // Renvoie un message d'erreur si aucune ligne est affecté
+        // Renvoi un message d'erreur si aucune ligne est affectée
         if ($count) {
             return $count;
         } else {
-            throw new Exception("Il y a eu un problème avec la creation de la catégorie");
+            throw new Exception("Il y a eu un problème avec la création de la catégorie");
         }
 
     }
@@ -93,10 +93,10 @@ class Categories extends Modele {
 
         $suppression = $this->executionRequete($reqSQL, array($idCategorie));
 
-        // Vérification si la ligne est bien affecté
+        // Vérification si la ligne est bien affectée
         $count = $suppression->rowCount();
 
-        // Renvoie un message d'erreur si aucune ligne est affecté
+        // Renvoi un message d'erreur si aucune ligne est affectée
         if ($count) {
             return $count;
         } else {
@@ -105,6 +105,14 @@ class Categories extends Modele {
 
     }
 
+    /**
+     * Mise à jour de la catégorie
+     *
+     * @param $categorie
+     * @param $idCategorie
+     * @param $urlPres
+     * @return int
+     */
     public function MAJCategorie ($categorie, $idCategorie, $urlPres) {
 
         $reqSQL = 'UPDATE categories SET categorie = :categorie, url_img_pres = :urlPres WHERE id = :idCategorie';
