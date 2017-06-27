@@ -14,7 +14,7 @@ echo '<div class="conteneurComEnfants">';
                             <?php if(isset($_SESSION['idUtilisateur'])) : ?>
                                 <a class="supprVolee" href="<?= 'signalement/suppressiondirect/' .$reponse['id'] ?>"><i class="fa fa-times" aria-hidden="true"></i></a>
                             <?php endif; ?>
-                            <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['contenu'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
+                            <strong><?=  htmlspecialchars($reponse['auteur'], ENT_QUOTES, 'UTF-8', false) ?></strong> en réponse à <strong><?=  htmlspecialchars($parent['auteur'], ENT_QUOTES, 'UTF-8', false)?></strong> - <time><?= $reponse['dateFormate']?></time>
                         </p>
                         <p class="contenuCom"><?= htmlspecialchars($reponse['contenu'], ENT_QUOTES, 'UTF-8', false) ?></p>
 

@@ -8,7 +8,7 @@
                         <li><a href="admin" class="previous" data-title="Retour"></a></li>
                     </ul>
                 </div><!-- end work_nav -->
-                <h1 class="title">Gerer les articles</h1>
+                <h1 class="title">Modération des commentaires</h1>
             </div>
         </section><!-- end top -->
 

@@ -81,7 +81,7 @@ class ControleurGestionarticles extends ControleurSecurise {
         $this->article->supprArticle($idArticle);
 
         // Définition du message flash
-        $this->requete->getSession()->setMessageFlash('confirmation', 'La suppression de l\'article a bien été effectué');
+        $this->requete->getSession()->setMessageFlash('confirmation', 'La suppression de l\'article a bien été effectuée');
 
         // Redirection vers la liste des articles
         $this->redirection('GestionArticles');
@@ -145,9 +145,9 @@ class ControleurGestionarticles extends ControleurSecurise {
 
             // Définition d'un message de confirmation si il y a eu modification ou non
             if ($MAJ == 1) {
-                $this->requete->getSession()->setMessageFlash('confirmation', 'La modifiation de l\'article a été effectué.');
+                $this->requete->getSession()->setMessageFlash('confirmation', 'La modifiation de l\'article a été effectuée');
             } else {
-                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliqué');
+                $this->requete->getSession()->setMessageFlash('confirmation', 'Aucune modification n\'a été appliquée');
             }
 
             // Suppression des cookies

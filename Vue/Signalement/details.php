@@ -51,7 +51,7 @@
             <?php if ($details['moderation'] == 1) : ?>
                 <p id="action"><a href="<?= "signalement/suppression/" . $details['id']?>"class="rouge"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></p>
             <?php else : ?>
-                <p id="actionR"><a href="<?= "signalement/approuver/" . $details['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuvé</a></p>
+                <p id="actionR"><a href="<?= "signalement/approuver/" . $details['id']?>" class="vert"><i class="fa fa-check" aria-hidden="true"></i> Approuver</a></p>
                 <p id="actionL"><a href="<?= "signalement/suppression/" . $details['id']?>" class="rouge"><i class="fa fa-times" aria-hidden="true"></i> Supprimer</a></p>
             <?php endif; ?>
 

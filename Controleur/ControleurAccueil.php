@@ -83,7 +83,6 @@ class ControleurAccueil extends Controleur {
 
         // Récupération du message
         $message = $this->requete->getParametre('messageContact');
-        $message = "Message de " .$nomPrenom. "<br/>Mail : ".$mail."<br/><em>Répondre à ce mail répondra directement à l'auteur du message</em><br/><br/>".$message;
 
         // Information supplémentaires pour la fonction mail : ajout de l'adresse mail de l'expediteur
         $headers = 'From: Nouveau message - Lettres d\'Alaska <'.$mailServeur.'>'."\r\n";
@@ -127,6 +126,8 @@ class ControleurAccueil extends Controleur {
             }
 
         } else {
+
+            $message = "Message de " .$nomPrenom. "<br/>Mail : ".$mail."<br/><em>Répondre à ce mail répondra directement à l'auteur du message</em><br/><br/>".$message;
 
             // Envoi du mail à l'adresse de l'administrateur
             mail($to['mail'], $sujet, $message, $headers, "-f $mailServeur");
