@@ -1,1 +1,0 @@
- # Projet 3 de la formation Openclassrooms (<a href="https://openclassrooms.com/paths/chef-de-projet-multimedia-developpement" title="link to google">CDP DEV</a>)
